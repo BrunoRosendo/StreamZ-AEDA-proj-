@@ -1,0 +1,11 @@
+Joao Gil    //name
+Monkin      //nick
+07/04/2001  //date
+*Stream1    //stream name   (ID = *)
+273         //no_views
+*Stream2    // stream name
+7          //no_views when stream ended
+*Stream3    //stream name
+41         //no_views when stream ended
+/Forever7   //subscriber   (ID = /)
+/Rego       //subscriber
