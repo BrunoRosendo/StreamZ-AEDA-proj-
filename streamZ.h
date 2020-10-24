@@ -11,16 +11,30 @@
 #include "admin.h"
 
 class StreamZ{
+private:
     std::vector<User *> users;
     std::vector<Stream *> streams;
     Admin* admin;
 public:
-    StreamZ();
-    int createStreamer();   //args will be received by input from console
-    int createViewer();     //args will be received by input from console
-    int createAdmin();      //args will be received by input from console
-    int fetchDataFromFile();
-    int storeDataInFile();
+    //StreamZ();
+    void createStreamer();   //args will be received by input from console
+    void createViewer();
+    void createAdmin();
+    void createStream(Streamer* streamer);
+    void deleteStream(Streamer* streamer);  // deletes the stream which the streamer wants to end
+    void fetchDataFromFile();
+    void storeDataInFile() const;
+    std::vector<Stream*> topViews() const;
+    std::vector<Stream*> topLikes() const;
+    std::vector<Stream*> searchStreams(std::string language, int minAge) const;
+    void listStreams(std::vector<Stream*> streams) const;
+    void listUsers() const;
+    // Menus
+    void init();
+    void userMenu();
+    void adminMenu();
+    void viewerMenu();
+    void streamerMenu();
 };
 
 #endif //PROJETO1_STREAMZ_H

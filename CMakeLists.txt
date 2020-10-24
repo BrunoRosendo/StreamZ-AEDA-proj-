@@ -3,4 +3,4 @@ project(projeto1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(projeto1 main.cpp streamZ.h streamZ.cpp streamHistory.h user.h stream.h date.h admin.h)
+add_executable(projeto1 main.cpp streamZ.cpp)

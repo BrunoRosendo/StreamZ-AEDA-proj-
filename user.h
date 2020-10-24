@@ -9,37 +9,51 @@
 #include <vector>
 #include "date.h"
 #include "stream.h"
-#include "streamHistory.h"
+#include "pastStream.h"
+
+using namespace std;
 
 class User{
+private:
     std::string name;
     std::string nick;
     Date birthDate;
     Stream* stream;
-    std::vector<StreamHistory *> streamHistory;
+    std::vector<PastStream *> streamHistory;
 public:
     User(std::string name, std::string nick, Date birthDate);
-    int setStreamerHistory(vector<struct streamHistory> pastStreams);
+    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
+    std::string getName() const;
+    std::string getNick() const;
+    int getAge() const;
+    Stream* getStream() const;
+    std::vector<PastStream*> getStreamHistory() const;
+    virtual void showUser() const;
 };
 
 class Streamer : public User{
-    std::vector<std::string> subscribers;
+private:
+    std::vector<User*> subscribers;
 public:
     Streamer(std::string name, std::string nick, Date birthDate);
-    int getNumViewers();
+    int getNumViewers() const;
     int endStream();
-    int startStream(std::string title, Date startDate, std::string language, int minAge);
-    int setSubscribers(vector<std::string> subscribers);
+    void startStream(std::string title, Date startDate, std::string language, int minAge);
+    void setSubscribers(vector<User*> subscribers);
+    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
+    virtual void showUser() const;
 };
 
 class Viewer : public User{
 
 public:
     Viewer(std::string name, std::string nick, Date birthDate);
-    int joinStream(Stream* stream);
-    int leaveStream();
-    void message(std::string text);
+    void joinStream(Stream* stream);
+    void leaveStream();
+    void message(std::string text) const;
     void feedback(int megaLikezao);
+    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
+    virtual void showUser() const;
 };
 
 #endif //PROJETO1_USER_H
