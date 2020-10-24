@@ -10,5 +10,11 @@ using namespace std;
 int main() {
     StreamZ site;
     site.init();
+    /*try {
+        Date d1(2002, 0, 2);
+        cout << d1.getAge() << endl;
+    }
+    catch (DateIsNotValid& e){ cerr << e.what() << endl;}
+     */
     return 0;
 }
