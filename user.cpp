@@ -131,7 +131,7 @@ void Streamer::removeSubscriber(unsigned int id) {
     subscribers.erase(it);
 }
 
-ostream& operator<<(ostream& out, const Streamer streamer){
+ostream& operator<<(ostream& out, const Streamer& streamer){
     out << streamer.getNick() << "( " << streamer.getName() << " )" << endl
         << streamer.getAge() << " Years Old" << endl << streamer.getNumSubs() << " Subscribers" << endl;
     if (streamer.getStream() != NULL)

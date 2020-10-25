@@ -59,7 +59,7 @@ public:
 };
 
 
-ostream& operator<<(ostream& out, const Streamer streamer);
+ostream& operator<<(ostream& out, const Streamer& streamer);
 ostream& operator<<(ostream& out, const Viewer& viewer);
 
 
