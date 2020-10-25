@@ -22,6 +22,6 @@ Stream::Stream(std::string title, Date startDate, std::string language, int minA
  * @param user unsigned int that represents a user index on the StreamZ class vector of users
  */
 void Stream::removeUser(unsigned int user) {
-
+    // create a dictionary (map) with keys=values = idx on StreamZ class 
 }
 
