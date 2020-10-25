@@ -12,7 +12,7 @@
 
 class StreamZ{
 private:
-    std::vector<User *> users;
+    std::vector<User *> users;  // access to users by the ID. Access to streamers using pointers
     std::vector<Stream *> streams;
     Admin* admin;
 public:
