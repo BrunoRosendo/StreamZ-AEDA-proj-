@@ -5,9 +5,10 @@
 #ifndef PROJETO1_STREAM_H
 #define PROJETO1_STREAM_H
 
-class User;
+//#include "user.h"
+#include "date.h"
 
-#include "user.h"
+//class User;       TO DO THIS NEED TO DO A FORWARD DECLARATION
 
 class Stream{
 protected:
