@@ -117,16 +117,16 @@ void Streamer::startStream(Stream *stream) {
 }
 
 
-void Streamer::setSubscribers(vector<unsigned int>& subscribers) {
+void Streamer::setSubscribers(set<unsigned int>& subscribers) {
     this->subscribers = subscribers;
 }
 
 void Streamer::addSubscriber(unsigned int id) {
-    subscribers.push_back(id);
+    subscribers.insert(id);
 }
 
 void Streamer::removeSubscriber(unsigned int id) {
-    vector<unsigned int>::iterator it = find(subscribers.begin(), subscribers.end(), id);
+    set<unsigned int>::iterator it = subscribers.find(id);
     if (it == subscribers.end()) throw NotSubscribed("That user is not subscribed to " + this->nick);
     subscribers.erase(it);
 }

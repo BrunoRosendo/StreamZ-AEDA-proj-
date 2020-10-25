@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include "date.h"
 #include "stream.h"
 #include "pastStream.h"
@@ -34,17 +35,17 @@ public:
 
 class Streamer : public User{
 private:
-    std::vector<unsigned int> subscribers;
+    std::set<unsigned int> subscribers;
 public:
     Streamer(std::string name, std::string nick, const Date& birthDate);
     int getNumViewers() const;
     int getNumSubs() const;
     void endStream();
     void startStream(Stream* stream);
-    void setSubscribers(vector<unsigned int>& subscribers);
+    void setSubscribers(set<unsigned int>& subscribers);
     void addSubscriber(unsigned int id);
     void removeSubscriber(unsigned int id);
-    friend ostream& operator<<(ostream& out, const Streamer streamer);
+    friend ostream& operator<<(ostream& out, const Streamer& streamer);
 };
 
 class Viewer : public User{
