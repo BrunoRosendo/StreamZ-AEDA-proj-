@@ -14,46 +14,81 @@
 using namespace std;
 
 class User{
-private:
+protected:
     std::string name;
     std::string nick;
     Date birthDate;
     Stream* stream;
     std::vector<PastStream *> streamHistory;
+    unsigned int ID;
+    static unsigned int nextID;
 public:
-    User(std::string name, std::string nick, Date birthDate);
-    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
+    User(std::string name, std::string nick, const Date& birthDate);
+    virtual void setStreamHistory(std::vector<struct PastStream>& pastStreams);
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
     Stream* getStream() const;
     std::vector<PastStream*> getStreamHistory() const;
-    virtual void showUser() const;
+    // overload the << operator to show user
 };
 
 class Streamer : public User{
 private:
-    std::vector<User*> subscribers;
+    std::vector<unsigned int> subscribers;
 public:
-    Streamer(std::string name, std::string nick, Date birthDate);
+    Streamer(std::string name, std::string nick, const Date& birthDate);
     int getNumViewers() const;
-    int endStream();
-    void startStream(std::string title, Date startDate, std::string language, int minAge);
-    void setSubscribers(vector<User*> subscribers);
-    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
-    virtual void showUser() const;
+    int getNumSubs() const;
+    void endStream();
+    void startStream(Stream* stream);
+    void setSubscribers(vector<unsigned int>& subscribers);
+    void addSubscriber(unsigned int id);
+    void removeSubscriber(unsigned int id);
 };
 
 class Viewer : public User{
 
 public:
-    Viewer(std::string name, std::string nick, Date birthDate);
+    Viewer(std::string name, std::string nick, const Date& birthDate);
     void joinStream(Stream* stream);
     void leaveStream();
     void message(std::string text) const;
-    void feedback(int megaLikezao);
-    virtual void setStreamHistory(std::vector<struct PastStream> pastStreams);
-    virtual void showUser() const;
+    void feedback(int like);
+};
+
+// Exceptions related to the user
+
+class NotOldEnough{
+private:
+    string reason;
+public:
+    NotOldEnough(string reason);
+    string what() const;
+};
+
+class NotInAStream{
+private:
+    string reason;
+public:
+    NotInAStream(string reason);
+    string what() const;
+};
+
+class AlreadyStreaming{
+private:
+    string reason;
+public:
+    AlreadyStreaming(string reason);
+    string what() const;
+};
+
+class NotSubscribed{
+private:
+    string reason;
+public:
+    NotSubscribed(string reason);
+    string what() const;
 };
 
 #endif //PROJETO1_USER_H
