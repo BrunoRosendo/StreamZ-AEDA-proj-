@@ -37,8 +37,9 @@ int Admin::getNumStreams() const {
 }
 
 int Admin::getNumCreatedStreams(Date from, Date to) const {
+    if (from > to) throw badDateComp("ERROR: Start date is after end date");
     int cnt = 0;
-    vector<Stream*>::iterator it;
+    vector<Stream*>::const_iterator it;
     for (it = streams.begin();it != streams.end(); it++){
         if ((*it)->startDate >= from && (*it)->startDate <= to)
             cnt ++;
@@ -47,9 +48,10 @@ int Admin::getNumCreatedStreams(Date from, Date to) const {
 }
 
 float Admin::getAvgViews() const {
+    if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
     int sum = 0;
     float avg = 0;
-    vector<Stream *>::iterator it;
+    vector<Stream *>::const_iterator it;
     for (it = streams.begin(); it != streams.end(); it++){
             sum += (*it)->getNumViewers();
     }
@@ -58,9 +60,11 @@ float Admin::getAvgViews() const {
 }
 
 float Admin::getAvgViews(Date from, Date to) const {
+    if (from > to) throw badDateComp("ERROR: Start date is after end date");
+    if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
     int sum = 0;
     float avg = 0;
-    vector<Stream *>::iterator it;
+    vector<Stream *>::const_iterator it;
     for (it = streams.begin(); it != streams.end(); it++){
         if ((*it)->startDate >= from && (*it)->startDate <= to)
             sum += (*it)->getNumViewers();
@@ -74,6 +78,7 @@ int Admin::getNumPublicStreams() const {
 }
 
 int Admin::getNumPublicStreams(Date from, Date to) const {
+    if (from > to) throw badDateComp("ERROR: Start date is after end date");
 
 }
 
@@ -82,10 +87,12 @@ int Admin::getNumPrivateStreams() const {
 }
 
 int Admin::getNumPrivateStreams(Date from, Date to) const {
+    if (from > to) throw badDateComp("ERROR: Start date is after end date");
 
 }
 
 string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
+    if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
     int cnt = 0, max_cnt = 0, max_pos = 0;
     for (int i=0;i<streams.size();i++){
         for (int j=i+1;j<streams.size();j++){
@@ -101,6 +108,7 @@ string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
 }
 
 string Admin::getPreferredStreamType() const {
+    if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
 
 }
 
