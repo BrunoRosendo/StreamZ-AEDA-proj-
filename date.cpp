@@ -107,6 +107,45 @@ unsigned int Date::getAge() const {
     return today.getYear() - this->getYear();
 }
 
+bool Date::operator==(const Date &date) {
+    return getDate() == date.getDate();
+}
+
+bool Date::operator!=(const Date &date) {
+    return getDate() != date.getDate();
+}
+
+bool Date::operator>(const Date &date) {
+    int year = stoi(datestring.substr(0, 4));
+    int month = stoi(datestring.substr(4, 2));
+    int day = stoi(datestring.substr(6, 2));
+    if (year > date.getYear()) return true;
+    else if (year == date.getYear()) {
+        if (month > date.getMonth()) return true;
+        else if (month == date.getMonth() && day > date.getDay()) return true;
+    }
+    return false;
+}
+
+bool Date::operator<(const Date &date) {
+    int year = stoi(datestring.substr(0, 4));
+    int month = stoi(datestring.substr(4, 2));
+    int day = stoi(datestring.substr(6, 2));
+    if (year < date.getYear()) return true;
+    else if (year == date.getYear()) {
+        if (month < date.getMonth()) return true;
+        else if (month == date.getMonth() && day < date.getDay()) return true;
+    }
+    return false;
+}
+
+bool Date::operator>=(const Date &date) {
+    return (*this) > date || (*this) == date;
+}
+
+bool Date::operator<=(const Date &date) {
+    return (*this) < date || (*this) == date;
+}
 
 DateIsNotValid::DateIsNotValid(string date){
     this->date = date;

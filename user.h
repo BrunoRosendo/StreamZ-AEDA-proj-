@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include "date.h"
 #include "stream.h"
 #include "pastStream.h"
@@ -30,21 +31,21 @@ public:
     int getAge() const;
     Stream* getStream() const;
     std::vector<PastStream*> getStreamHistory() const;
-    // overload the << operator to show user
 };
 
 class Streamer : public User{
 private:
-    std::vector<unsigned int> subscribers;
+    std::set<unsigned int> subscribers;
 public:
     Streamer(std::string name, std::string nick, const Date& birthDate);
     int getNumViewers() const;
     int getNumSubs() const;
     void endStream();
     void startStream(Stream* stream);
-    void setSubscribers(vector<unsigned int>& subscribers);
+    void setSubscribers(set<unsigned int>& subscribers);
     void addSubscriber(unsigned int id);
     void removeSubscriber(unsigned int id);
+    friend ostream& operator<<(ostream& out, const Streamer& streamer);
 };
 
 class Viewer : public User{
@@ -55,7 +56,13 @@ public:
     void leaveStream();
     void message(std::string text) const;
     void feedback(int like);
+    friend ostream& operator<<(ostream& out, const Viewer& viewer);
 };
+
+
+ostream& operator<<(ostream& out, const Streamer& streamer);
+ostream& operator<<(ostream& out, const Viewer& viewer);
+
 
 // Exceptions related to the user
 
