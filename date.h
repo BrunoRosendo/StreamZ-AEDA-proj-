@@ -23,6 +23,12 @@ public:
     string getDate() const; // returns the date in format "yyyy/mm/dd"
     bool isValid();
     unsigned int getAge() const;
+    bool operator==(const Date& date);
+    bool operator!=(const Date& date);
+    bool operator>(const Date& date);
+    bool operator<(const Date& date);
+    bool operator>=(const Date& date);
+    bool operator<=(const Date& date);
 private:
     string datestring;
     bool isleap();
