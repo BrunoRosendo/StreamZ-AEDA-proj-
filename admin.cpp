@@ -58,7 +58,7 @@ float Admin::getAvgViews() const {
     for (it = streams.begin(); it != streams.end(); it++){
         sum += (*it)->getNumViewers();
     }
-    avg = sum/getNumStreams();
+    avg = sum/getNumStreams();  // DAR CAST (float), se nao arredonda
     return avg;
 }
 
