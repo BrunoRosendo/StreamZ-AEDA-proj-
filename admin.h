@@ -14,16 +14,16 @@ private:
     std::vector<User *> users;  // These vectors are the vectors of the class StreamZ (by reference)
     std::vector<Stream *> streams;
 public:
-    Admin(std::string name, std::vector<User*>& users, std::vector<Stream*>& streams);
-    int getNumStreams() const;
-    int getNumCreatedStreams(Date from, Date to) const;
-    float getAvgViews() const;
-    float getAvgViews(Date from, Date to) const;
+    Admin(std::string name, std::vector<User*>& users, std::vector<Stream*>& streams);  //feito
+    int getNumStreams() const;                                                          //feito
+    int getNumCreatedStreams(Date from, Date to) const;                                 //feito
+    float getAvgViews() const;                                                          //feito
+    float getAvgViews(Date from, Date to) const;                                        //feito
     int getNumPublicStreams() const;
     int getNumPublicStreams(Date from, Date to) const;
     int getNumPrivateStreams() const;
     int getNumPrivateStreams(Date from, Date to) const;
-    std::string getPreferredLanguage(std::vector<Stream*>& streams) const;
+    std::string getPreferredLanguage(std::vector<Stream*>& streams) const;              //feito
     std::string getPreferredStreamType() const;
     Streamer* getMostViewedStreamer() const;
 };

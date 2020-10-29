@@ -7,6 +7,7 @@
 #include "date.h"
 #include "user.h"
 #include "admin.h"
+#include "stream.h"
 
 using namespace std;
 
@@ -39,9 +40,11 @@ int Admin::getNumStreams() const {
 int Admin::getNumCreatedStreams(Date from, Date to) const {
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
     int cnt = 0;
+    Date d;
     vector<Stream*>::const_iterator it;
     for (it = streams.begin();it != streams.end(); it++){
-        if ((*it)->startDate >= from && (*it)->startDate <= to)
+        d = (*it)->getStartDate();
+        if (d >= from && d <= to)
             cnt ++;
     }
     return cnt;
@@ -53,7 +56,7 @@ float Admin::getAvgViews() const {
     float avg = 0;
     vector<Stream *>::const_iterator it;
     for (it = streams.begin(); it != streams.end(); it++){
-            sum += (*it)->getNumViewers();
+        sum += (*it)->getNumViewers();
     }
     avg = sum/getNumStreams();
     return avg;
@@ -64,9 +67,11 @@ float Admin::getAvgViews(Date from, Date to) const {
     if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
     int sum = 0;
     float avg = 0;
+    Date d;
     vector<Stream *>::const_iterator it;
     for (it = streams.begin(); it != streams.end(); it++){
-        if ((*it)->startDate >= from && (*it)->startDate <= to)
+        d = (*it)->getStartDate();
+        if (d >= from && d <= to)
             sum += (*it)->getNumViewers();
     }
     avg = sum/getNumStreams();
@@ -94,9 +99,12 @@ int Admin::getNumPrivateStreams(Date from, Date to) const {
 string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
     if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
     int cnt = 0, max_cnt = 0, max_pos = 0;
+    string li, lj;
     for (int i=0;i<streams.size();i++){
+        li = streams[i]->getLanguage();
         for (int j=i+1;j<streams.size();j++){
-            if (streams[i]->language == streams[j]->language)
+            lj = streams[j]->getLanguage();
+            if (li == lj)
                 cnt++;
         }
         if (cnt > max_cnt){
@@ -104,7 +112,7 @@ string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
             max_pos = i;
         }
     }
-    return streams[max_pos]->language;
+    return streams[max_pos]->getLanguage();
 }
 
 string Admin::getPreferredStreamType() const {
@@ -113,9 +121,8 @@ string Admin::getPreferredStreamType() const {
 }
 
 Streamer * Admin::getMostViewedStreamer() const {
-    //Streamer s;
     int cnt = 0, max_cnt = 0;
-    vector<Stream *>::iterator it;
+    vector<Stream *>::const_iterator it;
     for (it = streams.begin(); it != streams.end(); it++){
         if ((*it)->getNumViewers() > max_cnt){
             max_cnt = (*it)->getNumViewers();
