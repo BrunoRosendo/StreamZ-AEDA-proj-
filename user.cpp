@@ -117,18 +117,31 @@ void Streamer::startStream(Stream *stream) {
 }
 
 
-void Streamer::setSubscribers(vector<unsigned int>& subscribers) {
+void Streamer::setSubscribers(set<unsigned int>& subscribers) {
     this->subscribers = subscribers;
 }
 
 void Streamer::addSubscriber(unsigned int id) {
-    subscribers.push_back(id);
+    subscribers.insert(id);
 }
 
 void Streamer::removeSubscriber(unsigned int id) {
-    vector<unsigned int>::iterator it = find(subscribers.begin(), subscribers.end(), id);
+    set<unsigned int>::iterator it = subscribers.find(id);
     if (it == subscribers.end()) throw NotSubscribed("That user is not subscribed to " + this->nick);
     subscribers.erase(it);
+}
+
+ostream& operator<<(ostream& out, const Streamer& streamer){
+    out << streamer.getNick() << "( " << streamer.getName() << " )" << endl
+        << streamer.getAge() << " Years Old" << endl << streamer.getNumSubs() << " Subscribers" << endl;
+    if (streamer.getStream() != NULL)
+        out << "Currently streaming " << streamer.getStream()->getTitle() << " with "
+            << streamer.getNumViewers() << " viewers" << endl;
+    else{
+        out << "Currently not streaming" << endl;
+    }
+    out << endl;
+    return out;
 }
 
 
@@ -140,6 +153,8 @@ Viewer::Viewer(std::string name, std::string nick, const Date& birthDate) : User
 
 void Viewer::joinStream(Stream *stream) {
     if (stream != NULL) throw AlreadyStreaming(this->nick + " is already watching a stream");
+    if (getAge() < stream->getMinAge())
+        throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
 }
 
@@ -160,4 +175,15 @@ void Viewer::feedback(int like) {
 void Viewer::message(std::string text) const {
     if (stream == NULL) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
     cout << text << endl;
+}
+
+ostream& operator<<(ostream& out, const Viewer& viewer){
+    out << viewer.getNick() << "( " << viewer.getName() << " )" << endl
+        << viewer.getAge() << " Years Old" << endl;
+    if (viewer.getStream() != NULL)
+        out << "Currently watching " << viewer.getStream()->getTitle() << endl;
+    else
+        out << "Currently not watching any stream" << endl;
+    out << endl;
+    return out;
 }
