@@ -28,11 +28,12 @@ public:
     std::vector<Stream*> topLikes() const;
     std::vector<Stream*> searchStreams(std::string language, int minAge) const;
     void listStreams(std::vector<Stream*> streams) const;
-    void listUsers() const;
+    map<unsigned int, unsigned int> listUsers() const;
     // Menus
     void init();
     void userMenu();
     void adminMenu();
+    void adminMenu2();
     void viewerMenu();
     void streamerMenu();
 };
