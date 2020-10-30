@@ -7,6 +7,7 @@
 
 #include <map>
 #include <fstream>
+#include <set>
 
 //#include "user.h"
 #include "date.h"
@@ -39,9 +40,9 @@ public:
 
 class PrivateStream : public Stream{
     int capacity;
-    std::vector<unsigned int> subscribers;
+    std::set<unsigned int> subscribers;
 public:
-    PrivateStream(std::string title, Date startDate, std::string language, int minAge, std::vector<unsigned int>& subscribers);
+    PrivateStream(std::string title, Date startDate, std::string language, int minAge, std::set<unsigned int> &subscribers, int capacity);
     virtual void addUser(unsigned int user);
     //virtual void showStream() const;
 };

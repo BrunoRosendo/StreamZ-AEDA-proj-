@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <sstream>
 
 #include "streamZ.h"
 #include "pastStream.h"
@@ -116,6 +117,9 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
                 break;
             case 6:
                 return;
+            default:
+                cout << "That is not a valid choice. Please enter a number from 1-6" << endl;
+                continue;
         }
     }
 }
@@ -140,40 +144,57 @@ void StreamZ::userMenu() {  // Depois vai ter de escolher o user que é
 }
 
 void StreamZ::viewerMenu() {
-    cout << "What do you want to do?" << endl << endl
-        << "1- Search streams" << endl << "2- Show top Streams" << endl
-        << "3- Show all streams" << endl << "4- Show all users" << endl << "5- Go back" << endl;
-    int choice;
-    cin >> choice;
-    switch (choice) {
-        case 1:
+    while(1){
+        cout << "What do you want to do?" << endl << endl
+             << "1- Search streams" << endl << "2- Show top Streams" << endl
+             << "3- Show all streams" << endl << "4- Show all users" << endl << "5- Go back" << endl;
+        int choice;
+        cin >> choice;
+        switch(choice){
+            case 1:
+                searchStreamsMenu();
+            case 2:
+                showTopStreams();
+            case 3:
+                //this->listStreams(this->streams);
+            case 4:
+                //this->listUsers();  // NOT SURE IF THIS ONE IS SUPPOSED TO EXIST
+            case 5:
+                return;
 
-            break;
-        case 2:
-
-            break;
-        case 3:
-
-            break;
-        case 4:
-
-            break;
-        case 5:
-            return;
+        }
     }
 }
 
 void StreamZ::streamerMenu() {
-    cout << "What do you want to do?" << endl << endl
-        << "1- Start Stream" << endl << "2- Go back" << endl;
-    int choice;
-    cin >> choice;
-    switch (choice) {
-        case 1:
-            Stream s(title, startDate, language, minAge);
-            break;
-        case 2:
-            return;
+    while(1){
+        cout << "What do you want to do?" << endl << endl
+             << "1- Start Stream" << endl << "2- Go back" << endl;
+        int choice;
+        cin >> choice;
+        Stream* newStream;
+        switch(choice){
+            case 1:
+                string title, language;
+                Date startDate = Date();        //curr date
+                int minAge, typeOfStream, capacity;
+                cout << "What is the title of the stream?" << endl;
+                cin >> title;
+                cout << "What language is the stream on?" << endl;
+                cin >> language;
+                cout << "What is the minimum age?" << endl;
+                cin >> minAge;
+                cout << "Will it be a public(1) or private(2) stream?" << endl;
+                if(typeOfStream == 1)
+                    newStream = new PublicStream(title, startDate, language, minAge);
+                else{
+                    cout << "What will be the maximum capacity for this stream?" << endl;
+                    cin >> capacity;
+                    //newStream = new PrivateStream(title, startDate, language, minAge, this->users[0]->, capacity) ;   // set of subscribers
+                }
+            case 2:
+                return;
+        }
     }
 }
 
@@ -253,46 +274,141 @@ void StreamZ::adminMenu() {
     }
 }
 
-void StreamZ::adminMenu2() {
-
-
-}
-
 
 void StreamZ::createViewer() {
-    cout<< "Creating Viewer ..." <<endl<<endl;
-    cout << "Insert your name: " <<endl;
-    string name;
+    string name, nick, birthDateString;
+    cout << "Lets begin the creation of a new Viewer! " << "Please insert the following data: " << endl;
+    cout << "Name:";
     cin >> name;
-    cout << "Insert your nickname: " << endl;
-    string nickname;
-    cin >> nickname;
-    cout << "Insert your birthdate: " << endl;
-    string birthdate;
-    cin >> birthdate;
-    Date d(birthdate); //construtor com string
-    Viewer(name, nickname, d);
+    cout << "Nickname:";
+    cin >> nick;
+    Date birthDate;
+    Viewer* newViewer;
+    while(1){
+        try{
+            cout << "Birth Date(yyyy/mm/dd):";
+            cin >> birthDateString;                // NEED TO DO INPUT VERIFICATION
+            Date birthDate(birthDateString);
+            newViewer = new Viewer(name, nick, birthDate);
+            break;
+        }
+        catch(DateIsNotValid &d){
+            cout << d.what() << endl;
+        }
+        catch(NotOldEnough &n){
+            cout << n.what() << endl;
+        }
+    }
+    this->users.push_back( newViewer );
+    cout << "A new Viewer was successfully created! " << endl;
 }
 
+
 void StreamZ::createStreamer() {
-    cout<< "Creating Streamer ..." <<endl<<endl;
-    cout << "Insert your name: " <<endl;
-    string name;
+    string name, nick, birthDateString;
+    cout << "Lets begin the creation of a new Streamer! " << "Please insert the following data: " << endl;
+    cout << "Name:";
     cin >> name;
-    cout << "Insert your nickname: " << endl;
-    string nickname;
-    cin >> nickname;
-    cout << "Insert your birthdate: " << endl;
-    string birthdate;
-    cin >> birthdate;
-    Date d(birthdate); //construtor com string
-    Viewer(name, nickname, d);
+    cout << "Nickname:";
+    cin >> nick;
+    Date birthDate;
+    Streamer* newStreamer;
+    while(1){
+        try{
+            cout << "Birth Date(yyyy/mm/dd):";
+            cin >> birthDateString;                // NEED TO DO INPUT VERIFICATION
+            Date birthDate(birthDateString);
+            newStreamer = new Streamer(name, nick, birthDate);
+            break;
+        }
+        catch(DateIsNotValid &d){
+            cout << d.what() << endl;
+        }
+        catch(NotOldEnough &n){
+            cout << n.what() << endl;
+        }
+    }
+
+    this->users.push_back( newStreamer );
+    cout << "A new Streamer was successfully created! " << endl;
 }
 
 void StreamZ::createAdmin() {
-    cout<< "Creating Admin ..." <<endl<<endl;
-    cout << "Insert admin's name: " <<endl;
     string name;
+    cout << "Lets begin the creation of a new Admin! " << "Please insert the following data: " << endl;
+    cout << "Name:";
     cin >> name;
-    Admin A(name, users, streams);
+
+    this->admins.push_back( new Admin(name, this->users, this->streams) );
+    cout << "A new Admin was successfully created! " << endl;
+}
+
+void StreamZ::searchStreamsMenu() {
+    int choice1;
+    std::string choice2;
+    int ageChoice;
+    std::vector<Stream*> filteredStreams;
+    while(1){
+        cout << "Search streams by: " << endl << "1- Title\n2- Language\n3- Minimum Age\n4- Exit\n";  //Possibly add a category to streams
+        cin >> choice1;
+        switch(choice1){
+            case 1:
+                cout << "Insert the Title:" << endl;
+                cin >> choice2;
+                filteredStreams = this->searchStreamsByTitle(choice2);
+                for(int i = 0; i < filteredStreams.size(); i++)
+                    cout << *(filteredStreams[i])<< endl;
+                // joining a stream needs to be done
+            case 2:
+                cout << "What language are you looking for?" << endl;
+                cin >> choice2;
+                filteredStreams = this->searchStreams(choice2);
+                for(int i = 0; i < filteredStreams.size(); i++)
+                    cout << *(filteredStreams[i]) << endl;
+                //joining a stream needs to be done. Maybe could merge this and the one on top
+            case 3:
+                cout << "What is the minimum age?" << endl;
+                cin >> ageChoice;
+                filteredStreams = this->searchStreams(ageChoice);
+                for(int i = 0; i < filteredStreams.size(); i++)
+                    cout << *(filteredStreams[i]) << endl;
+                //joining a stream needs to be done. Maybe could merge this and the one on top
+            case 4:
+                return;
+        }
+    }
+}
+
+std::vector<Stream*> StreamZ::searchStreamsByTitle(std::string title) {
+    std::vector<Stream *> ans;
+    for(int i = 0; i < this->streams.size(); i++){
+        if(this->streams[i]->getTitle().find(title) != string::npos){   // check string::npos on hover
+            ans.push_back(this->streams[i]);
+        }
+    }
+    return ans;
+}
+
+std::vector<Stream *> StreamZ::searchStreams(std::string language) const {
+    std::vector<Stream *> ans;
+    for(int i = 0; i < this->streams.size(); i++){
+        if( this->streams[i]->getLanguage() == language )
+            ans.push_back(this->streams[i]);
+    }
+    return ans;
+}
+
+std::vector<Stream*> StreamZ::searchStreams(int viewerAge) const {
+    std::vector<Stream *> ans;
+    for(int i = 0; i < this->streams.size(); i++){
+        if( viewerAge >= this->streams[i]->getMinAge() )
+            ans.push_back(this->streams[i]);
+    }
+    return ans;
+}
+
+void StreamZ::showTopStreams() {
+    for(int i = 0; i < 10; i++){        //ASSUMES THAT THE STREAMS VECTOR IS ORDERED BY NUM OF VIEWERS
+        cout << i+1 << "º " << this->streams[i];
+    }
 }

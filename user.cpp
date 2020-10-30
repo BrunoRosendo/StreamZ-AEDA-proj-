@@ -187,3 +187,7 @@ ostream& operator<<(ostream& out, const Viewer& viewer){
     out << endl;
     return out;
 }
+
+std::set<unsigned int> Streamer::getSubscribers() {
+    return this->subscribers;
+}

@@ -8,7 +8,8 @@
 using namespace std;
 
 int main() {
-    //StreamZ streamz;
-    //streamz.init();
+    StreamZ streamZ;
+    streamZ.init();
+
     return 0;
 }

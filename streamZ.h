@@ -12,8 +12,11 @@
 
 class StreamZ{
 private:
+
     std::vector<User *> users;  // access to users by the ID. Access to streamers using pointers
     std::vector<Stream *> streams;
+    std::vector<Admin *> admins;
+    std::map<unsigned int, User*> usersMap; // poderiamos ter esta db em vez do vetor
     Admin* admin;
 public:
     //StreamZ();
@@ -26,9 +29,12 @@ public:
     void storeDataInFile() const;
     std::vector<Stream*> topViews() const;
     std::vector<Stream*> topLikes() const;
-    std::vector<Stream*> searchStreams(std::string language, int minAge) const;
+    std::vector<Stream*> searchStreams(std::string language/*, int minAge*/) const;
+    std::vector<Stream*> searchStreams(int minAge) const;
     void listStreams(std::vector<Stream*> streams) const;
-    map<unsigned int, unsigned int> listUsers() const;
+    void listUsers() const;
+    void showTopStreams();
+    std::vector<Stream* > searchStreamsByTitle(std::string title);
     // Menus
     void init();
     void userMenu();
@@ -36,6 +42,7 @@ public:
     void adminMenu2();
     void viewerMenu();
     void streamerMenu();
+    void searchStreamsMenu();
 };
 
 #endif //PROJETO1_STREAMZ_H

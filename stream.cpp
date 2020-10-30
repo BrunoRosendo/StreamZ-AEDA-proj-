@@ -62,8 +62,9 @@ void Stream::feedback(int megaLikezao) {
 }
 
 PrivateStream::PrivateStream(std::string title, Date startDate, std::string language, int minAge,
-                             std::vector<unsigned int> &subscribers) : Stream(title, startDate, language, minAge) {
+                             std::set<unsigned int> &subscribers, int capacity) : Stream(title, startDate, language, minAge) {
     this->subscribers = subscribers;
+    this->capacity = capacity;
 }
 
 void PrivateStream::addUser(unsigned int user) {
