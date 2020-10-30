@@ -39,6 +39,7 @@ public:
     void init();
     void userMenu();
     void adminMenu();
+    void adminMenu2();
     void viewerMenu();
     void streamerMenu();
     void searchStreamsMenu();

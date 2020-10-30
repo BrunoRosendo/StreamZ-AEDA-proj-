@@ -7,6 +7,7 @@
 #include "pastStream.h"
 #include "date.h"
 #include "user.h"
+#include "admin.h"
 
 using namespace std;
 
@@ -125,7 +126,7 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
 
 void StreamZ::userMenu() {  // Depois vai ter de escolher o user que é
     while (1) {
-        cout << "Which type of user are you?" << endl << endl
+        cout << "Which type of user are you?" << endl << endl   // "Select type of user:" *FICA MELHOR TALVEZ*
              << "1- Viewer" << endl << "2- Streamer" << endl << "3- Go back" << endl;
         int choice;
         cin >> choice;
@@ -198,10 +199,81 @@ void StreamZ::streamerMenu() {
 }
 
 void StreamZ::adminMenu() {
-    cout << "Mais do mesmo, nao me apeteceu escrever mais" << endl;
+    Admin A;
+    cout << "Welcome admin" << endl << endl;
+
+    cout << "Total number of Streams created: " << A.getNumStreams() << endl <<endl;
+
+    cout << "Number of Public Streams created: " << A.getNumPublicStreams() <<endl<<endl;
+
+    cout << "Number of Private Streams created: " << A.getNumPrivateStreams() <<endl<<endl;
+
+    cout << "Average stream views: " << A.getAvgViews() <<endl<<endl;
+
+    cout << "Most common stream language is " << A.getPreferredLanguage(streams) <<endl<<endl;
+
+    cout << "Most common stream type is " << A.getPreferredStreamType() <<endl<<endl;
+
+    cout << "Most viewed streamer: " << A.getMostViewedStreamer() <<endl<<endl;
+
+    cout << "More stats?" << endl << endl
+         << "1- Number of Streams created (interval)" << endl
+         << "2- Number of Public Streams created (interval)" << endl
+         << "3- Number of Private Streams created (interval)" << endl
+         << "4- Average stream views (interval)" << endl
+         << "5- Go back" << endl;
     int choice;
-    cin >> choice;
+    cin >>choice;
+    switch (choice) {
+        case 1: //passar isto pro menu seguinte adminMenu2()
+            cout << "Start date: " << endl;
+            string from;
+            cin >> from;
+            Date f(from);
+            cout << "End date: " << endl;
+            string to;
+            cin >> to;
+            Date t (to);
+            cout << "Streams created from " << f.getDate() << " to " << t.getDate() << " : " << A.getNumCreatedStreams(f, t) <<endl;
+            break;
+        case 2:
+            cout << "Start date: " << endl;
+            string from;
+            cin >> from;
+            Date f(from);
+            cout << "End date: " << endl;
+            string to;
+            cin >> to;
+            Date t (to);
+            cout << "Public Streams created from " << f.getDate() << " to " << t.getDate() << " : " << A.getNumPublicStreams(f, t) <<endl;
+            break;
+        case 3:
+            cout << "Start date: " << endl;
+            string from;
+            cin >> from;
+            Date f(from);
+            cout << "End date: " << endl;
+            string to;
+            cin >> to;
+            Date t (to);
+            cout << "Private Streams created from " << f.getDate() << " to " << t.getDate() << " : " << A.getNumPrivateStreams(f, t) <<endl;
+            break;
+        case 4:
+            cout << "Start date: " << endl;
+            string from;
+            cin >> from;
+            Date f(from);
+            cout << "End date: " << endl;
+            string to;
+            cin >> to;
+            Date t (to);
+            cout << "Average stream views from " << f.getDate() << " to " << t.getDate() << " : " << A.getAvgViews(f, t) <<endl;
+            break;
+        case 5:
+            return;
+    }
 }
+
 
 void StreamZ::createViewer() {
     string name, nick, birthDateString;
@@ -227,10 +299,10 @@ void StreamZ::createViewer() {
             cout << n.what() << endl;
         }
     }
-
     this->users.push_back( newViewer );
     cout << "A new Viewer was successfully created! " << endl;
 }
+
 
 void StreamZ::createStreamer() {
     string name, nick, birthDateString;
