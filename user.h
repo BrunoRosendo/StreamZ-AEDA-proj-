@@ -40,6 +40,7 @@ public:
     Streamer(std::string name, std::string nick, const Date& birthDate);
     int getNumViewers() const;
     int getNumSubs() const;
+    std::set<unsigned int> getSubscribers();
     void endStream();
     void startStream(Stream* stream);
     void setSubscribers(set<unsigned int>& subscribers);
