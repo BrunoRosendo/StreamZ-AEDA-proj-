@@ -13,7 +13,7 @@ private:
     std::string name;
     std::vector<Stream *> streams;
 public:
-    Admin(std::string name,std::map<unsigned int, User*>& users, std::vector<Stream*>& streams);  //feito
+    Admin(std::string name, std::vector<Stream*>& streams);  //feito
     int getNumStreams() const;                                                          //feito
     int getNumCreatedStreams(Date from, Date to) const;                                 //feito
     float getAvgViews() const;                                                          //feito

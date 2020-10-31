@@ -15,6 +15,10 @@ private:
 
     std::map<unsigned int, User*> users;  // access to users by the ID
     std::vector<Stream *> streams;
+    std::map<std::string, unsigned int> viewersNickID;  // use this to login
+    std::map<std::string, unsigned int> streamersNickID;
+    std::vector<PublicStream*> publicStreams;
+    std::vector<PrivateStream*> privateStreams;
     Admin* admin;
 public:
     StreamZ();
@@ -30,7 +34,7 @@ public:
     std::vector<Stream*> topLikes() const;
     std::vector<Stream*> searchStreams(std::string language/*, int minAge*/) const;
     std::vector<Stream*> searchStreams(int minAge) const;
-    void listStreams(std::vector<Stream*> streams) const;
+    void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
     void showTopStreams();
     std::vector<Stream* > searchStreamsByTitle(std::string title);

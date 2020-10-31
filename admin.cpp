@@ -27,9 +27,8 @@ string noActiveStreams::what() const {
     return reason;
 }
 
-Admin::Admin(std::string name, std::map<unsigned int, User*> &users, std::vector<Stream *> &streams) {
+Admin::Admin(std::string name, std::vector<Stream *> &streams) {
     this-> name = name;
-    this->users = users;
     this->streams = streams;
 }
 
@@ -120,14 +119,6 @@ string Admin::getPreferredStreamType() const {
 
 }
 
-Streamer * Admin::getMostViewedStreamer() const {
-    int cnt = 0, max_cnt = 0;
-    vector<Stream *>::const_iterator it;
-    for (it = streams.begin(); it != streams.end(); it++){
-        if ((*it)->getNumViewers() > max_cnt){
-            max_cnt = (*it)->getNumViewers();
-            //MostViewedStreamer = s;
-        }
-    }
-    //return s;
+Streamer * Admin::getMostViewedStreamer() const {   // this will be different
+
 }
