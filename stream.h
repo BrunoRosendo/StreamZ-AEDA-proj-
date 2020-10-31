@@ -19,8 +19,7 @@ protected:
     Date startDate;
     std::string language;
     int minAge;
-    map<unsigned int, unsigned int> viewers;
-    //std::vector<unsigned int> viewers;
+    std::set<unsigned int> viewers;
     int noLikes;
     int numViewers;
 public:
@@ -33,7 +32,8 @@ public:
     std::string getLanguage() const;
     int getMinAge() const;
     int getNoLikes() const;
-    map<unsigned int, unsigned int> getUsers() const;
+    std::set<unsigned int>& getViewers();
+    set<unsigned int> getUsers() const;
     void feedback(int megaLikezao);
     /*virtual*/ void showStream() const;
 };

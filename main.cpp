@@ -10,6 +10,5 @@ using namespace std;
 int main() {
     StreamZ streamZ;
     streamZ.init();
-
     return 0;
 }

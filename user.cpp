@@ -76,6 +76,10 @@ std::string User::getNick() const {
     return nick;
 }
 
+unsigned int User::getID() const {
+    return ID;
+}
+
 Stream * User::getStream() const {
     if (stream == NULL) throw NotInAStream(this->nick + " is currently not in any stream");
     return stream;
@@ -85,6 +89,9 @@ std::vector<PastStream *> User::getStreamHistory() const {
     return streamHistory;
 }
 
+void User::addPastStream(PastStream *pastStream) {
+    streamHistory.push_back(pastStream);
+}
 
 
 
@@ -102,13 +109,13 @@ int Streamer::getNumSubs() const {
     return subscribers.size();
 }
 
+std::set<unsigned int>& Streamer::getSubscribers() {
+    return this->subscribers;
+}
+
 void Streamer::endStream() {
     if (stream == NULL) throw NotInAStream(this->nick + " is currently not streaming");
-    PastStream* p = new PastStream;
-    p->name = stream->getTitle();
-    p->noViewers = stream->getNumViewers();
-    streamHistory.push_back(p);
-    stream == NULL;
+    stream = NULL;
 }
 
 void Streamer::startStream(Stream *stream) {
@@ -186,8 +193,4 @@ ostream& operator<<(ostream& out, const Viewer& viewer){
         out << "Currently not watching any stream" << endl;
     out << endl;
     return out;
-}
-
-std::set<unsigned int> Streamer::getSubscribers() {
-    return this->subscribers;
 }

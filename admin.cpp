@@ -27,7 +27,7 @@ string noActiveStreams::what() const {
     return reason;
 }
 
-Admin::Admin(std::string name, std::vector<User *> &users, std::vector<Stream *> &streams) {
+Admin::Admin(std::string name, std::map<unsigned int, User*> &users, std::vector<Stream *> &streams) {
     this-> name = name;
     this->users = users;
     this->streams = streams;

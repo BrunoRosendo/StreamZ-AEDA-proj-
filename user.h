@@ -29,7 +29,9 @@ public:
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
+    unsigned int getID() const;
     Stream* getStream() const;
+    void addPastStream(PastStream* pastStream);
     std::vector<PastStream*> getStreamHistory() const;
 };
 
@@ -40,7 +42,7 @@ public:
     Streamer(std::string name, std::string nick, const Date& birthDate);
     int getNumViewers() const;
     int getNumSubs() const;
-    std::set<unsigned int> getSubscribers();
+    std::set<unsigned int>& getSubscribers();
     void endStream();
     void startStream(Stream* stream);
     void setSubscribers(set<unsigned int>& subscribers);

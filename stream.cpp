@@ -25,8 +25,8 @@ Stream::Stream(string title, Date startDate, string language, int minAge) {
  * @param user unsigned int that represents a user index on the StreamZ class vector of users
  */
 void Stream::removeUser(unsigned int user) {
-    this->viewers.erase(user);      //removes the key value 'user' from the map
-    this->numViewers--;             // Need to confirm if it is not needed to check if user exists on map
+    this->viewers.erase(viewers.find(user));
+    this->numViewers--;             // Need to confirm if it is not needed to check if user exists on set
 }
 
 int Stream::getNumViewers() const {
@@ -53,7 +53,11 @@ int Stream::getNoLikes() const {
     return this->noLikes;
 }
 
-map<unsigned int, unsigned int> Stream::getUsers() const {
+std::set<unsigned int> & Stream::getViewers() {
+    return viewers;
+}
+
+set<unsigned int> Stream::getUsers() const {
     return this->viewers;
 }
 
@@ -68,15 +72,19 @@ PrivateStream::PrivateStream(std::string title, Date startDate, std::string lang
 }
 
 void PrivateStream::addUser(unsigned int user) {
-    this->viewers.insert(pair<unsigned int, unsigned int> (user, user));
+    this->viewers.insert(user);
     this->numViewers++;
 }
 
 void Stream::showStream() const {
-    cout << "Title: " << this->title << " Start Date: " << this->startDate.getDate() << " Language: " << this->language << " Min Age: " << this->minAge << " No. Likes: " << this->noLikes << " No. Viewers: " << this->numViewers;
+    cout << "Title: " << this->title << " Start Date: " << this->startDate.getDate() << " Language: "
+        << this->language << " Min Age: " << this->minAge << " No. Likes: " << this->noLikes << " No. Viewers: "
+        << this->numViewers;
 }
 
 ostream& operator<<(ostream& out, Stream& stream){
-    out << "Title: " <<  stream.getTitle() << " Start Date: " << stream.getStartDate().getDate() << " Language: " << stream.getLanguage() << " Min Age: " << stream.getMinAge() << " No. Likes: " << stream.getNoLikes() << " No. Viewers: " << stream.getNumViewers();
+    out << "Title: " <<  stream.getTitle() << " Start Date: " << stream.getStartDate().getDate()
+    << " Language: " << stream.getLanguage() << " Min Age: " << stream.getMinAge() << " No. Likes: "
+    << stream.getNoLikes() << " No. Viewers: " << stream.getNumViewers();
 }
 

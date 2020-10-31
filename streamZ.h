@@ -13,13 +13,12 @@
 class StreamZ{
 private:
 
-    std::vector<User *> users;  // access to users by the ID. Access to streamers using pointers
+    std::map<unsigned int, User*> users;  // access to users by the ID
     std::vector<Stream *> streams;
-    std::vector<Admin *> admins;
-    std::map<unsigned int, User*> usersMap; // poderiamos ter esta db em vez do vetor
     Admin* admin;
 public:
-    //StreamZ();
+    StreamZ();
+    //~StreamZ();  // we need this because of dynamic memory allocation
     void createStreamer();   //args will be received by input from console
     void createViewer();
     void createAdmin();
@@ -41,7 +40,7 @@ public:
     void adminMenu();
     void adminMenu2();
     void viewerMenu();
-    void streamerMenu();
+    void streamerMenu(int index);
     void searchStreamsMenu();
 };
 
