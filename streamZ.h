@@ -11,6 +11,7 @@
 #include "admin.h"
 
 class StreamZ{
+    
 private:
 
     std::map<unsigned int, User*> users;  // access to users by the ID

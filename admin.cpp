@@ -27,9 +27,11 @@ string noActiveStreams::what() const {
     return reason;
 }
 
-Admin::Admin(std::string name, std::vector<Stream *> &streams) {
+Admin::Admin(std::string name, std::vector<Stream *> &streams, std::vector<PublicStream*>& publicStreams, std::vector<PrivateStream*>& privateStreams) {
     this-> name = name;
     this->streams = streams;
+    this->publicStreams = publicStreams;
+    this->privateStreams = privateStreams;
 }
 
 int Admin::getNumStreams() const {
@@ -57,7 +59,7 @@ float Admin::getAvgViews() const {
     for (it = streams.begin(); it != streams.end(); it++){
         sum += (*it)->getNumViewers();
     }
-    avg = (float) sum/getNumStreams();  // DAR CAST (float), se nao arredonda
+    avg = (float) sum/getNumStreams();
     return avg;
 }
 
@@ -78,20 +80,37 @@ float Admin::getAvgViews(Date from, Date to) const {
 }
 
 int Admin::getNumPublicStreams() const {
-
+    return publicStreams.size();
 }
 
 int Admin::getNumPublicStreams(Date from, Date to) const {
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
-
+    int cnt = 0;
+    Date d;
+    vector<PublicStream *>::const_iterator it;
+    for (it = publicStreams.begin(); it != publicStreams.end(); it++){
+        d = (*it)->getStartDate();
+        if (d >= from && d <= to)
+            cnt++;
+    }
+    return cnt;
 }
 
 int Admin::getNumPrivateStreams() const {
-
+    return privateStreams.size();
 }
 
 int Admin::getNumPrivateStreams(Date from, Date to) const {
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
+    int cnt = 0;
+    Date d;
+    vector<PrivateStream *>::const_iterator it;
+    for (it = privateStreams.begin(); it != privateStreams.end(); it++){
+        d = (*it)->getStartDate();
+        if (d >= from && d <= to)
+            cnt++;
+    }
+    return cnt;
 
 }
 
@@ -116,6 +135,9 @@ string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
 
 string Admin::getPreferredStreamType() const {
     if (streams.size()<=0) throw noActiveStreams("ERROR: There are currently no active streams");
+    if (privateStreams.size() > publicStreams.size()) return "Private Streams are the preferred type";
+    else if (privateStreams.size() < publicStreams.size()) return "Public Streams are the preferred type";
+    else return "There is no preference in the type of stream";
 
 }
 

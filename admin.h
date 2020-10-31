@@ -12,8 +12,10 @@ class Admin{
 private:
     std::string name;
     std::vector<Stream *> streams;
+    std::vector<PublicStream*> publicStreams;
+    std::vector<PrivateStream*> privateStreams;
 public:
-    Admin(std::string name, std::vector<Stream*>& streams);  //feito
+    Admin(std::string name, std::vector<Stream*>& streams, std::vector<PublicStream*>& publicStreams, std::vector<PrivateStream*>& privateStreams);  //feito
     int getNumStreams() const;                                                          //feito
     int getNumCreatedStreams(Date from, Date to) const;                                 //feito
     float getAvgViews() const;                                                          //feito

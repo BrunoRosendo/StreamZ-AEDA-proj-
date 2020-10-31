@@ -19,11 +19,11 @@ using namespace std;
 StreamZ::StreamZ() {
     try{
         fetchDataFromFile();
-        admin = NULL;
     }
     catch(runtime_error& e){
         cerr << e.what() << endl;
     }
+    admin = NULL;
 }
 
 
@@ -254,6 +254,7 @@ void StreamZ::createViewer() {
             Date birthDate(birthDateString);
             Viewer* newViewer = new Viewer(name, nick, birthDate);
             this->users[newViewer->getID()] = newViewer;
+            viewersNickID[newViewer->getNick()] = newViewer->getID();
             cout << "A new Viewer was successfully created! " << endl;
             break;
         }
@@ -281,6 +282,7 @@ void StreamZ::createStreamer() {
             Date birthDate(birthDateString);
             Streamer* newStreamer = new Streamer(name, nick, birthDate);
             this->users[newStreamer->getID()] = newStreamer;
+            streamersNickID[newStreamer->getNick()] = newStreamer->getID();
             cout << "A new Streamer was successfully created! " << endl;
             break;
         }
@@ -298,8 +300,7 @@ void StreamZ::createAdmin() {
     cout << "Lets begin the creation of a new Admin! " << "Please insert the following data: " << endl;
     cout << "Name:";
     cin >> name;
-
-    admin = new Admin(name, users, streams);
+    admin = new Admin(name, streams, publicStreams, privateStreams);
     cout << "A new Admin was successfully created! " << endl;
 }
 
@@ -320,9 +321,10 @@ void StreamZ::createStream(Streamer *streamer) {
         switch (typeOfStream) {
             case 1: {
                 try {
-                    Stream *newStream = new PublicStream(title, startDate, language, minAge);
+                    PublicStream *newStream = new PublicStream(title, startDate, language, minAge);
                     streamer->startStream(newStream);
                     streams.push_back(newStream);
+                    publicStreams.push_back(newStream);
                     error = false;
                     break;
                 }
@@ -337,9 +339,10 @@ void StreamZ::createStream(Streamer *streamer) {
                     int capacity;
                     cout << "What will be its capacity?" << endl;
                     cin >> capacity;
-                    Stream *newStream = new PrivateStream(title, startDate, language, minAge, streamer->getSubscribers(), capacity);
+                    PrivateStream *newStream = new PrivateStream(title, startDate, language, minAge, streamer->getSubscribers(), capacity);
                     streamer->startStream(newStream);
                     streams.push_back(newStream);
+                    privateStreams.push_back(newStream);
                     error = false;
                     break;
                 }
@@ -367,6 +370,9 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
                 users[(*it)]->addPastStream(p);
             }
             streams.erase(find(streams.begin(), streams.end(), stream));
+            vector<PublicStream*>::iterator it = find(publicStreams.begin(), publicStreams.end(), stream);
+            if (it != publicStreams.end()) publicStreams.erase(it);
+            else privateStreams.erase(find(privateStreams.begin(), privateStreams.end(), stream));
             break;
         }
         catch (NotInAStream &e) {
@@ -442,6 +448,8 @@ std::vector<Stream*> StreamZ::searchStreams(int viewerAge) const {
 
 void StreamZ::showTopStreams() {    // add sort functions
     for(int i = 0; i < 10; i++){        //ASSUMES THAT THE STREAMS VECTOR IS ORDERED BY NUM OF VIEWERS
-        cout << i+1 << "º " << this->streams[i];
+        cout << i+1 << "º ";
+        this->streams[i]->showStream();
+        cout << endl;
     }
 }
