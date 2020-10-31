@@ -25,14 +25,16 @@ protected:
     static unsigned int nextID;
 public:
     User(std::string name, std::string nick, const Date& birthDate);
-    virtual void setStreamHistory(std::vector<struct PastStream>& pastStreams);
+    void setStreamHistory(std::vector<struct PastStream>& pastStreams);
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
     unsigned int getID() const;
     Stream* getStream() const;
+    bool inAStream() const;
     void addPastStream(PastStream* pastStream);
     std::vector<PastStream*> getStreamHistory() const;
+    virtual void showUser() const = 0;
 };
 
 class Streamer : public User{
@@ -48,7 +50,9 @@ public:
     void setSubscribers(set<unsigned int>& subscribers);
     void addSubscriber(unsigned int id);
     void removeSubscriber(unsigned int id);
+    bool isSubscriber(unsigned int id) const;
     friend ostream& operator<<(ostream& out, const Streamer& streamer);
+    virtual void showUser() const;
 };
 
 class Viewer : public User{
@@ -60,6 +64,7 @@ public:
     void message(std::string text) const;
     void feedback(int like);
     friend ostream& operator<<(ostream& out, const Viewer& viewer);
+    virtual void showUser() const;
 };
 
 
@@ -90,14 +95,6 @@ private:
     string reason;
 public:
     AlreadyStreaming(string reason);
-    string what() const;
-};
-
-class NotSubscribed{
-private:
-    string reason;
-public:
-    NotSubscribed(string reason);
     string what() const;
 };
 

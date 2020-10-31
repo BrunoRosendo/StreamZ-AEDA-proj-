@@ -7,15 +7,15 @@
 
 #include <string>
 #include "user.h"
+#include "streamZ.h"
+
 
 class Admin{
 private:
     std::string name;
-    std::vector<Stream *> streams;
-    std::vector<PublicStream*> publicStreams;
-    std::vector<PrivateStream*> privateStreams;
+    StreamZ site;
 public:
-    Admin(std::string name, std::vector<Stream*>& streams, std::vector<PublicStream*>& publicStreams, std::vector<PrivateStream*>& privateStreams);  //feito
+    Admin(std::string name, StreamZ& site);  //feito
     int getNumStreams() const;                                                          //feito
     int getNumCreatedStreams(Date from, Date to) const;                                 //feito
     float getAvgViews() const;                                                          //feito

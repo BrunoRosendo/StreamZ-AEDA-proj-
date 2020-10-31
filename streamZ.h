@@ -8,10 +8,12 @@
 #include "user.h"
 #include "date.h"
 #include "stream.h"
-#include "admin.h"
+
+
+class Admin;    // forward declaration, in order to only regist one admin
 
 class StreamZ{
-    
+    friend class Admin;
 private:
 
     std::map<unsigned int, User*> users;  // access to users by the ID
@@ -37,16 +39,22 @@ public:
     std::vector<Stream*> searchStreams(int minAge) const;
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
-    void showTopStreams();
+    void listUsers(std::set<unsigned int> users) const;
+    vector<Stream*> showTopStreams();  // NEEDS TO RETURN VECTOR OF STREAMS
     std::vector<Stream* > searchStreamsByTitle(std::string title);
     // Menus
     void init();
     void userMenu();
+    void watchingOptions(int id);
+    void joinStream(int id, vector<Stream*> streams);
     void adminMenu();
     void adminMenu2();
-    void viewerMenu();
-    void streamerMenu(int index);
-    void searchStreamsMenu();
+    void loginViewer();
+    void loginStreamer();
+    void viewerMenu(int id);
+    void streamerMenu(int id);
+    void streamingOptions(int id);
+    vector<Stream*> searchStreamsMenu();   // NEEDS TO RETURN VECTOR OF STREAMS
 };
 
 #endif //PROJETO1_STREAMZ_H

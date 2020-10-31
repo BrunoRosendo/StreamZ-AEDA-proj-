@@ -98,13 +98,13 @@ int Date::daysOfMonth() {
 unsigned int Date::getAge() const {
     Date today;
     if (this->getMonth() < today.getMonth()){
-        return today.getYear() - this->getYear() - 1;
+        return today.getYear() - this->getYear();
     }
     else if (this->getMonth() == today.getMonth()) {
         if (this->getDay() < today.getDay())
-            return today.getYear() - this->getYear() - 1;
+            return today.getYear() - this->getYear();
     }
-    return today.getYear() - this->getYear();
+    return today.getYear() - this->getYear() - 1;
 }
 
 bool Date::operator==(const Date &date) {

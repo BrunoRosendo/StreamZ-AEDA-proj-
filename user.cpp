@@ -39,16 +39,6 @@ string AlreadyStreaming::what() const {
 }
 
 
-NotSubscribed::NotSubscribed(string reason) {
-    this->reason = reason;
-}
-
-string NotSubscribed::what() const {
-    return reason;
-}
-
-
-
 unsigned int User::nextID = 0;
 
 User::User(std::string name, std::string nick, const Date& birthDate) {
@@ -85,6 +75,10 @@ Stream * User::getStream() const {
     return stream;
 }
 
+bool User::inAStream() const {
+    return stream != NULL;
+}
+
 std::vector<PastStream *> User::getStreamHistory() const {
     return streamHistory;
 }
@@ -119,7 +113,7 @@ void Streamer::endStream() {
 }
 
 void Streamer::startStream(Stream *stream) {
-    if (stream != NULL) throw AlreadyStreaming(this->nick + " is already streaming");
+    if (this->stream != NULL) throw AlreadyStreaming(this->nick + " is already streaming");
     this->stream = stream;
 }
 
@@ -138,10 +132,25 @@ void Streamer::removeSubscriber(unsigned int id) {
     subscribers.erase(it);
 }
 
+bool Streamer::isSubscriber(unsigned int id) const {
+    return subscribers.find(id) != subscribers.end();
+}
+
+void Streamer::showUser() const {
+    cout << nick << "( " << name << " )" << endl
+        << getAge() << " Years Old" << endl << getNumSubs() << " Subscribers" << endl;
+    if (stream != NULL)
+        cout << "Currently streaming " << stream->getTitle() << " with "
+            << getNumViewers() << " viewers" << endl;
+    else{
+        cout << "Currently not streaming" << endl;
+    }
+}
+
 ostream& operator<<(ostream& out, const Streamer& streamer){
     out << streamer.getNick() << "( " << streamer.getName() << " )" << endl
         << streamer.getAge() << " Years Old" << endl << streamer.getNumSubs() << " Subscribers" << endl;
-    if (streamer.getStream() != NULL)
+    if (streamer.inAStream())
         out << "Currently streaming " << streamer.getStream()->getTitle() << " with "
             << streamer.getNumViewers() << " viewers" << endl;
     else{
@@ -159,7 +168,7 @@ Viewer::Viewer(std::string name, std::string nick, const Date& birthDate) : User
 }
 
 void Viewer::joinStream(Stream *stream) {
-    if (stream != NULL) throw AlreadyStreaming(this->nick + " is already watching a stream");
+    if (this->stream != NULL) throw AlreadyStreaming(this->nick + " is already watching a stream");
     if (getAge() < stream->getMinAge())
         throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
@@ -171,7 +180,7 @@ void Viewer::leaveStream() {
     p->name = stream->getTitle();
     p->noViewers = stream->getNumViewers();
     streamHistory.push_back(p);
-    stream == NULL;
+    stream = NULL;
 }
 
 void Viewer::feedback(int like) {
@@ -184,10 +193,19 @@ void Viewer::message(std::string text) const {
     cout << text << endl;
 }
 
+void Viewer::showUser() const {
+    cout << nick << "( " << name << " )" << endl
+        << getAge() << " Years Old" << endl;
+    if (stream != NULL)
+        cout << "Currently watching " << stream->getTitle() << endl;
+    else
+        cout << "Currently not watching any stream" << endl;
+}
+
 ostream& operator<<(ostream& out, const Viewer& viewer){
     out << viewer.getNick() << "( " << viewer.getName() << " )" << endl
         << viewer.getAge() << " Years Old" << endl;
-    if (viewer.getStream() != NULL)
+    if (viewer.inAStream())
         out << "Currently watching " << viewer.getStream()->getTitle() << endl;
     else
         out << "Currently not watching any stream" << endl;

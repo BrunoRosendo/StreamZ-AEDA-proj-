@@ -9,6 +9,25 @@
 
 using namespace std;
 
+
+NotSubscribed::NotSubscribed(string reason) {
+    this->reason = reason;
+}
+
+string NotSubscribed::what() const {
+    return reason;
+}
+
+noCapacity::noCapacity(string reason) {
+    this->reason = reason;
+}
+
+string noCapacity::what() {
+    return reason;
+}
+
+
+
 /**
  * Constructor of class Stream
  * @param title
@@ -16,8 +35,9 @@ using namespace std;
  * @param language
  * @param minAge
  */
-Stream::Stream(string title, Date startDate, string language, int minAge) {
+Stream::Stream(string title, Date startDate, string language, int minAge, string streamerNick) {
     this->title = title, this->startDate = startDate, this->language = language, this->minAge = minAge, this->numViewers = 0;
+    this->streamerNick = streamerNick;
 }
 
 /**
@@ -53,6 +73,10 @@ int Stream::getNoLikes() const {
     return this->noLikes;
 }
 
+string Stream::getStreamerNick() const {
+    return streamerNick;
+}
+
 std::set<unsigned int> & Stream::getViewers() {
     return viewers;
 }
@@ -65,26 +89,47 @@ void Stream::feedback(int megaLikezao) {
     this->noLikes += megaLikezao;
 }
 
-PrivateStream::PrivateStream(std::string title, Date startDate, std::string language, int minAge,
-                             std::set<unsigned int> &subscribers, int capacity) : Stream(title, startDate, language, minAge) {
+PrivateStream::PrivateStream(std::string title, Date startDate, std::string language, int minAge, string streamerNick,
+                             std::set<unsigned int> &subscribers, int capacity) : Stream(title, startDate, language, minAge, streamerNick) {
     this->subscribers = subscribers;
     this->capacity = capacity;
 }
 
 void PrivateStream::addUser(unsigned int user) {
+    if (numViewers >= capacity) throw noCapacity("The stream is full. Try again later");
+    if (subscribers.find(user) == subscribers.end()) throw NotSubscribed("You are not subscribed to this streamer");
     this->viewers.insert(user);
     this->numViewers++;
 }
 
 void Stream::showStream() const {
-    cout << "Title: " << this->title << " Start Date: " << this->startDate.getDate() << " Language: "
-        << this->language << " Min Age: " << this->minAge << " No. Likes: " << this->noLikes << " No. Viewers: "
-        << this->numViewers;
+    cout << "Title: " << this->title << ", Start Date: " << this->startDate.getDate() << ", Language: "
+         << this->language << ", Min Age: " << this->minAge << ", No. Likes: " << this->noLikes << ", No. Viewers: "
+         << this->numViewers << endl << "Being streamed by " << streamerNick;
+}
+
+PublicStream::PublicStream(std::string title, Date startDate, std::string language,
+                           int minAge, string streamerNick) : Stream(title, startDate, language, minAge, streamerNick) {}
+
+void PublicStream::showStream() const {
+    Stream::showStream();
+    cout << endl << "This stream is accessible to everyone" << endl;
+}
+
+void PublicStream::addUser(unsigned int user) {
+    this->viewers.insert(user);
+    this->numViewers++;
+}
+
+void PrivateStream::showStream() const {
+    Stream::showStream();
+    cout << endl << "This stream is only accessible to subscribers and has " << capacity - numViewers
+    << " spaces available" << endl << " and " << subscribers.size() << " subscribers" << endl;
 }
 
 ostream& operator<<(ostream& out, Stream& stream){
     out << "Title: " <<  stream.getTitle() << " Start Date: " << stream.getStartDate().getDate()
     << " Language: " << stream.getLanguage() << " Min Age: " << stream.getMinAge() << " No. Likes: "
     << stream.getNoLikes() << " No. Viewers: " << stream.getNumViewers();
+    return out;
 }
-
