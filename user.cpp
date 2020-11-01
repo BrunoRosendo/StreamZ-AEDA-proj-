@@ -12,7 +12,7 @@ using namespace std;
 
 // Exceptions
 
-NotOldEnough::NotOldEnough(string reason) {
+NotOldEnough::NotOldEnough(const string& reason) {
     this->reason = reason;
 }
 
@@ -21,7 +21,7 @@ string NotOldEnough::what() const {
 }
 
 
-NotInAStream::NotInAStream(string reason) {
+NotInAStream::NotInAStream(const string& reason) {
     this->reason = reason;
 }
 
@@ -30,7 +30,7 @@ string NotInAStream::what() const {
 }
 
 
-AlreadyStreaming::AlreadyStreaming(string reason) {
+AlreadyStreaming::AlreadyStreaming(const string& reason) {
     this->reason = reason;
 }
 
@@ -41,13 +41,15 @@ string AlreadyStreaming::what() const {
 
 unsigned int User::nextID = 0;
 
-User::User(std::string name, std::string nick, const Date& birthDate) {
+User::User(const std::string& name, const std::string& nick, const Date& birthDate) {
     this->name = name;
     this->nick = nick;
     this->birthDate = birthDate;
     ID = nextID;
-    stream = NULL;
+    stream = nullptr;
 }
+
+User::~User() = default;
 
 void User::setStreamHistory(std::vector<struct PastStream> &pastStreams) {
     for (size_t i = 0; i < pastStreams.size(); ++i)
@@ -71,12 +73,12 @@ unsigned int User::getID() const {
 }
 
 Stream * User::getStream() const {
-    if (stream == NULL) throw NotInAStream(this->nick + " is currently not in any stream");
+    if (stream == nullptr) throw NotInAStream(this->nick + " is currently not in any stream");
     return stream;
 }
 
 bool User::inAStream() const {
-    return stream != NULL;
+    return stream != nullptr;
 }
 
 std::vector<PastStream *> User::getStreamHistory() const {
@@ -89,13 +91,15 @@ void User::addPastStream(PastStream *pastStream) {
 
 
 
-Streamer::Streamer(std::string name, std::string nick, const Date& birthDate) : User(name, nick, birthDate){
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
 }
 
+Streamer::~Streamer() = default;
+
 int Streamer::getNumViewers() const {
-    if (stream == NULL) throw NotInAStream(this->nick + " is currently not streaming");
+    if (stream == nullptr) throw NotInAStream(this->nick + " is currently not streaming");
     return stream->getNumViewers();
 }
 
@@ -108,12 +112,12 @@ std::set<unsigned int>& Streamer::getSubscribers() {
 }
 
 void Streamer::endStream() {
-    if (stream == NULL) throw NotInAStream(this->nick + " is currently not streaming");
-    stream = NULL;
+    if (stream == nullptr) throw NotInAStream(this->nick + " is currently not streaming");
+    stream = nullptr;
 }
 
 void Streamer::startStream(Stream *stream) {
-    if (this->stream != NULL) throw AlreadyStreaming(this->nick + " is already streaming");
+    if (this->stream != nullptr) throw AlreadyStreaming(this->nick + " is already streaming");
     this->stream = stream;
 }
 
@@ -139,7 +143,7 @@ bool Streamer::isSubscriber(unsigned int id) const {
 void Streamer::showUser() const {
     cout << nick << "( " << name << " )" << endl
         << getAge() << " Years Old" << endl << getNumSubs() << " Subscribers" << endl;
-    if (stream != NULL)
+    if (stream != nullptr)
         cout << "Currently streaming " << stream->getTitle() << " with "
             << getNumViewers() << " viewers" << endl;
     else{
@@ -162,41 +166,43 @@ ostream& operator<<(ostream& out, const Streamer& streamer){
 
 
 
-Viewer::Viewer(std::string name, std::string nick, const Date& birthDate) : User(name, nick, birthDate) {
+Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
     nextID++;   // only after the check
 }
 
+Viewer::~Viewer() = default;
+
 void Viewer::joinStream(Stream *stream) {
-    if (this->stream != NULL) throw AlreadyStreaming(this->nick + " is already watching a stream");
+    if (this->stream != nullptr) throw AlreadyStreaming(this->nick + " is already watching a stream");
     if (getAge() < stream->getMinAge())
         throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
 }
 
 void Viewer::leaveStream() {
-    if (stream == NULL) throw NotInAStream(this->nick + " is currently not watching any stream");
+    if (stream == nullptr) throw NotInAStream(this->nick + " is currently not watching any stream");
     PastStream* p = new PastStream;
     p->name = stream->getTitle();
     p->noViewers = stream->getNumViewers();
     streamHistory.push_back(p);
-    stream = NULL;
+    stream = nullptr;
 }
 
 void Viewer::feedback(int like) {
-    if (stream == NULL) throw NotInAStream(this->nick + " can't give feedback because he's not watching any stream");
+    if (stream == nullptr) throw NotInAStream(this->nick + " can't give feedback because he's not watching any stream");
     stream->feedback(like);
 }
 
 void Viewer::message(std::string text) const {
-    if (stream == NULL) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
+    if (stream == nullptr) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
     cout << text << endl;
 }
 
 void Viewer::showUser() const {
     cout << nick << "( " << name << " )" << endl
         << getAge() << " Years Old" << endl;
-    if (stream != NULL)
+    if (stream != nullptr)
         cout << "Currently watching " << stream->getTitle() << endl;
     else
         cout << "Currently not watching any stream" << endl;

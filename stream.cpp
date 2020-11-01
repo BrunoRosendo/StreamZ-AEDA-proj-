@@ -3,14 +3,12 @@
 //
 
 #include <string>
-#include <vector>
-#include <map>
 #include "stream.h"
 
 using namespace std;
 
 
-NotSubscribed::NotSubscribed(string reason) {
+NotSubscribed::NotSubscribed(const string& reason) {
     this->reason = reason;
 }
 
@@ -18,7 +16,7 @@ string NotSubscribed::what() const {
     return reason;
 }
 
-noCapacity::noCapacity(string reason) {
+noCapacity::noCapacity(const string& reason) {
     this->reason = reason;
 }
 
@@ -35,10 +33,12 @@ string noCapacity::what() {
  * @param language
  * @param minAge
  */
-Stream::Stream(string title, Date startDate, string language, int minAge, string streamerNick) {
+Stream::Stream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick) {
     this->title = title, this->startDate = startDate, this->language = language, this->minAge = minAge, this->numViewers = 0;
-    this->streamerNick = streamerNick;
+    this->streamerNick = streamerNick; noLikes = 0;
 }
+
+Stream::~Stream() = default;
 
 /**
  * Remove user from vector that contains all users watching the stream
@@ -89,11 +89,13 @@ void Stream::feedback(int megaLikezao) {
     this->noLikes += megaLikezao;
 }
 
-PrivateStream::PrivateStream(std::string title, Date startDate, std::string language, int minAge, string streamerNick,
+PrivateStream::PrivateStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick,
                              std::set<unsigned int> &subscribers, int capacity) : Stream(title, startDate, language, minAge, streamerNick) {
     this->subscribers = subscribers;
     this->capacity = capacity;
 }
+
+PrivateStream::~PrivateStream() = default;
 
 void PrivateStream::addUser(unsigned int user) {
     if (numViewers >= capacity) throw noCapacity("The stream is full. Try again later");
@@ -108,8 +110,10 @@ void Stream::showStream() const {
          << this->numViewers << endl << "Being streamed by " << streamerNick;
 }
 
-PublicStream::PublicStream(std::string title, Date startDate, std::string language,
-                           int minAge, string streamerNick) : Stream(title, startDate, language, minAge, streamerNick) {}
+PublicStream::PublicStream(const string& title, const Date& startDate, const string& language, int minAge,
+                           const string& streamerNick) : Stream(title, startDate, language, minAge, streamerNick) {}
+
+PublicStream::~PublicStream() = default;
 
 void PublicStream::showStream() const {
     Stream::showStream();
