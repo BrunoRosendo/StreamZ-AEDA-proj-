@@ -202,8 +202,8 @@ void StreamZ::viewerMenu(int id) {
     while(1){
         if (v->inAStream()) return;
         cout << "What do you want to do?" << endl << endl
-             << "1- Search streams" << endl << "2- Show top Streams" << endl
-             << "3- List all streams" << endl << "4- List all users" << endl << "5- Go back" << endl;
+             << "1- Search streams" << endl << "2- Show top viewed streams" << endl << "3- Show top liked streams"
+             << endl << "4- List all streams" << endl << "5- List all users" << endl << "6- Go back" << endl;
         int choice;
         cin >> choice;
         cin.ignore(100, '\n');
@@ -212,18 +212,23 @@ void StreamZ::viewerMenu(int id) {
                 joinStream(id, searchStreamsMenu());
                 break;
             case 2:
-                joinStream(id,showTopStreams());
+                listStreams(topViews());
+                joinStream(id,topViews());
                 break;
             case 3:
+                listStreams(topLikes());
+                joinStream(id, topLikes());
+            case 4:
                 this->listStreams(this->streams);
                 joinStream(id, this->streams);
                 break;
-            case 4:
+            case 5:
                 this->listUsers();
                 break;
-            case 5:
+            case 6:
                 return;
-
+            default:
+                cout << "Enter a valid number" << endl;
         }
         if (v->inAStream()) watchingOptions(id);
     }
@@ -311,9 +316,9 @@ void StreamZ::watchingOptions(int id) {
 void StreamZ::streamerMenu(int id) {
     while(1) {
         cout << "What do you want to do?" << endl << endl << "1- Search streams" << endl
-             << "2- List all streams" << endl << "3- List all users" << endl << "4- Show top streams" << endl
-             << "5- Show number of subscribers" << endl << "6- List subscribers" << endl
-             << "7- Streaming options" << endl << "8- Go back" << endl;
+             << "2- List all streams" << endl << "3- List all users" << endl << "4- Show top viewed streams" << endl
+             << "5- Show top liked streams " << endl << "6- Show number of subscribers" << endl << "7- List subscribers"
+             << endl << "8- Streaming options" << endl << "9- Go back" << endl;
         int choice;
         cin >> choice;
         cin.ignore(100, '\n');
@@ -328,23 +333,26 @@ void StreamZ::streamerMenu(int id) {
                 listUsers();
                 break;
             case 4:
-                showTopStreams();
+                listStreams(topViews());
                 break;
-            case 5: {
+            case 5:
+                listStreams(topLikes());
+                break;
+            case 6: {
                 Streamer *s = (Streamer *) users[id];
                 cout << "You currently have " << s->getNumSubs() << " subscribers" << endl;
                 break;
             }
-            case 6: {
+            case 7: {
                 Streamer *s = (Streamer *) users[id];
                 set<unsigned int> subs = s->getSubscribers();
                 listUsers(subs);
                 break;
             }
-            case 7:
+            case 8:
                 streamingOptions(id);
                 break;
-            case 8:
+            case 9:
                 return;
             default:
                 cout << "Please enter a valid number" << endl;
@@ -611,7 +619,8 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
             streamer->addPastStream(p);
             set<unsigned int> viewers = stream->getViewers();
             for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){
-                users[(*it)]->addPastStream(p);
+                Viewer* v = (Viewer*) users[(*it)];
+                v->leaveStream();
             }
             streams.erase(find(streams.begin(), streams.end(), stream));
             vector<PublicStream*>::iterator it = find(publicStreams.begin(), publicStreams.end(), stream);
@@ -623,6 +632,26 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
             cout << e.what() << endl;
         }
     }
+}
+
+std::vector<Stream *> StreamZ::topViews() {
+    vector<Stream*> top10;
+    sort(streams.begin(), streams.end(), [] (Stream* s1, Stream* s2) {return s1->getNumViewers() > s2->getNumViewers();});
+    for (int i = 0; i < streams.size(); ++i){
+        if (i >= 10) break;
+        top10.push_back(streams.at(i));
+    }
+    return top10;
+}
+
+std::vector<Stream *> StreamZ::topLikes() {
+    vector<Stream*> top10;
+    sort(streams.begin(), streams.end(), [] (Stream* s1, Stream* s2) {return s1->getNoLikes() > s2->getNoLikes();});
+    for (int i = 0; i < streams.size(); ++i){
+        if (i >= 10) break;
+        top10.push_back(streams.at(i));
+    }
+    return top10;
 }
 
 
@@ -693,20 +722,6 @@ std::vector<Stream*> StreamZ::searchStreams(int viewerAge) const {
     return ans;
 }
 
-vector<Stream*> StreamZ::showTopStreams() {    // add sort functions
-    vector<Stream*> topStreams;
-    if (streams.size() == 0) cout << "There are no available streams" << endl;
-    else {
-        for (int i = 0; i < 10; i++) {        //ASSUMES THAT THE STREAMS VECTOR IS ORDERED BY NUM OF VIEWERS
-            if (i >= streams.size()) break;
-            cout << i + 1 << "- ";
-            topStreams.push_back(streams[i]);
-            streams[i]->showStream();
-            cout << endl;
-        }
-    }
-    return topStreams;
-}
 
 void StreamZ::listStreams(std::vector<Stream *> streams) const {
     for (int i = 0; i < streams.size(); ++i){

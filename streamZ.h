@@ -33,14 +33,15 @@ public:
     void deleteStream(Streamer* streamer);  // deletes the stream which the streamer wants to end
     void fetchDataFromFile();
     void storeDataInFile() const;
-    std::vector<Stream*> topViews() const;
-    std::vector<Stream*> topLikes() const;
+    std::vector<Stream*> topViews();
+    std::vector<Stream*> topLikes();
     std::vector<Stream*> searchStreams(std::string language/*, int minAge*/) const;
     std::vector<Stream*> searchStreams(int minAge) const;
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
     void listUsers(std::set<unsigned int> users) const;
-    vector<Stream*> showTopStreams();  // NEEDS TO RETURN VECTOR OF STREAMS
+    //vector<Stream*> showTopViewedStreams();
+    //vector<Stream*> showTopLikedStreams();
     std::vector<Stream* > searchStreamsByTitle(std::string title);
     // Menus
     void init();
@@ -54,7 +55,7 @@ public:
     void viewerMenu(int id);
     void streamerMenu(int id);
     void streamingOptions(int id);
-    vector<Stream*> searchStreamsMenu();   // NEEDS TO RETURN VECTOR OF STREAMS
+    vector<Stream*> searchStreamsMenu();
 };
 
 #endif //PROJETO1_STREAMZ_H
