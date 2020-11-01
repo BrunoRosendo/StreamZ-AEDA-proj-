@@ -17,14 +17,14 @@ using namespace std;
  * StreamZ class constructor
  */
 StreamZ::StreamZ() {
-    /*
+
     try{
         fetchDataFromFile();
     }
     catch(runtime_error& e){
         cerr << e.what() << endl;
     }
-     */
+
     admin = NULL;
 }
 
@@ -41,32 +41,26 @@ StreamZ::~StreamZ() {
 /**
  * Reads data from files that contains the registered users, created streams, etc.
  */
-/*void StreamZ::fetchDataFromFile() {
+
+void StreamZ::fetchDataFromFile() {
     string streamersFile = "streamers.txt";
     string viewersFile = "viewers.txt";
     string streamsFile = "streams.txt";
+    string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
     fstream fin;
+    string line, line2, name, nick, date;
+    unsigned int id, pastStreamId;
+    //vector<struct PastStream> pastStreams;
+    std::set<unsigned int> pastStreams;
+    int counter = 0;
     //IMPLEMENT VIEWERS FILE FIRST
 
-    fin.open(viewersFile);
+    fin.open(viewersFile);              // START TO READ VIEWERS
     if(!fin.is_open()){
-        //cout << "Couldn't open " << viewersFile << " file!" << endl;
-        throw runtime_error("Couldn't open" + viewersFile + " file!");
+        cout << "Couldn't open " << viewersFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + viewersFile + " file!");
     }
-
-    // implement
-
-    fin.close();
-
-    fin.open(streamersFile);
-    if(!fin.is_open()){
-        cout << "Couldn't open " << streamersFile << " file!" << endl;
-    }
-    string line, line2, name, nick, date;
-    vector<string> subscribers;
-    vector<struct PastStream> pastStreams;
-    int counter = 0;
     while(getline(fin, line )){
         switch(counter){
             case 0:
@@ -81,29 +75,119 @@ StreamZ::~StreamZ() {
                 date = line;
                 counter++;
                 break;
+            case 3:
+                id = stoi(line);
+                counter++;
+                break;
             default:
                 if(line[0] == '*'){     //stream history member
+                    line = line.substr(1); // slice the 1st char of the string
+                    pastStreamId = stoi(line);
+                    /*
                     getline(fin, line2);
                     struct PastStream s;
                     s.name = line, s.noViewers = stoi(line2);
-                    pastStreams.push_back(s);
-                }
-                else if(line[0] == '/'){    //subscriber (nick)
-                    subscribers.push_back(line);
+                     */
+                    pastStreams.insert(pastStreamId);
                 }
                 else{                      // transition to new streamer
-                    // create object of class Date with the string date
-                    Date birthDate;
-                    Streamer streamer(name, nick, birthDate);
-                    streamer.setStreamHistory(pastStreams);
-                    streamer.setSubscribers(subscribers);
+                    Date birthDate(date);   // create object of class Date with the string date
+                    Viewer* viewer = new Viewer(name, nick, birthDate, id);
+                    viewer->setStreamHistory(pastStreams);
+                    this->users.insert({id, viewer});
+                    this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
 
+                    name = line;            //saves the name of the next user
+                    counter = 1;
+                    pastStreams.clear();
                 }
+                break;
         }
     }
+    Date birthDate(date);   // create object of class Date with the string date
+    Viewer* viewer = new Viewer(name, nick, birthDate, id);
+    viewer->setStreamHistory(pastStreams);
+    this->users.insert({id, viewer});
+    this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
     fin.close();
+
+    fin.open(streamersFile);            // START TO READ STREAMERS
+    if(!fin.is_open()){
+        cout << "Couldn't open " << streamersFile << " file!" << endl;
+    }
+    std::set<unsigned int> subscribers;
+    counter = 0;
+    pastStreams.clear();
+    while(getline(fin, line )){
+        switch(counter){
+            case 0:
+                name = line;
+                counter++;
+                break;
+            case 1:
+                nick = line;
+                counter++;
+                break;
+            case 2:
+                date = line;
+                counter++;
+                break;
+            case 3:
+                id = stoi(line);
+                counter++;
+                break;
+            default:
+                if(line[0] == '*'){     //stream history member
+                    line = line.substr(1); // slice the 1st char of the string
+                    pastStreamId = stoi(line);
+                    pastStreams.insert(pastStreamId);
+                }
+                else if(line[0] == '/'){    //subscriber (nick)
+                    line = line.substr(1);
+                    subscribers.insert(stoi(line));
+                }
+                else{                      // transition to new streamer
+                    Date birthDate(date);   // create object of class Date with the string date
+                    Streamer* streamer = new Streamer(name, nick, birthDate, id);
+                    streamer->setStreamHistory(pastStreams);
+                    streamer->setSubscribers(subscribers);
+                    this->users.insert({id, streamer});
+                    this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+
+                    name = line;            //saves the name of the next user
+                    counter = 1;
+                    pastStreams.clear();
+                }
+                break;
+        }
+    }
+    Date birthDate2(date);   // create object of class Date with the string date
+    Streamer* streamer = new Streamer(name, nick, birthDate2, id);
+    streamer->setStreamHistory(pastStreams);
+    streamer->setSubscribers(subscribers);
+    this->users.insert({id, streamer});
+    this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+    fin.close();
+    pastStreams.clear();
+
+    fin.open(pastStreamsFile);
+    string line3;
+    if(!fin.is_open()){
+        cout << "Couldn't open " << streamsFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + streamsFile + " file!");
+    }
+    while(getline(fin, line )) {
+        getline(fin, line2);    // id
+        getline(fin, line3);    // no_viewers when stream ended
+        id = stoi(line2);
+        struct PastStream* s = new PastStream;          // !! VERIFY WHEN YOU NEED TO FREE THIS MEMORY
+        s->name = line, s->id = id, s->noViewers = stoi(line3);
+        this->pastStreams.insert({id, s});
+    }
+    fin.close();
+
 }
-*/
+
 
 void StreamZ::init(){ //prototipo, so para mostrar a ideia
     while (1) {
@@ -585,6 +669,10 @@ void StreamZ::createStream(Streamer *streamer) {
                     streamer->startStream(newStream);
                     streams.push_back(newStream);
                     publicStreams.push_back(newStream);
+
+                    struct PastStream* pastStream = new PastStream(newStream);      //add a past stream to the global map
+                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of 0
+
                     error = false;
                     break;
                 }
@@ -621,11 +709,14 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
     while(1) {
         try {
             Stream* stream = streamer->getStream();
+            /*
             PastStream* p = new PastStream;
             p->name = stream->getTitle();
             p->noViewers = stream->getNumViewers();
-            streamer->endStream();
             streamer->addPastStream(p);
+             */
+            this->pastStreams.at(stream->getId())->noViewers = stream->getNumViewers();
+            streamer->endStream();
             set<unsigned int> viewers = stream->getViewers();
             for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){
                 Viewer* v = (Viewer*) users[(*it)];

@@ -20,20 +20,24 @@ protected:
     std::string nick;
     Date birthDate;
     Stream* stream;
-    std::vector<PastStream *> streamHistory;
+    std::set<unsigned int> streamHistory;
+    //std::vector<PastStream *> streamHistory;    // talvez mudar isto para um vetor de ids apenas
     unsigned int ID;
     static unsigned int nextID;
 public:
     User(std::string name, std::string nick, const Date& birthDate);
-    void setStreamHistory(std::vector<struct PastStream>& pastStreams);
+    User(std::string name, std::string nick, const Date& birthDate, unsigned int id);
+    //void setStreamHistory(std::vector<struct PastStream>& pastStreams);
+    void setStreamHistory(std::set<unsigned int>& pastStreams);
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
     unsigned int getID() const;
     Stream* getStream() const;
     bool inAStream() const;
-    void addPastStream(PastStream* pastStream);
-    std::vector<PastStream*> getStreamHistory() const;
+    //void addPastStream(PastStream* pastStream);
+    void addPastStream(unsigned int pastStreamId);
+    std::set<unsigned int> getStreamHistory() const;
     virtual void showUser() const = 0;
 };
 
@@ -42,6 +46,7 @@ private:
     std::set<unsigned int> subscribers;
 public:
     Streamer(std::string name, std::string nick, const Date& birthDate);
+    Streamer(std::string name, std::string nick, const Date& birthDate, unsigned int id);
     int getNumViewers() const;
     int getNumSubs() const;
     std::set<unsigned int>& getSubscribers();
@@ -59,6 +64,7 @@ class Viewer : public User{
 
 public:
     Viewer(std::string name, std::string nick, const Date& birthDate);
+    Viewer(std::string name, std::string nick, const Date& birthDate, unsigned int id);
     void joinStream(Stream* stream);
     void leaveStream();
     void message(std::string text) const;
