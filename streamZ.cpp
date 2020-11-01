@@ -28,6 +28,15 @@ StreamZ::StreamZ() {
     admin = NULL;
 }
 
+StreamZ::~StreamZ() {
+    //storeDataInFile();    // uncomment when function is done
+    delete admin;
+    for (int i = 0; i < streams.size(); ++i)
+        delete streams.at(i);
+    map<unsigned int, User*>::iterator it;
+    for (it = users.begin(); it != users.end(); ++it)
+        delete it->second;
+}
 
 /**
  * Reads data from files that contains the registered users, created streams, etc.
