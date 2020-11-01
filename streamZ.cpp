@@ -1,14 +1,10 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <sstream>
 #include <map>
 #include <algorithm>
 
 #include "streamZ.h"
-#include "pastStream.h"
-#include "date.h"
-#include "user.h"
 #include "admin.h"
 
 using namespace std;
@@ -25,7 +21,7 @@ StreamZ::StreamZ() {
         cerr << e.what() << endl;
     }
 
-    admin = NULL;
+    admin = nullptr;
 }
 
 StreamZ::~StreamZ() {
@@ -190,15 +186,21 @@ void StreamZ::fetchDataFromFile() {
 
 
 void StreamZ::init(){ //prototipo, so para mostrar a ideia
-    while (1) {
+    while (true) {
         cout << "WELCOME TO STREAMZ" << endl << endl;
         cout << "1- Create Viewer" << endl << "2- Create Streamer" << endl;
-        if (admin == NULL) cout << "3- Create Admin";
+        if (admin == nullptr) cout << "3- Create Admin";
         else cout << "3- Login as Admin";
         cout << endl << "4- Login as User" << endl << "5- Exit" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a number between 1 and 5" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch (choice) {
             case 1:
                 createViewer();
@@ -207,7 +209,7 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
                 createStreamer();
                 break;
             case 3:
-                if (admin == NULL) createAdmin();
+                if (admin == nullptr) createAdmin();
                 else adminMenu();
                 break;
             case 4:
@@ -223,12 +225,18 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
 }
 
 void StreamZ::userMenu() {  // Depois vai ter de escolher o user que é
-    while (1) {
+    while (true) {
         cout << "Which type of user are you?" << endl << endl   // "Select type of user:" *FICA MELHOR TALVEZ*
              << "1- Viewer" << endl << "2- Streamer" << endl << "3- Go back" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Choose a number between 1 and 3" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch (choice) {
             case 1:
                 loginViewer();
@@ -239,23 +247,28 @@ void StreamZ::userMenu() {  // Depois vai ter de escolher o user que é
             case 3:
                 return;
             default:
-                cout << "Choose a value between 1 and 3" << endl;
+                cout << "Choose a number between 1 and 3" << endl;
                 continue;
         }
     }
 }
 
 void StreamZ::loginViewer() {
-    if (viewersNickID.size() == 0){
+    if (viewersNickID.empty()){
         cout << "Create an account before trying to login" << endl;
         system("pause");
         return;
     }
     cout << "Please type the nickname of your account: ";
     int id;
-    while (1) {
+    while (true) {
         string nick;
         getline(cin, nick);
+        if (nick.find_first_not_of (' ') == nick.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Please enter a valid nickname: ";
+            continue;
+        }
         try {
             id = viewersNickID.at(nick);
             break;
@@ -269,16 +282,21 @@ void StreamZ::loginViewer() {
 }
 
 void StreamZ::loginStreamer() {
-    if (streamersNickID.size() == 0){
+    if (streamersNickID.empty()){
         cout << "Create an account before trying to login" << endl;
         system("pause");
         return;
     }
     cout << "Please type the nickname of your account: ";
     int id;
-    while (1) {
+    while (true) {
         string nick;
         getline(cin, nick);
+        if (nick.find_first_not_of (' ') == nick.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Please enter a valid nickname: ";
+            continue;
+        }
         try {
             id = streamersNickID.at(nick);
             break;
@@ -292,14 +310,20 @@ void StreamZ::loginStreamer() {
 
 void StreamZ::viewerMenu(int id) {
     Viewer* v = (Viewer*) users.at(id);
-    while(1){
+    while(true){
         if (v->inAStream()) return;
         cout << "What do you want to do?" << endl << endl
              << "1- Search streams" << endl << "2- Show top viewed streams" << endl << "3- Show top liked streams"
              << endl << "4- List all streams" << endl << "5- List all users" << endl << "6- Go back" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch(choice){
             case 1:
                 joinStream(id, searchStreamsMenu());
@@ -321,22 +345,28 @@ void StreamZ::viewerMenu(int id) {
             case 6:
                 return;
             default:
-                cout << "Enter a valid number" << endl;
+                cout << "Please enter a number between 1 and 6" << endl;
         }
         if (v->inAStream()) watchingOptions(id);
     }
 }
 
 void StreamZ::joinStream(int id, vector<Stream*> filteredStreams) {
-    if (filteredStreams.size() == 0){
-        cout << "No streams to join" << endl;
+    if (filteredStreams.empty()){
+        cout << "No streams available to join" << endl;
         return;
     }
     cout << "Type the number of the stream you want to join (0 if you don't want any): ";
     int num;
-    while (1) {
+    while (true) {
         cin >> num;
-        cin.ignore(100, '\n');
+        if(cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         if (num > filteredStreams.size()) {
             cout << "That's not a valid number!" << endl;
             continue;
@@ -377,7 +407,13 @@ void StreamZ::watchingOptions(int id) {
         cout << endl << "4- Leave stream" << endl<< "5- Go back" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if(cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch (choice) {
             case 1:
                 cout << "Type 1 to like and 2 to dislike: ";
@@ -402,19 +438,27 @@ void StreamZ::watchingOptions(int id) {
                 v->leaveStream();
             case 5:
                 return;
+            default:
+                cout << "Enter a valid number" << endl << endl;
         }
     }
 }
 
 void StreamZ::streamerMenu(int id) {
-    while(1) {
+    while(true) {
         cout << "What do you want to do?" << endl << endl << "1- Search streams" << endl
              << "2- List all streams" << endl << "3- List all users" << endl << "4- Show top viewed streams" << endl
              << "5- Show top liked streams " << endl << "6- Show number of subscribers" << endl << "7- List subscribers"
              << endl << "8- Streaming options" << endl << "9- Go back" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch (choice) {
             case 1:
                 searchStreamsMenu();
@@ -455,7 +499,7 @@ void StreamZ::streamerMenu(int id) {
 
 void StreamZ::streamingOptions(int id) {
     Streamer* s = (Streamer*) users.at(id);
-    while (1){
+    while (true){
         if (!(s->inAStream())){
             cout << "Do you wish to start a new stream? (y/n)" << endl;
             char choice;
@@ -469,7 +513,13 @@ void StreamZ::streamingOptions(int id) {
              << endl << "4- Go back" << endl;
         int c;
         cin >> c;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         switch (c) {
             case 1:
                 cout << "You currently have " << s->getNumViewers() << " viewers" << endl;
@@ -510,7 +560,7 @@ void StreamZ::adminMenu() {
     catch(noActiveStreams& e){
         cout << e.what() << endl;
     }
-    while(1) {
+    while(true) {
         cout << "More stats?" << endl << endl
              << "1- Number of Streams created (interval)" << endl
              << "2- Number of Public Streams created (interval)" << endl
@@ -519,15 +569,35 @@ void StreamZ::adminMenu() {
              << "5- Go back" << endl;
         int choice;
         cin >> choice;
-        cin.ignore(100, '\n');
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number" << endl << endl;
+            continue;
+        }
+        cin.ignore(1000, '\n');
         if (choice == 5) return;
         string from;
         string to;
         cout << "Start date: " << endl;
         cin >> from;
+        while (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter a date in the format 'yyyy/mm/dd': ";
+            cin >> from;
+        }
+        cin.ignore(1000, '\n');
         Date f(from);
         cout << "End date: " << endl;
         cin >> to;
+        while (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter a date in the format 'yyyy/mm/dd': ";
+            cin >> to;
+        }
+        cin.ignore(1000, '\n');
         Date t(to);
         try {
             switch (choice) {
@@ -557,6 +627,8 @@ void StreamZ::adminMenu() {
                 }
                 case 5:
                     return;
+                default:
+                    cout << "Insert a valid number" << endl << endl;
             }
         }
         catch(badDateComp& e){
@@ -574,20 +646,42 @@ void StreamZ::createViewer() {
     cout << "Lets begin the creation of a new Viewer! " << "Please insert the following data: " << endl;
     cout << "Name: ";
     getline(cin, name);
+    while (name.find_first_not_of (' ') == name.npos || cin.fail() || cin.eof()){
+        cin.clear();
+        cout << "Enter a valid name: ";
+        getline(cin, name);
+    }
     cout << "Nickname: ";
-    while (1) {
+    while (true) {
         getline(cin, nick);
+        if(nick.find_first_not_of (' ') == nick.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Enter a valid nickname: ";
+            continue;
+        }
         if (viewersNickID.find(nick) != viewersNickID.end()){
             cout << "That nickname is already taken. Choose another one: ";
             continue;
         }
         break;
     }
-    while(1){
+    while(true){
         try{
             cout << "Birth Date(yyyy/mm/dd):";
-            cin >> birthDateString;                // NEED TO DO INPUT VERIFICATION
+            cin >> birthDateString;
+            if (cin.fail() || cin.eof()){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Enter a valid date: " << endl;
+                continue;
+            }
+            cin.ignore(1000, '\n');
             Date birthDate(birthDateString);
+            Date today;
+            if (birthDate > today){
+                cout << "Insert a valid date: " << endl;
+                continue;
+            }
             Viewer* newViewer = new Viewer(name, nick, birthDate);
             this->users[newViewer->getID()] = newViewer;
             viewersNickID[newViewer->getNick()] = newViewer->getID();
@@ -598,7 +692,8 @@ void StreamZ::createViewer() {
             cout << d.what() << endl;
         }
         catch(NotOldEnough &n){
-            cout << n.what() << endl;
+            cout << n.what() << endl << endl;
+            return;
         }
     }
 }
@@ -609,20 +704,41 @@ void StreamZ::createStreamer() {
     cout << "Lets begin the creation of a new Streamer! " << "Please insert the following data: " << endl;
     cout << "Name: ";
     getline(cin, name);
+    while (name.find_first_not_of (' ') == name.npos || cin.fail() || cin.eof()){
+        cin.clear();
+        cout << "Enter a valid name: ";
+        getline(cin, name);
+    }
     cout << "Nickname: ";
-    while (1) {
+    while (true) {
         getline(cin, nick);
+        if(nick.find_first_not_of (' ') == nick.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Enter a valid nickname: ";
+            continue;
+        }
         if (streamersNickID.find(nick) != streamersNickID.end()){
             cout << "That nickname is already taken. Choose another one: ";
             continue;
         }
         break;
     }
-    while(1){
+    while(true){
         try{
             cout << "Birth Date(yyyy/mm/dd): ";
-            cin >> birthDateString;                // NEED TO DO INPUT VERIFICATION
+            cin >> birthDateString;
+            if (cin.fail() || cin.eof()){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Enter a valid date" << endl;
+                continue;
+            }
             Date birthDate(birthDateString);
+            Date today;
+            if (birthDate > today){
+                cout << "Insert a valid date" << endl;
+                continue;
+            }
             Streamer* newStreamer = new Streamer(name, nick, birthDate);
             this->users[newStreamer->getID()] = newStreamer;
             streamersNickID[newStreamer->getNick()] = newStreamer->getID();
@@ -633,7 +749,8 @@ void StreamZ::createStreamer() {
             cout << d.what() << endl;
         }
         catch(NotOldEnough &n){
-            cout << n.what() << endl;
+            cout << n.what() << endl << endl;
+            return;
         }
     }
 }
@@ -643,6 +760,11 @@ void StreamZ::createAdmin() {
     cout << "Lets begin the creation of a new Admin! " << "Please insert the following data: " << endl;
     cout << "Name: ";
     getline(cin, name);
+    while (name.find_first_not_of (' ') == name.npos || cin.fail() || cin.eof()){
+        cin.clear();
+        cout << "Enter a valid name: ";
+        getline(cin, name);
+    }
     admin = new Admin(name, *this);
     cout << "A new Admin was successfully created! " << endl;
 }
@@ -650,18 +772,47 @@ void StreamZ::createAdmin() {
 void StreamZ::createStream(Streamer *streamer) {
     string title, language;
     Date startDate = Date();        //curr date
-    int minAge, typeOfStream;
+    unsigned int minAge, typeOfStream;
     bool error = true;
     while (error) {
         cout << "What is the title of the stream?" << endl;
         getline(cin, title);
+        while (title.find_first_not_of (' ') == title.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Enter a valid title " << endl;
+            getline(cin, title);
+        }
         cout << "What language is the stream on?" << endl;
         cin >> language;
+        while (language.find_first_not_of (' ') == language.npos || cin.fail() || cin.eof()){
+            cin.clear();
+            cout << "Enter a valid language: " << endl;
+            getline(cin, language);
+        }
         cout << "What is the minimum age?" << endl;
         cin >> minAge;
+        while (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Insert a valid number" << endl;
+        }
         cout << "Will it be a public(1) or private(2) stream?" << endl;
         cin >> typeOfStream;
-        cin.ignore(100, '\n');
+        while(true){
+            if (cin.fail() || cin.eof()){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Enter a valid number" << endl;
+                cin >> typeOfStream;
+                continue;
+            }
+            if (typeOfStream != 1 && typeOfStream != 2){
+                cout << "Entere a number between 1 and 2" << endl;
+                cin >> typeOfStream;
+            }
+            break;
+        }
+        cin.ignore(1000, '\n');
         switch (typeOfStream) {
             case 1: {
                 try {
@@ -755,19 +906,30 @@ std::vector<Stream *> StreamZ::topLikes() {
 }
 
 
-vector<Stream*> StreamZ::searchStreamsMenu() {
+vector<Stream*> StreamZ::searchStreamsMenu() const {
     int choice1;
     std::string choice2;
-    int ageChoice;
+    unsigned int ageChoice;
     std::vector<Stream*> filteredStreams;
     while(1){
         cout << "Search streams by: " << endl << "1- Title\n2- Language\n3- Minimum Age\n4- Exit\n";  //Possibly add a category to streams
         cin >> choice1;
-        cin.ignore(100, '\n');
+        while (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Insert a valid number" << endl;
+            cin >> choice1;
+        }
+        cin.ignore(1000, '\n');
         switch(choice1){
             case 1:
-                cout << "Insert the Title: " << endl;
+                cout << "Insert the Title" << endl;
                 getline(cin, choice2);
+                while (choice2.find_first_not_of (' ') == choice2.npos || cin.fail() || cin.eof()){
+                    cin.clear();
+                    cout << "Insert a valid title" << endl;
+                    getline(cin, choice2);
+                }
                 filteredStreams = this->searchStreamsByTitle(choice2);
                 for(int i = 0; i < filteredStreams.size(); i++)
                     cout << i+1 << "- " << *(filteredStreams[i])<< endl;
@@ -776,6 +938,11 @@ vector<Stream*> StreamZ::searchStreamsMenu() {
                 cout << "What language are you looking for?" << endl;
                 cin >> choice2;
                 cin.ignore(100, '\n');
+                while (choice2.find_first_not_of (' ') == choice2.npos || cin.fail() || cin.eof()){
+                    cin.clear();
+                    cout << "Insert a valid language" << endl;
+                    getline(cin, choice2);
+                }
                 filteredStreams = this->searchStreams(choice2);
                 for(int i = 0; i < filteredStreams.size(); i++)
                     cout << i+1 << "- " << *(filteredStreams[i]) << endl;
@@ -783,7 +950,13 @@ vector<Stream*> StreamZ::searchStreamsMenu() {
             case 3:
                 cout << "What is the minimum age?" << endl;
                 cin >> ageChoice;
-                cin.ignore(100, '\n');
+                while (cin.fail() || cin.eof()){
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Insert a valid number" << endl;
+                    cin >> ageChoice;
+                }
+                cin.ignore(1000, '\n');
                 filteredStreams = this->searchStreams(ageChoice);
                 for(int i = 0; i < filteredStreams.size(); i++)
                     cout << i+1 << "- " << *(filteredStreams[i]) << endl;
@@ -794,7 +967,7 @@ vector<Stream*> StreamZ::searchStreamsMenu() {
     }
 }
 
-std::vector<Stream*> StreamZ::searchStreamsByTitle(std::string title) { // USE A BETTER ALGORITHM?
+std::vector<Stream*> StreamZ::searchStreamsByTitle(const std::string& title) const { // USE A BETTER ALGORITHM?
     std::vector<Stream *> ans;
     for(int i = 0; i < this->streams.size(); i++){
         if(this->streams[i]->getTitle().find(title) != string::npos){   // check string::npos on hover
@@ -804,7 +977,7 @@ std::vector<Stream*> StreamZ::searchStreamsByTitle(std::string title) { // USE A
     return ans;
 }
 
-std::vector<Stream *> StreamZ::searchStreams(std::string language) const {
+std::vector<Stream *> StreamZ::searchStreams(const std::string& language) const {
     std::vector<Stream *> ans;
     for(int i = 0; i < this->streams.size(); i++){
         if( this->streams[i]->getLanguage() == language )
@@ -839,7 +1012,7 @@ void StreamZ::listUsers() const {
     }
 }
 
-void StreamZ::listUsers(std::set<unsigned int> users) const {
+void StreamZ::listUsers(const std::set<unsigned int>& users) const {
     for (set<unsigned int>::iterator it = users.begin(); it != users.end(); ++it){
         this->users.at((*it))->showUser();
         cout << endl;

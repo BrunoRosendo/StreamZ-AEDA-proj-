@@ -15,15 +15,16 @@ private:
     std::string name;
     StreamZ site;
 public:
-    Admin(std::string name, StreamZ& site);  //feito
+    Admin(const std::string& name, StreamZ& site);  //feito
     int getNumStreams() const;                                                          //feito
-    int getNumCreatedStreams(Date from, Date to) const;                                 //feito
+    int getNumCreatedStreams(Date& from, const Date& to) const;                                 //feito
     float getAvgViews() const;                                                          //feito
-    float getAvgViews(Date from, Date to) const;                                        //feito
+    float getAvgViews(Date& from, const Date& to) const;                                        //feito
     int getNumPublicStreams() const;
-    int getNumPublicStreams(Date from, Date to) const;
+    int getNumPublicStreams(Date& from, const Date& to) const;
     int getNumPrivateStreams() const;
-    int getNumPrivateStreams(Date from, Date to) const;
+    int getNumPrivateStreams(Date& from, const Date& to) const;
+    string getName() const;
     std::string getPreferredLanguage(std::vector<Stream*>& streams) const;              //feito
     std::string getPreferredStreamType() const;
     Streamer* getMostViewedStreamer() const;
@@ -39,7 +40,7 @@ class badDateComp{
 private:
     string reason;
 public:
-    badDateComp(string reason);
+    badDateComp(const string& reason);
     string what() const;
 };
 
@@ -47,7 +48,7 @@ class noActiveStreams{
 private:
     string reason;
 public:
-    noActiveStreams(string reason);
+    noActiveStreams(const string& reason);
     string what() const;
 };
 

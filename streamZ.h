@@ -36,12 +36,12 @@ public:
     void storeDataInFile() const;
     std::vector<Stream*> topViews();
     std::vector<Stream*> topLikes();
-    std::vector<Stream*> searchStreams(std::string language/*, int minAge*/) const;
+    std::vector<Stream*> searchStreams(const std::string& language/*, int minAge*/) const;
     std::vector<Stream*> searchStreams(int minAge) const;
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
-    void listUsers(std::set<unsigned int> users) const;
-    std::vector<Stream* > searchStreamsByTitle(std::string title);
+    void listUsers(const std::set<unsigned int>& users) const;
+    std::vector<Stream* > searchStreamsByTitle(const std::string& title) const;
     // Menus
     void init();
     void userMenu();
@@ -54,7 +54,7 @@ public:
     void viewerMenu(int id);
     void streamerMenu(int id);
     void streamingOptions(int id);
-    vector<Stream*> searchStreamsMenu();
+    vector<Stream*> searchStreamsMenu() const;
 };
 
 #endif //PROJETO1_STREAMZ_H

@@ -26,7 +26,8 @@ protected:
     unsigned int id;
     static unsigned int nextID;
 public:
-    Stream(std::string title, Date startDate, std::string language, int minAge, string streamerNick);
+    Stream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick);
+    virtual ~Stream();
     virtual void addUser(unsigned int user) = 0;
     void removeUser(unsigned int user);
     int getNumViewers() const;
@@ -47,14 +48,17 @@ class PrivateStream : public Stream{
     int capacity;
     std::set<unsigned int> subscribers;
 public:
-    PrivateStream(std::string title, Date startDate, std::string language, int minAge, string streamerNick, std::set<unsigned int> &subscribers, int capacity);
+    PrivateStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick,
+                  std::set<unsigned int> &subscribers, int capacity);
+    virtual ~PrivateStream();
     virtual void addUser(unsigned int user);
     virtual void showStream() const;
 };
 
 class PublicStream : public Stream{
 public:
-    PublicStream(std::string title, Date startDate, std::string language, int minAge, string streamerNick);
+    PublicStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick);
+    virtual ~PublicStream();
     virtual void addUser(unsigned int user);
     virtual void showStream() const;
 };
@@ -67,7 +71,7 @@ class noCapacity{
 private:
     string reason;
 public:
-    noCapacity(string reason);
+    noCapacity(const string& reason);
     string what();
 };
 
@@ -75,7 +79,7 @@ class NotSubscribed{
 private:
     string reason;
 public:
-    NotSubscribed(string reason);
+    NotSubscribed(const string& reason);
     string what() const;
 };
 

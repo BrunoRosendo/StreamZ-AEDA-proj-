@@ -25,8 +25,9 @@ protected:
     unsigned int ID;
     static unsigned int nextID;
 public:
-    User(std::string name, std::string nick, const Date& birthDate);
-    User(std::string name, std::string nick, const Date& birthDate, unsigned int id);
+    User(const std::string& name, const std::string& nick, const Date& birthDate);
+    User(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    virtual ~User();
     //void setStreamHistory(std::vector<struct PastStream>& pastStreams);
     void setStreamHistory(std::set<unsigned int>& pastStreams);
     std::string getName() const;
@@ -45,8 +46,9 @@ class Streamer : public User{
 private:
     std::set<unsigned int> subscribers;
 public:
-    Streamer(std::string name, std::string nick, const Date& birthDate);
-    Streamer(std::string name, std::string nick, const Date& birthDate, unsigned int id);
+    Streamer(const std::string& name, const std::string& nick, const Date& birthDate);
+    Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    virtual ~Streamer();
     int getNumViewers() const;
     int getNumSubs() const;
     std::set<unsigned int>& getSubscribers();
@@ -63,8 +65,9 @@ public:
 class Viewer : public User{
 
 public:
-    Viewer(std::string name, std::string nick, const Date& birthDate);
-    Viewer(std::string name, std::string nick, const Date& birthDate, unsigned int id);
+    Viewer(const std::string& name, const std::string& nick, const Date& birthDate);
+    Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    virtual ~Viewer();
     void joinStream(Stream* stream);
     void leaveStream();
     void message(std::string text) const;
@@ -84,7 +87,7 @@ class NotOldEnough{
 private:
     string reason;
 public:
-    NotOldEnough(string reason);
+    NotOldEnough(const string& reason);
     string what() const;
 };
 
@@ -92,7 +95,7 @@ class NotInAStream{
 private:
     string reason;
 public:
-    NotInAStream(string reason);
+    NotInAStream(const string& reason);
     string what() const;
 };
 
@@ -100,7 +103,7 @@ class AlreadyStreaming{
 private:
     string reason;
 public:
-    AlreadyStreaming(string reason);
+    AlreadyStreaming(const string& reason);
     string what() const;
 };
 
