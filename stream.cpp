@@ -7,6 +7,7 @@
 
 using namespace std;
 
+unsigned int Stream::nextID= 0;
 
 NotSubscribed::NotSubscribed(const string& reason) {
     this->reason = reason;
@@ -36,6 +37,7 @@ string noCapacity::what() {
 Stream::Stream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick) {
     this->title = title, this->startDate = startDate, this->language = language, this->minAge = minAge, this->numViewers = 0;
     this->streamerNick = streamerNick; noLikes = 0;
+    this->id = nextID, nextID++;
 }
 
 Stream::~Stream() = default;
@@ -136,4 +138,8 @@ ostream& operator<<(ostream& out, Stream& stream){
     << " Language: " << stream.getLanguage() << " Min Age: " << stream.getMinAge() << " No. Likes: "
     << stream.getNoLikes() << " No. Viewers: " << stream.getNumViewers();
     return out;
+}
+
+unsigned int Stream::getId() {
+    return this->id;
 }

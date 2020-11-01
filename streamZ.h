@@ -22,6 +22,7 @@ private:
     std::map<std::string, unsigned int> streamersNickID;
     std::vector<PublicStream*> publicStreams;
     std::vector<PrivateStream*> privateStreams;
+    std::map<unsigned int, PastStream*> pastStreams;
     Admin* admin;
 public:
     StreamZ();

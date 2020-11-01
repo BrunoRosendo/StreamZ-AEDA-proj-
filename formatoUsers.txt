@@ -1,0 +1,10 @@
+Joao Gil    //name
+Monkin      //nick
+07/04/2001  //date
+0           //id do user
+*1          //id da pastStream  (*)
+*3          //id da pastStream  (*)
+*7          //id da pastStream  (*)
+/0  //subscriber por id   (ID = /)
+/2       //subscriber por id
+Outro User  //2º user começa aqui porque nao tem os identificadores

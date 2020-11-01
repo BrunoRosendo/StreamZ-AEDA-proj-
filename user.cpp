@@ -49,11 +49,25 @@ User::User(const std::string& name, const std::string& nick, const Date& birthDa
     stream = nullptr;
 }
 
+
+User::User(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) {
+    this->name = name;
+    this->nick = nick;
+    this->birthDate = birthDate;
+    this->ID = id;
+    stream = NULL;
+}
+
 User::~User() = default;
 
 void User::setStreamHistory(std::vector<struct PastStream> &pastStreams) {
     for (size_t i = 0; i < pastStreams.size(); ++i)
         streamHistory.push_back(&pastStreams.at(i));
+}   */
+
+void User::setStreamHistory(std::set<unsigned int>& pastStreams) {
+    for(auto it = pastStreams.begin(); it != pastStreams.end(); it++)
+        this->streamHistory.insert(*it);
 }
 
 std::string User::getName() const {
@@ -81,22 +95,31 @@ bool User::inAStream() const {
     return stream != nullptr;
 }
 
-std::vector<PastStream *> User::getStreamHistory() const {
+std::set<unsigned int> User::getStreamHistory() const {
     return streamHistory;
 }
 
-void User::addPastStream(PastStream *pastStream) {
+/*void User::addPastStream(PastStream *pastStream) {
     streamHistory.push_back(pastStream);
+} */
+
+void User::addPastStream(unsigned int pastStreamId) {
+    streamHistory.insert(pastStreamId);
 }
-
-
 
 Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
 }
 
+
+Streamer::Streamer(std::string name, std::string nick, const Date &birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+    if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
+    nextID++;   // only after the check
+}
+
 Streamer::~Streamer() = default;
+
 
 int Streamer::getNumViewers() const {
     if (stream == nullptr) throw NotInAStream(this->nick + " is currently not streaming");
@@ -171,6 +194,12 @@ Viewer::Viewer(const std::string& name, const std::string& nick, const Date& bir
     nextID++;   // only after the check
 }
 
+
+Viewer::Viewer(std::string name, std::string nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+    if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
+    nextID++;   // only after the check
+}
+
 Viewer::~Viewer() = default;
 
 void Viewer::joinStream(Stream *stream) {
@@ -182,10 +211,13 @@ void Viewer::joinStream(Stream *stream) {
 
 void Viewer::leaveStream() {
     if (stream == nullptr) throw NotInAStream(this->nick + " is currently not watching any stream");
-    PastStream* p = new PastStream;
+    /*
+    PastStream* p = new PastStream;         // this needs to be done on streamZ scope
     p->name = stream->getTitle();
     p->noViewers = stream->getNumViewers();
     streamHistory.push_back(p);
+     */
+    this->streamHistory.insert(this->stream->getId());
     stream = nullptr;
 }
 

@@ -23,6 +23,8 @@ protected:
     int noLikes;
     int numViewers;
     string streamerNick;
+    unsigned int id;
+    static unsigned int nextID;
 public:
     Stream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick);
     virtual ~Stream();
@@ -39,6 +41,7 @@ public:
     set<unsigned int> getUsers() const;
     void feedback(int megaLikezao);
     virtual void showStream() const;
+    unsigned int getId();
 };
 
 class PrivateStream : public Stream{

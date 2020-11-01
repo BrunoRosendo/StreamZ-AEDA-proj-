@@ -1,0 +1,9 @@
+Stream1
+0
+400
+Stream2
+1
+7
+Stream3
+2
+110
