@@ -25,7 +25,7 @@ private:
     Admin* admin;
 public:
     StreamZ();
-    //~StreamZ();  // we need this because of dynamic memory allocation
+    ~StreamZ();  // we need this because of dynamic memory allocation
     void createStreamer();   //args will be received by input from console
     void createViewer();
     void createAdmin();
@@ -40,8 +40,6 @@ public:
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
     void listUsers(std::set<unsigned int> users) const;
-    //vector<Stream*> showTopViewedStreams();
-    //vector<Stream*> showTopLikedStreams();
     std::vector<Stream* > searchStreamsByTitle(std::string title);
     // Menus
     void init();
