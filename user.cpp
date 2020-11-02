@@ -76,6 +76,10 @@ int User::getAge() const {
     return birthDate.getAge();
 }
 
+string User::getAgeString() const {
+    return birthDate.getDate();
+}
+
 std::string User::getNick() const {
     return nick;
 }
@@ -93,7 +97,7 @@ bool User::inAStream() const {
     return stream != NULL;
 }
 
-std::set<unsigned int> User::getStreamHistory() const {
+std::set<unsigned int>& User::getStreamHistory() {
     return streamHistory;
 }
 
