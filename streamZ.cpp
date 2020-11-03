@@ -35,7 +35,7 @@ StreamZ::~StreamZ() {
 }
 
 /**
- * Reads data from files that contains the registered users, created streams, etc.
+ * Reads data from files that contain the registered users, past streams, etc.
  */
 
 void StreamZ::fetchDataFromFile() {
@@ -184,6 +184,67 @@ void StreamZ::fetchDataFromFile() {
 
 }
 
+/**
+ * Writes data in files that contain the registered users, past streams,, etc.
+ */
+void StreamZ::storeDataInFile() const {
+    string streamersFile = "streamers.txt";
+    string viewersFile = "viewers.txt";
+    string pastStreamsFile = "pastStreams.txt";
+    string adminFile = "admin.txt";
+    fstream fout;
+    unsigned int currUserId;
+
+    fout.open(viewersFile, ios::out | ios::trunc);  // Overwrite previous info
+    Viewer* viewer;
+    if(!fout.is_open()){
+        cout << "Couldn't open " << viewersFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + viewersFile + " file!");
+    }
+    for(auto it = this->viewersNickID.begin(); it != this->viewersNickID.end(); it++){
+        currUserId = it->second;
+        viewer = (Viewer *) this->users.at(currUserId);
+        fout << viewer->getName() << endl << viewer->getNick() << endl << viewer->getAgeString() << endl << viewer->getID() << endl;
+        for(auto historyIt = viewer->getStreamHistory().begin(); historyIt != viewer->getStreamHistory().end(); historyIt++ ){
+            fout << '*' << *historyIt << endl;
+        }
+    }
+    fout.close();
+
+    fout.open(streamersFile, ios::out | ios::trunc);
+    Streamer* streamer;
+    if(!fout.is_open()){
+        cout << "Couldn't open " << streamersFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + streamersFile + " file!");
+    }
+    for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){
+        currUserId = it->second;
+        streamer = (Streamer *) this->users.at(currUserId);
+        fout << streamer->getName() << endl << streamer->getNick() << endl << streamer->getAgeString() << endl << streamer->getID() << endl;
+        for(auto historyIt = streamer->getStreamHistory().begin(); historyIt != streamer->getStreamHistory().end(); historyIt++ ){  // writes past streams
+            fout << '*' << *historyIt << endl;
+        }
+        for(auto subsIt = streamer->getSubscribers().begin(); subsIt != streamer->getSubscribers().end(); subsIt++ ){   //writes the subscribers
+            fout << '/' << *subsIt << endl;
+        }
+    }
+    fout.close();
+
+    fout.open(pastStreamsFile, ios::out | ios::trunc);
+    PastStream* pastStream;
+    if(!fout.is_open()){
+        cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
+    }
+    for(auto it = this->pastStreams.begin(); it != this->pastStreams.end(); it++){
+        pastStream = it->second;
+        fout << pastStream->name << endl << pastStream->id << endl << pastStream->noViewers << endl;
+    }
+    fout.close();
+
+
+}
+
 
 void StreamZ::init(){ //prototipo, so para mostrar a ideia
     while (true) {
@@ -216,6 +277,7 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
                 userMenu();
                 break;
             case 5:
+                this->storeDataInFile();
                 return;
             default:
                 cout << "That is not a valid choice. Please enter a valid number" << endl;

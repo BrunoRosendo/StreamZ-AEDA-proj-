@@ -33,12 +33,13 @@ public:
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
+    string getAgeString() const;
     unsigned int getID() const;
     Stream* getStream() const;
     bool inAStream() const;
     //void addPastStream(PastStream* pastStream);
     void addPastStream(unsigned int pastStreamId);
-    std::set<unsigned int> getStreamHistory() const;
+    std::set<unsigned int>& getStreamHistory();
     virtual void showUser() const = 0;
 };
 
