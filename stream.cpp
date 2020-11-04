@@ -133,6 +133,19 @@ void PrivateStream::showStream() const {
     << " spaces available" << endl << " and " << subscribers.size() << " subscribers" << endl;
 }
 
+void PrivateStream::showMessages() const {
+    if (messages.empty()) cout << "You haven't received any messages yet :(" << endl;
+    else {
+        for (int i = 0; i < messages.size(); ++i) {
+            cout << messages.at(i) << endl << endl;
+        }
+    }
+}
+
+void PrivateStream::addMessage(std::string message) {
+    messages.push_back(message);
+}
+
 ostream& operator<<(ostream& out, Stream& stream){
     out << "Title: " <<  stream.getTitle() << " Start Date: " << stream.getStartDate().getDate()
     << " Language: " << stream.getLanguage() << " Min Age: " << stream.getMinAge() << " No. Likes: "

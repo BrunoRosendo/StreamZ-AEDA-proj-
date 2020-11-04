@@ -13,28 +13,23 @@
 class Admin{
 private:
     std::string name;
-    StreamZ site;
+    StreamZ* site;   //change to pointer so we can delete admin?
 public:
-    Admin(const std::string& name, StreamZ& site);  //feito
-    int getNumStreams() const;                                                          //feito
-    int getNumCreatedStreams(Date& from, const Date& to) const;                                 //feito
-    float getAvgViews() const;                                                          //feito
-    float getAvgViews(Date& from, const Date& to) const;                                        //feito
+    Admin(const std::string& name, StreamZ* site);
+    int getNumStreams() const;
+    int getNumCreatedStreams(Date& from, const Date& to) const;
+    float getAvgViews() const;
+    float getAvgViews(Date& from, const Date& to) const;
     int getNumPublicStreams() const;
     int getNumPublicStreams(Date& from, const Date& to) const;
     int getNumPrivateStreams() const;
     int getNumPrivateStreams(Date& from, const Date& to) const;
     string getName() const;
-    std::string getPreferredLanguage(std::vector<Stream*>& streams) const;              //feito
+    void setName(const std::string& name);
+    std::string getPreferredLanguage(std::vector<Stream*>& streams) const;
     std::string getPreferredStreamType() const;
     Streamer* getMostViewedStreamer() const;
 };
-
-/*exceçoes
--Date to > Date from
--em getAvgViews, getNumStreams()==0  (divisao por 0)
--vetor streams vazio
-*/
 
 class badDateComp{
 private:
@@ -53,8 +48,3 @@ public:
 };
 
 #endif //PROJETO1_ADMIN_H
-//A aplicação permite ainda o registo de uma conta de administrador que monitoriza os utilizadores e as
-//“streams”. Ao administrador interessa saber a quantidade de “streams” criadas, a média de visualizações por
-//“stream” e a quantidade de “streams” privadas ou públicas num determinado intervalo de tempo. Para
-//efeitos estatísticos, o administrador quer também saber a linguagem e o tipo de “stream” mais criada
-//(privada ou pública) para além do “streamer” com mais visualizações.
