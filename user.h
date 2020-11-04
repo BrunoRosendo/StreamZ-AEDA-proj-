@@ -21,15 +21,15 @@ protected:
     Date birthDate;
     Stream* stream;
     std::set<unsigned int> streamHistory;
-    //std::vector<PastStream *> streamHistory;    // talvez mudar isto para um vetor de ids apenas
     unsigned int ID;
     static unsigned int nextID;
 public:
     User(const std::string& name, const std::string& nick, const Date& birthDate);
     User(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
     virtual ~User();
-    //void setStreamHistory(std::vector<struct PastStream>& pastStreams);
     void setStreamHistory(std::set<unsigned int>& pastStreams);
+    void setName(const std::string& name);
+    void setNick(const std::string& nick);
     std::string getName() const;
     std::string getNick() const;
     int getAge() const;
@@ -37,8 +37,7 @@ public:
     unsigned int getID() const;
     Stream* getStream() const;
     bool inAStream() const;
-    //void addPastStream(PastStream* pastStream);
-    void addPastStream(unsigned int pastStreamId);
+    void addPastStream(unsigned int pastStreamId); // useless?
     std::set<unsigned int>& getStreamHistory();
     virtual void showUser() const = 0;
 };

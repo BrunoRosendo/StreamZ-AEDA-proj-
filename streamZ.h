@@ -41,6 +41,7 @@ public:
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
     void listUsers(const std::set<unsigned int>& users) const;
+    void showStreamHistory(int id) const;
     std::vector<Stream* > searchStreamsByTitle(const std::string& title) const;
     // Menus
     void init();
@@ -48,12 +49,15 @@ public:
     void watchingOptions(int id);
     void joinStream(int id, vector<Stream*> streams);
     void adminMenu();
-    void adminMenu2();
+    void adminMenu2();  //retirar ou modificar
     void loginViewer();
     void loginStreamer();
     void viewerMenu(int id);
     void streamerMenu(int id);
     void streamingOptions(int id);
+    bool viewerSettings(int id);
+    bool streamerSettings(int id);
+    bool adminSettings();
     vector<Stream*> searchStreamsMenu() const;
 };
 

@@ -11,6 +11,7 @@
 
 //#include "user.h"
 #include "date.h"
+#include <vector>
 //class User;       TO DO THIS NEED TO DO A FORWARD DECLARATION
 
 class Stream{
@@ -47,12 +48,15 @@ public:
 class PrivateStream : public Stream{
     int capacity;
     std::set<unsigned int> subscribers;
+    std::vector<std::string> messages;
 public:
     PrivateStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick,
                   std::set<unsigned int> &subscribers, int capacity);
     virtual ~PrivateStream();
     virtual void addUser(unsigned int user);
     virtual void showStream() const;
+    void showMessages() const;
+    void addMessage(std::string message); // the message includes the name of the user
 };
 
 class PublicStream : public Stream{

@@ -60,14 +60,18 @@ User::User(const std::string& name, const std::string& nick, const Date& birthDa
 
 User::~User() = default;
 
-void User::setStreamHistory(std::vector<struct PastStream> &pastStreams) {
-    for (size_t i = 0; i < pastStreams.size(); ++i)
-        streamHistory.push_back(&pastStreams.at(i));
-}   */
 
 void User::setStreamHistory(std::set<unsigned int>& pastStreams) {
     for(auto it = pastStreams.begin(); it != pastStreams.end(); it++)
         this->streamHistory.insert(*it);
+}
+
+void User::setName(const std::string& name) {
+    this->name = name;
+}
+
+void User::setNick(const std::string &nick) {
+    this->nick = nick;
 }
 
 std::string User::getName() const {
@@ -117,7 +121,7 @@ Streamer::Streamer(const std::string& name, const std::string& nick, const Date&
 }
 
 
-Streamer::Streamer(std::string name, std::string nick, const Date &birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
 }
@@ -140,6 +144,7 @@ std::set<unsigned int>& Streamer::getSubscribers() {
 
 void Streamer::endStream() {
     if (stream == nullptr) throw NotInAStream(this->nick + " is currently not streaming");
+    streamHistory.insert(stream->getId());
     stream = nullptr;
 }
 
@@ -199,7 +204,7 @@ Viewer::Viewer(const std::string& name, const std::string& nick, const Date& bir
 }
 
 
-Viewer::Viewer(std::string name, std::string nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
     nextID++;   // only after the check
 }
@@ -232,7 +237,8 @@ void Viewer::feedback(int like) {
 
 void Viewer::message(std::string text) const {
     if (stream == nullptr) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
-    cout << text << endl;
+    PrivateStream* s = (PrivateStream*) stream;
+    s->addMessage(name + ": " + text);
 }
 
 void Viewer::showUser() const {
