@@ -203,7 +203,7 @@
 											"top": 586,
 											"width": 354.38330078125,
 											"height": 13,
-											"text": "#streamHistory: set<unsigned int>",
+											"text": "#streamHistory: set<int>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -322,7 +322,7 @@
 											"top": 684,
 											"width": 354.38330078125,
 											"height": 13,
-											"text": "+setStreamHistory(pastStreams: set<unsigned int>)",
+											"text": "+setStreamHistory(pastStreams: set<int>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -672,7 +672,7 @@
 											"top": 990,
 											"width": 409.31591796875,
 											"height": 13,
-											"text": "-Subscribers: vector<Viewer *>",
+											"text": "-Subscribers: set<int>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -779,6 +779,23 @@
 										},
 										{
 											"_type": "UMLOperationView",
+											"_id": "AAAAAAF1lRJ2QyA2Ay4=",
+											"_parent": {
+												"$ref": "AAAAAAF1VZs41lhIToc="
+											},
+											"model": {
+												"$ref": "AAAAAAF1lRJ2ESAzHOI="
+											},
+											"font": "Arial;13;0",
+											"left": 29,
+											"top": 1088,
+											"width": 409.31591796875,
+											"height": 13,
+											"text": "+getSubscribers()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
 											"_id": "AAAAAAF1Vb38PmIz/kw=",
 											"_parent": {
 												"$ref": "AAAAAAF1VZs41lhIToc="
@@ -788,7 +805,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1088,
+											"top": 1103,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+endStream()",
@@ -805,7 +822,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1103,
+											"top": 1118,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+startStream(stream: Streamer)",
@@ -822,10 +839,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1118,
+											"top": 1133,
 											"width": 409.31591796875,
 											"height": 13,
-											"text": "+setSubscriber(subscribers: set<unsigned int>)",
+											"text": "+setSubscriber(subscribers: set<int>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -839,7 +856,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1133,
+											"top": 1148,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+addSubscribers(id: int)",
@@ -856,7 +873,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1148,
+											"top": 1163,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+removeSubscribe(id: int)",
@@ -873,7 +890,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1163,
+											"top": 1178,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+isSubscriber(id: int)",
@@ -890,7 +907,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1178,
+											"top": 1193,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+operator<<(out: ostream, streamer: Streamer)",
@@ -907,7 +924,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1193,
+											"top": 1208,
 											"width": 409.31591796875,
 											"height": 13,
 											"text": "+showUser()",
@@ -918,7 +935,7 @@
 									"left": 24,
 									"top": 1008,
 									"width": 419.31591796875,
-									"height": 203
+									"height": 218
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -958,7 +975,7 @@
 							"left": 24,
 							"top": 960,
 							"width": 419.31591796875,
-							"height": 251,
+							"height": 266,
 							"nameCompartment": {
 								"$ref": "AAAAAAF1VZs41lhCwAQ="
 							},
@@ -1327,7 +1344,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 265,
+									"left": 266,
 									"top": 895,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1348,7 +1365,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 250,
+									"left": 251,
 									"top": 891,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1369,7 +1386,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 294,
+									"left": 295,
 									"top": 902,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -1388,7 +1405,7 @@
 								"$ref": "AAAAAAF1VZs41VhBckY="
 							},
 							"lineStyle": 1,
-							"points": "266:959;294:852",
+							"points": "267:959;295:852",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF1VasGvmD+vT4="
@@ -1677,7 +1694,7 @@
 											"top": 770,
 											"width": 506.8349609375,
 											"height": 13,
-											"text": "#viewers: vector<User*>",
+											"text": "#viewers: set<int> ",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2248,7 +2265,7 @@
 											"top": 1245,
 											"width": 811.50341796875,
 											"height": 13,
-											"text": "+subscribers: vector<Viewer *>",
+											"text": "+subscribers: set<int> ",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2282,7 +2299,7 @@
 											"top": 1268,
 											"width": 811.50341796875,
 											"height": 13,
-											"text": "+PrivateStream(title: string, startDate: Date, language: string, minAge: int, streamerNick: string, subscribers: &vector<Viewer *>, capacity: int)",
+											"text": "+PrivateStream(title: string, startDate: Date, language: string, minAge: int, streamerNick: string, subscribers: set<int>, capacity: int)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3382,7 +3399,7 @@
 											"top": 62,
 											"width": 285.04150390625,
 											"height": 13,
-											"text": "+users: vector<User *>",
+											"text": "+users: map<int, User*>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3416,7 +3433,7 @@
 											"top": 92,
 											"width": 285.04150390625,
 											"height": 13,
-											"text": "+viewersNickID: map<string, unsigned int>",
+											"text": "+viewersNickID: map<string, int>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3433,7 +3450,7 @@
 											"top": 107,
 											"width": 285.04150390625,
 											"height": 13,
-											"text": "+streamersNickID: map<string, unsigned int>",
+											"text": "+streamersNickID: map<string, int>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3484,7 +3501,7 @@
 											"top": 152,
 											"width": 285.04150390625,
 											"height": 13,
-											"text": "+pastStreams: map<unsigned int, PastStream*>",
+											"text": "+pastStreams: map<int, PastStream*>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3790,7 +3807,7 @@
 											"top": 415,
 											"width": 285.04150390625,
 											"height": 13,
-											"text": "+listUsers(users: set<unsigned int>)",
+											"text": "+listUsers(users: set<int>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3897,23 +3914,6 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAF1kzLXQdBCNIw=",
-											"_parent": {
-												"$ref": "AAAAAAF1Ve3UMGO5fiA="
-											},
-											"model": {
-												"$ref": "AAAAAAF1kzLXENA/LH8="
-											},
-											"font": "Arial;13;0",
-											"left": 1189,
-											"top": 520,
-											"width": 285.04150390625,
-											"height": 13,
-											"text": "+adminMenu2()",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAF1kzL8OtCQ5/A=",
 											"_parent": {
 												"$ref": "AAAAAAF1Ve3UMGO5fiA="
@@ -3923,7 +3923,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 535,
+											"top": 520,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+loginViewer()",
@@ -3940,7 +3940,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 550,
+											"top": 535,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+loginStreamer()",
@@ -3957,7 +3957,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 565,
+											"top": 550,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+viewerMenu(id: int)",
@@ -3974,7 +3974,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 580,
+											"top": 565,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+streamerMenu(id: int)",
@@ -3991,7 +3991,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 595,
+											"top": 580,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+streamingOptions(id: int)",
@@ -4008,7 +4008,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1189,
-											"top": 610,
+											"top": 595,
 											"width": 285.04150390625,
 											"height": 13,
 											"text": "+searchStreamsMenu()",
@@ -4019,7 +4019,7 @@
 									"left": 1184,
 									"top": 185,
 									"width": 295.04150390625,
-									"height": 443
+									"height": 428
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -5487,7 +5487,7 @@
 							},
 							"name": "streamHistory",
 							"visibility": "protected",
-							"type": "set<unsigned int>"
+							"type": "set<int>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5619,7 +5619,7 @@
 										"$ref": "AAAAAAF1kyWuk6dskBM="
 									},
 									"name": "pastStreams",
-									"type": "set<unsigned int>"
+									"type": "set<int>"
 								}
 							]
 						},
@@ -5886,7 +5886,7 @@
 							},
 							"name": "Subscribers",
 							"visibility": "private",
-							"type": "vector<Viewer *>"
+							"type": "set<int>"
 						}
 					],
 					"operations": [
@@ -6001,6 +6001,14 @@
 						},
 						{
 							"_type": "UMLOperation",
+							"_id": "AAAAAAF1lRJ2ESAzHOI=",
+							"_parent": {
+								"$ref": "AAAAAAF1VZs41Vg/UwQ="
+							},
+							"name": "getSubscribers"
+						},
+						{
+							"_type": "UMLOperation",
 							"_id": "AAAAAAF1Vb373GIwFbc=",
 							"_parent": {
 								"$ref": "AAAAAAF1VZs41Vg/UwQ="
@@ -6043,7 +6051,7 @@
 										"$ref": "AAAAAAF1jgDVqSS3ij0="
 									},
 									"name": "subscribers",
-									"type": "set<unsigned int>"
+									"type": "set<int>"
 								}
 							]
 						},
@@ -6507,7 +6515,7 @@
 							},
 							"name": "viewers",
 							"visibility": "protected",
-							"type": "vector<User*>"
+							"type": "set<int> "
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6812,7 +6820,7 @@
 								"$ref": "AAAAAAF1VcRD8mJelHE="
 							},
 							"name": "subscribers",
-							"type": "vector<Viewer *>"
+							"type": "set<int> "
 						}
 					],
 					"operations": [
@@ -6876,7 +6884,7 @@
 										"$ref": "AAAAAAF1VcjUrWLjMz8="
 									},
 									"name": "subscribers",
-									"type": "&vector<Viewer *>"
+									"type": "set<int>"
 								},
 								{
 									"_type": "UMLParameter",
@@ -7357,7 +7365,7 @@
 								"$ref": "AAAAAAF1Ve3UL2OwMQg="
 							},
 							"name": "users",
-							"type": "vector<User *>"
+							"type": "map<int, User*>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7375,7 +7383,7 @@
 								"$ref": "AAAAAAF1Ve3UL2OwMQg="
 							},
 							"name": "viewersNickID",
-							"type": "map<string, unsigned int>"
+							"type": "map<string, int>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7384,7 +7392,7 @@
 								"$ref": "AAAAAAF1Ve3UL2OwMQg="
 							},
 							"name": "streamersNickID",
-							"type": "map<string, unsigned int>"
+							"type": "map<string, int>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7411,7 +7419,7 @@
 								"$ref": "AAAAAAF1Ve3UL2OwMQg="
 							},
 							"name": "pastStreams",
-							"type": "map<unsigned int, PastStream*>"
+							"type": "map<int, PastStream*>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7618,7 +7626,7 @@
 										"$ref": "AAAAAAF1kzGZIM0mFqY="
 									},
 									"name": "users",
-									"type": "set<unsigned int>"
+									"type": "set<int>"
 								}
 							]
 						},
@@ -7711,14 +7719,6 @@
 								"$ref": "AAAAAAF1Ve3UL2OwMQg="
 							},
 							"name": "adminMenu"
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAF1kzLXENA/LH8=",
-							"_parent": {
-								"$ref": "AAAAAAF1Ve3UL2OwMQg="
-							},
-							"name": "adminMenu2"
 						},
 						{
 							"_type": "UMLOperation",
