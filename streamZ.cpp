@@ -20,8 +20,6 @@ StreamZ::StreamZ() {
     catch(runtime_error& e){
         cerr << e.what() << endl;
     }
-
-    admin = nullptr;
 }
 
 StreamZ::~StreamZ() {
@@ -31,6 +29,9 @@ StreamZ::~StreamZ() {
     map<unsigned int, User*>::iterator it;
     for (it = users.begin(); it != users.end(); ++it)
         delete it->second;
+    for(auto it2 = this->pastStreams.begin(); it2 != this->pastStreams.end(); it2++){
+        delete it2->second;
+    }
 }
 
 /**
@@ -46,7 +47,6 @@ void StreamZ::fetchDataFromFile() {
     fstream fin;
     string line, line2, name, nick, date;
     unsigned int id, pastStreamId;
-    //vector<struct PastStream> pastStreams;
     std::set<unsigned int> pastStreams;
     int counter = 0;
     //IMPLEMENT VIEWERS FILE FIRST
@@ -181,12 +181,27 @@ void StreamZ::fetchDataFromFile() {
     }
     fin.close();
 
+
+    fin.open(adminFile);
+    if(!fin.is_open()){
+        cout << "Couldn't open " << adminFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + adminFile + " file!");
+    }
+    getline(fin, line);
+    if(!line.empty()){
+        this->admin = new Admin(line, this);
+    }
+    else
+        this->admin = nullptr;
+    fin.close();
+
+
 }
 
 /**
  * Writes data in files that contain the registered users, past streams,, etc.
  */
-void StreamZ::storeDataInFile() const {
+void StreamZ::storeDataInFile(){
     string streamersFile = "streamers.txt";
     string viewersFile = "viewers.txt";
     string pastStreamsFile = "pastStreams.txt";
@@ -239,6 +254,19 @@ void StreamZ::storeDataInFile() const {
         pastStream = it->second;
         fout << pastStream->name << endl << pastStream->id << endl << pastStream->noViewers << endl;
     }
+    for(auto it2 = this->streams.begin(); it2 != this->streams.end(); it2++){
+        PastStream ps(*it2);        //creates a past stream by passing a stream as arg
+        fout << ps.name << endl << ps.id << endl << ps.noViewers << endl;
+    }
+    fout.close();
+
+    fout.open(adminFile, ios::out | ios::trunc);
+    if(!fout.is_open()){
+        cout << "Couldn't open " << adminFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + adminFile + " file!");
+    }
+    if(admin != nullptr)
+        fout << this->admin->getName();
     fout.close();
 
 
@@ -1168,7 +1196,6 @@ std::vector<Stream *> StreamZ::topLikes() {
     }
     return top10;
 }
-
 
 vector<Stream*> StreamZ::searchStreamsMenu() const {
     int choice1;

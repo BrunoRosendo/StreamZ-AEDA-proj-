@@ -5,3 +5,7 @@ Monkin
 *0
 *1
 /1
+Shroud
+Shrimp
+2000/01/02
+2
