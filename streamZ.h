@@ -33,7 +33,7 @@ public:
     void createStream(Streamer* streamer);
     void deleteStream(Streamer* streamer);  // deletes the stream which the streamer wants to end
     void fetchDataFromFile();
-    void storeDataInFile() const;
+    void storeDataInFile();
     std::vector<Stream*> topViews();
     std::vector<Stream*> topLikes();
     std::vector<Stream*> searchStreams(const std::string& language/*, int minAge*/) const;
