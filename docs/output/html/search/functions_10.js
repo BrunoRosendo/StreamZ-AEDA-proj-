@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['viewer_154',['Viewer',['../class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e',1,'Viewer::Viewer(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate)'],['../class_viewer.html#a212d9abd5d29b05894955a076a787aa4',1,'Viewer::Viewer(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate, unsigned int id)']]]
+  ['toplikes_255',['topLikes',['../class_stream_z.html#a58eb3216a166704bba7b49c20ea83ca9',1,'StreamZ']]],
+  ['topviews_256',['topViews',['../class_stream_z.html#a33c944be4137d0ce0acf1855666b9145',1,'StreamZ']]]
 ];

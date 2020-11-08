@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['operator_21_3d_133',['operator!=',['../class_date.html#a635cfeb1d60c867d051c24d81db858f6',1,'Date']]],
-  ['operator_3c_134',['operator&lt;',['../class_date.html#ae46a679579ec061c2d37eb1aa80b29e4',1,'Date']]],
-  ['operator_3c_3d_135',['operator&lt;=',['../class_date.html#ab0656086910c8debe2a1fb5d2ae197ba',1,'Date']]],
-  ['operator_3d_3d_136',['operator==',['../class_date.html#a4b933e8c9e1a5853918ad88eb2fc2dae',1,'Date']]],
-  ['operator_3e_137',['operator&gt;',['../class_date.html#a556af85013c9c8a573e023768f786c97',1,'Date']]],
-  ['operator_3e_3d_138',['operator&gt;=',['../class_date.html#a4a291faa73653c0a14981db2dee21678',1,'Date']]]
+  ['noactivestreams_219',['NoActiveStreams',['../class_no_active_streams.html#a471071ca0efecf926154e763d0d5eb55',1,'NoActiveStreams']]],
+  ['nocapacity_220',['NoCapacity',['../class_no_capacity.html#ac6291e33103a7e9ee48b7e4bd6c83a5b',1,'NoCapacity']]],
+  ['notinastream_221',['NotInAStream',['../class_not_in_a_stream.html#a060fd05a3f8bc149b5ef2c45a6e27439',1,'NotInAStream']]],
+  ['notoldenough_222',['NotOldEnough',['../class_not_old_enough.html#ae03ec042f22c493c35af9bd5a693cf33',1,'NotOldEnough']]],
+  ['notsubscribed_223',['NotSubscribed',['../class_not_subscribed.html#a32b4e16a7c64f3fa559df79bbd609a59',1,'NotSubscribed']]]
 ];

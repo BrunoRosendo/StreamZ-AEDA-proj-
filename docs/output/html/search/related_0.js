@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c_3c_159',['operator&lt;&lt;',['../class_streamer.html#aa3e2627ab51a48c216ecd104cf553854',1,'Streamer::operator&lt;&lt;()'],['../class_viewer.html#a7724ba9532c5947d5db88044c6e54f07',1,'Viewer::operator&lt;&lt;()']]]
+  ['admin_302',['Admin',['../class_stream_z.html#aee7d27bfaa03d719cc85524be52a2bbe',1,'StreamZ']]]
 ];

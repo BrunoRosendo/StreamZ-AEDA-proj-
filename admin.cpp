@@ -14,11 +14,11 @@ string badDateComp::what() const {
     return reason;
 }
 
-noActiveStreams::noActiveStreams(const string& reason) {
+NoActiveStreams::NoActiveStreams(const string& reason) {
     this->reason = reason;
 }
 
-string noActiveStreams::what() const {
+string NoActiveStreams::what() const {
     return reason;
 }
 
@@ -53,7 +53,7 @@ int Admin::getNumCreatedStreams(Date& from, const Date& to) const {
 }
 
 float Admin::getAvgViews() const {
-    if (site->streams.empty()) throw noActiveStreams("There are currently no active streams");
+    if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     int sum = 0;
     float avg;
     vector<Stream *>::const_iterator it;
@@ -66,7 +66,7 @@ float Admin::getAvgViews() const {
 
 float Admin::getAvgViews(Date& from, const Date& to) const {
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
-    if (site->streams.empty()) throw noActiveStreams("There are currently no active streams");
+    if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     int sum = 0;
     float avg;
     Date d;
@@ -116,7 +116,7 @@ int Admin::getNumPrivateStreams(Date& from, const Date& to) const {
 }
 
 string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
-    if (streams.empty()) throw noActiveStreams("There are currently no active streams");
+    if (streams.empty()) throw NoActiveStreams("There are currently no active streams");
     int cnt = 0, max_cnt = 0, max_pos = 0;
     string li, lj;
     for (int i=0;i<streams.size();i++){
@@ -135,7 +135,7 @@ string Admin::getPreferredLanguage(std::vector<Stream*>& streams) const {
 }
 
 string Admin::getPreferredStreamType() const {
-    if (site->streams.empty()) throw noActiveStreams("There are currently no active streams");
+    if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     if (site->privateStreams.size() > site->publicStreams.size()) return "Private Streams are the preferred type of stream";
     else if (site->privateStreams.size() < site->publicStreams.size()) return "Public Streams are the preferred type of stream";
     else return "There is no preference in the type of stream";
@@ -143,7 +143,7 @@ string Admin::getPreferredStreamType() const {
 }
 
 Streamer * Admin::getMostViewedStreamer() const {   // this will be different
-    if (site->streams.empty()) throw noActiveStreams("There are currently no active streams");
+    if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     Streamer* best;
     int maxViews = 0;
     for (std::map<std::string, unsigned int>::const_iterator it = site->streamersNickID.begin(); it != site->streamersNickID.end(); ++it){

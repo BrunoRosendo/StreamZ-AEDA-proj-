@@ -14,109 +14,119 @@
  */
 class Admin{
 private:
+    /**
+     * @brief Name of the Admin
+     */
     std::string name;
+
+    /**
+     * @brief Pointer to the StreamZ website the Admin is operating in
+     */
     StreamZ* site;   // pointer so we can delete admin
 public:
     /**
-     * @brief Creates and admin with given name and site
-     * @param name Name of the admin
-     * @param site Site in which the admin operates
+     * @brief Creates an Admin with given name and site
+     * @param name Name of the Admin
+     * @param site Site in which the Admin operates
      */
     Admin(const std::string& name, StreamZ* site);
 
     /**
-     * @brief Gets the number of active streams at the moment
-     * @return  Integer containing the number of streams
+     * @brief Gets the number of active Streams at the moment
+     * @return  Integer containing the number of Streams
      */
     int getNumStreams() const;
 
     /**
-     * @brief Gets the number of streams created in a given interval of time: [from, to]
-     * @param from Start date
-     * @param to End date
-     * @return Integer containing the number of created streams in the interval
+     * @brief Gets the number of Streams created in a given interval of time: [from, to]
+     * @param from Start Date
+     * @param to End Date
+     * @return Integer containing the number of created Streams in the interval
      */
     int getNumCreatedStreams(Date& from, const Date& to) const;
 
     /**
-     * @brief Gets the average views for all the active streams
+     * @brief Gets the average views for all the active Streams
      * @return Float containing the average views
      */
     float getAvgViews() const;
 
     /**
-     * @brief Gets the average views of the streams created in a given interval: [from, to]
-     * @param from Start date
-     * @param to End date
+     * @brief Gets the average views of the Streams created in a given interval: [from, to]
+     * @param from Start Date
+     * @param to End Date
      * @return Float containing the average views
      */
     float getAvgViews(Date& from, const Date& to) const;
 
     /**
-     * @brief Gets the number of active public streams at the moment
-     * @return  Integer containing the number of public streams
+     * @brief Gets the number of active PublicStreams at the moment
+     * @return  Integer containing the number of PublicStreams
      */
     int getNumPublicStreams() const;
 
     /**
-     * @brief Gets the number of public streams created in a given interval of time: [from, to]
-     * @param from Start date
-     * @param to End date
-     * @return Integer containing the number of created public streams in the interval
+     * @brief Gets the number of PublicStreams created in a given interval of time: [from, to]
+     * @param from Start Date
+     * @param to End Date
+     * @return Integer containing the number of created PublicStreams in the interval
      */
     int getNumPublicStreams(Date& from, const Date& to) const;
 
     /**
-     * @brief Gets the number of active private streams at the moment
-     * @return  Integer containing the number of private streams
+     * @brief Gets the number of active PrivateStreams at the moment
+     * @return  Integer containing the number of PrivateStreams
      */
     int getNumPrivateStreams() const;
 
     /**
-     * @brief Gets the number of private streams created in a given interval of time: [from, to]
-     * @param from Start date
-     * @param to End date
-     * @return Integer containing the number of created private streams in the interval
+     * @brief Gets the number of PrivateStreams created in a given interval of time: [from, to]
+     * @param from Start Date
+     * @param to End Date
+     * @return Integer containing the number of created PrivateStreams in the interval
      */
     int getNumPrivateStreams(Date& from, const Date& to) const;
 
     /**
-     * @brief Gets the name of the admin
-     * @return String containing the name of the admin
+     * @brief Gets the name of the Admin
+     * @return String containing the name of the Admin
      */
     string getName() const;
 
     /**
-     * @brief Updates the name of the admin
-     * @param name Name of the admin
+     * @brief Updates the name of the Admin
+     * @param name Name of the Admin
      */
     void setName(const std::string& name);
 
     /**
-     * @brief Gets the preferred language in a given vector of streams
-     * @param streams Vector of Stream* with the streams which will be analyzed
+     * @brief Gets the preferred language in a given vector of Streams
+     * @param streams Vector of Stream* with the Streams which will be analyzed
      * @return String containing the preferred language
      */
     std::string getPreferredLanguage(std::vector<Stream*>& streams) const;
 
     /**
-     * @brief Gets the preferred stream type of the active streams
-     * @return String containing the preferred stream type
+     * @brief Gets the preferred stream type of the active Streams
+     * @return String containing the preferred Stream type
      */
     std::string getPreferredStreamType() const;
 
     /**
-     * @brief Gets the pointer to the most viewed streamer at the moment
-     * @return Streamer* to the most viewed streamer
+     * @brief Gets the pointer to the most viewed Streamer at the moment
+     * @return Streamer* to the most viewed Streamer
      */
     Streamer* getMostViewedStreamer() const;
 };
 
 /**
- *  @brief Exception class which should be thrown when an interval of dates is faulty
+ *  @brief Exception class which should be thrown when an interval of Dates is faulty
  */
 class badDateComp{
 private:
+    /**
+     * @brief Reason the exception was thrown
+     */
     string reason;
 public:
 
@@ -134,10 +144,13 @@ public:
 };
 
 /**
- * @brief Exception class which should be thrown when there are unexpectedly no active streams
+ * @brief Exception class which should be thrown when there are unexpectedly no active Streams
  */
-class noActiveStreams{
+class NoActiveStreams{
 private:
+    /**
+     * @brief Reason the exception was thrown
+     */
     string reason;
 public:
 
@@ -145,7 +158,7 @@ public:
      * @brief Creates a noActiveStreams exception with a given reason
      * @param reason Reason of the exception
      */
-    noActiveStreams(const string& reason);
+    NoActiveStreams(const string& reason);
 
     /**
      * @brief Gets the reason of the exception

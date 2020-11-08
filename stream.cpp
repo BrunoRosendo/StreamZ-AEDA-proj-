@@ -17,11 +17,11 @@ string NotSubscribed::what() const {
     return reason;
 }
 
-noCapacity::noCapacity(const string& reason) {
+NoCapacity::NoCapacity(const string& reason) {
     this->reason = reason;
 }
 
-string noCapacity::what() {
+string NoCapacity::what() {
     return reason;
 }
 
@@ -83,10 +83,6 @@ std::set<unsigned int> & Stream::getViewers() {
     return viewers;
 }
 
-set<unsigned int> Stream::getUsers() const {
-    return this->viewers;
-}
-
 void Stream::feedback(int megaLikezao) {
     this->noLikes += megaLikezao;
 }
@@ -100,7 +96,7 @@ PrivateStream::PrivateStream(const string& title, const Date& startDate, const s
 PrivateStream::~PrivateStream() = default;
 
 void PrivateStream::addUser(unsigned int user) {
-    if (numViewers >= capacity) throw noCapacity("The stream is full. Try again later");
+    if (numViewers >= capacity) throw NoCapacity("The stream is full. Try again later");
     if (subscribers.find(user) == subscribers.end()) throw NotSubscribed("You are not subscribed to this streamer");
     this->viewers.insert(user);
     this->numViewers++;

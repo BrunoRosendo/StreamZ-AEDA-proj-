@@ -72,100 +72,119 @@ $(function() {
 <div class="title">Stream Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract class representing a stream.  
+ <a href="class_stream.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="stream_8h_source.html">stream.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Stream:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_stream.png" usemap="#Stream_map" alt=""/>
   <map id="Stream_map" name="Stream_map">
-<area href="class_private_stream.html" alt="PrivateStream" shape="rect" coords="0,56,91,80"/>
-<area href="class_public_stream.html" alt="PublicStream" shape="rect" coords="101,56,192,80"/>
+<area href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time...." alt="PrivateStream" shape="rect" coords="0,56,91,80"/>
+<area href="class_public_stream.html" title="Stream which can be accessed by any Viewer. Derived from Stream class." alt="PublicStream" shape="rect" coords="101,56,192,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab646e78aa883c366632166092d782d8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#ab646e78aa883c366632166092d782d8b">Stream</a> (const string &amp;title, const <a class="el" href="class_date.html">Date</a> &amp;startDate, const string &amp;language, int minAge, const string &amp;streamerNick)</td></tr>
+<tr class="memitem:ab646e78aa883c366632166092d782d8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#ab646e78aa883c366632166092d782d8b">Stream</a> (const string &amp;<a class="el" href="class_stream.html#a740de4c2b13297152661213397ae2b54">title</a>, const <a class="el" href="class_date.html">Date</a> &amp;<a class="el" href="class_stream.html#aaec1065132e0866d86a08c590c54a254">startDate</a>, const string &amp;<a class="el" href="class_stream.html#a1a1ddec5e0dda30f6b437f9b288ceb8c">language</a>, int <a class="el" href="class_stream.html#a2dcff501e2c926890ae6b6c2fcdf8840">minAge</a>, const string &amp;<a class="el" href="class_stream.html#ac255b3748bf158c1ff1213395307b369">streamerNick</a>)</td></tr>
+<tr class="memdesc:ab646e78aa883c366632166092d782d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> with given title, start date, language, minimum age and the nick of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>.  <a href="class_stream.html#ab646e78aa883c366632166092d782d8b">More...</a><br /></td></tr>
 <tr class="separator:ab646e78aa883c366632166092d782d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99ee9b0abe915b7d321967abfa22e479"><td class="memItemLeft" align="right" valign="top"><a id="a99ee9b0abe915b7d321967abfa22e479"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addUser</b> (unsigned int user)=0</td></tr>
+<tr class="memitem:a6dc4517a9e6a87abb662fcd14c2ea969"><td class="memItemLeft" align="right" valign="top"><a id="a6dc4517a9e6a87abb662fcd14c2ea969"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a6dc4517a9e6a87abb662fcd14c2ea969">~Stream</a> ()</td></tr>
+<tr class="memdesc:a6dc4517a9e6a87abb662fcd14c2ea969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor of the base class <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
+<tr class="separator:a6dc4517a9e6a87abb662fcd14c2ea969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99ee9b0abe915b7d321967abfa22e479"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a99ee9b0abe915b7d321967abfa22e479">addUser</a> (unsigned int user)=0</td></tr>
+<tr class="memdesc:a99ee9b0abe915b7d321967abfa22e479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> to the viewers set. Only defined in the derived classes.  <a href="class_stream.html#a99ee9b0abe915b7d321967abfa22e479">More...</a><br /></td></tr>
 <tr class="separator:a99ee9b0abe915b7d321967abfa22e479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9622d7730681e7a6ff780003d0916136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a9622d7730681e7a6ff780003d0916136">removeUser</a> (unsigned int user)</td></tr>
+<tr class="memdesc:a9622d7730681e7a6ff780003d0916136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> from the viewers set.  <a href="class_stream.html#a9622d7730681e7a6ff780003d0916136">More...</a><br /></td></tr>
 <tr class="separator:a9622d7730681e7a6ff780003d0916136"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34355dc5eb23b067a452474047fc936e"><td class="memItemLeft" align="right" valign="top"><a id="a34355dc5eb23b067a452474047fc936e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumViewers</b> () const</td></tr>
+<tr class="memitem:a34355dc5eb23b067a452474047fc936e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a34355dc5eb23b067a452474047fc936e">getNumViewers</a> () const</td></tr>
+<tr class="memdesc:a34355dc5eb23b067a452474047fc936e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets number of current Viewers in the stream.  <a href="class_stream.html#a34355dc5eb23b067a452474047fc936e">More...</a><br /></td></tr>
 <tr class="separator:a34355dc5eb23b067a452474047fc936e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c8530018a56e2cd1ac7b10560b6eb8b"><td class="memItemLeft" align="right" valign="top"><a id="a4c8530018a56e2cd1ac7b10560b6eb8b"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTitle</b> () const</td></tr>
+<tr class="memitem:a4c8530018a56e2cd1ac7b10560b6eb8b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a4c8530018a56e2cd1ac7b10560b6eb8b">getTitle</a> () const</td></tr>
+<tr class="memdesc:a4c8530018a56e2cd1ac7b10560b6eb8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#a4c8530018a56e2cd1ac7b10560b6eb8b">More...</a><br /></td></tr>
 <tr class="separator:a4c8530018a56e2cd1ac7b10560b6eb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39936f72e5cb68a7dd92c18e4f381049"><td class="memItemLeft" align="right" valign="top"><a id="a39936f72e5cb68a7dd92c18e4f381049"></a>
-<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getStartDate</b> () const</td></tr>
+<tr class="memitem:a39936f72e5cb68a7dd92c18e4f381049"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a39936f72e5cb68a7dd92c18e4f381049">getStartDate</a> () const</td></tr>
+<tr class="memdesc:a39936f72e5cb68a7dd92c18e4f381049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>'s start date.  <a href="class_stream.html#a39936f72e5cb68a7dd92c18e4f381049">More...</a><br /></td></tr>
 <tr class="separator:a39936f72e5cb68a7dd92c18e4f381049"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a629a8b55e9a3c5e0929b3026f2632d53"><td class="memItemLeft" align="right" valign="top"><a id="a629a8b55e9a3c5e0929b3026f2632d53"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLanguage</b> () const</td></tr>
+<tr class="memitem:a629a8b55e9a3c5e0929b3026f2632d53"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a629a8b55e9a3c5e0929b3026f2632d53">getLanguage</a> () const</td></tr>
+<tr class="memdesc:a629a8b55e9a3c5e0929b3026f2632d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the language of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#a629a8b55e9a3c5e0929b3026f2632d53">More...</a><br /></td></tr>
 <tr class="separator:a629a8b55e9a3c5e0929b3026f2632d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab45d97c7dce808985df7a5d16b8e858a"><td class="memItemLeft" align="right" valign="top"><a id="ab45d97c7dce808985df7a5d16b8e858a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMinAge</b> () const</td></tr>
+<tr class="memitem:ab45d97c7dce808985df7a5d16b8e858a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#ab45d97c7dce808985df7a5d16b8e858a">getMinAge</a> () const</td></tr>
+<tr class="memdesc:ab45d97c7dce808985df7a5d16b8e858a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the minimum age of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#ab45d97c7dce808985df7a5d16b8e858a">More...</a><br /></td></tr>
 <tr class="separator:ab45d97c7dce808985df7a5d16b8e858a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a015e9572d1da00b4b8f205c68702c99d"><td class="memItemLeft" align="right" valign="top"><a id="a015e9572d1da00b4b8f205c68702c99d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNoLikes</b> () const</td></tr>
+<tr class="memitem:a015e9572d1da00b4b8f205c68702c99d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a015e9572d1da00b4b8f205c68702c99d">getNoLikes</a> () const</td></tr>
+<tr class="memdesc:a015e9572d1da00b4b8f205c68702c99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of likes of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#a015e9572d1da00b4b8f205c68702c99d">More...</a><br /></td></tr>
 <tr class="separator:a015e9572d1da00b4b8f205c68702c99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30faec5d1adc5b4759a558c51bc5223"><td class="memItemLeft" align="right" valign="top"><a id="af30faec5d1adc5b4759a558c51bc5223"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getStreamerNick</b> () const</td></tr>
+<tr class="memitem:af30faec5d1adc5b4759a558c51bc5223"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#af30faec5d1adc5b4759a558c51bc5223">getStreamerNick</a> () const</td></tr>
+<tr class="memdesc:af30faec5d1adc5b4759a558c51bc5223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> controlling the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#af30faec5d1adc5b4759a558c51bc5223">More...</a><br /></td></tr>
 <tr class="separator:af30faec5d1adc5b4759a558c51bc5223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0f2cbac5df053349e7357c6cd4f634f"><td class="memItemLeft" align="right" valign="top"><a id="aa0f2cbac5df053349e7357c6cd4f634f"></a>
-std::set&lt; unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getViewers</b> ()</td></tr>
+<tr class="memitem:aa0f2cbac5df053349e7357c6cd4f634f"><td class="memItemLeft" align="right" valign="top">std::set&lt; unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#aa0f2cbac5df053349e7357c6cd4f634f">getViewers</a> ()</td></tr>
+<tr class="memdesc:aa0f2cbac5df053349e7357c6cd4f634f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the set of Viewers in the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> (by reference)  <a href="class_stream.html#aa0f2cbac5df053349e7357c6cd4f634f">More...</a><br /></td></tr>
 <tr class="separator:aa0f2cbac5df053349e7357c6cd4f634f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbfaf305053c966b07849517955aa972"><td class="memItemLeft" align="right" valign="top"><a id="acbfaf305053c966b07849517955aa972"></a>
-set&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getUsers</b> () const</td></tr>
-<tr class="separator:acbfaf305053c966b07849517955aa972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d156ec1ac91a81db9d35977d332f9ca"><td class="memItemLeft" align="right" valign="top"><a id="a6d156ec1ac91a81db9d35977d332f9ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>feedback</b> (int megaLikezao)</td></tr>
+<tr class="memitem:a6d156ec1ac91a81db9d35977d332f9ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a6d156ec1ac91a81db9d35977d332f9ca">feedback</a> (int megaLikezao)</td></tr>
+<tr class="memdesc:a6d156ec1ac91a81db9d35977d332f9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives feedback from a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> in the form of a like (1) or a dislike (-1)  <a href="class_stream.html#a6d156ec1ac91a81db9d35977d332f9ca">More...</a><br /></td></tr>
 <tr class="separator:a6d156ec1ac91a81db9d35977d332f9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3cbe46e127709354138af676666f22"><td class="memItemLeft" align="right" valign="top"><a id="a8e3cbe46e127709354138af676666f22"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>showStream</b> () const</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a8e3cbe46e127709354138af676666f22">showStream</a> () const</td></tr>
+<tr class="memdesc:a8e3cbe46e127709354138af676666f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>'s information to the standard output. <br /></td></tr>
 <tr class="separator:a8e3cbe46e127709354138af676666f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06bb3f905459f7e25b15ec84dd3c6948"><td class="memItemLeft" align="right" valign="top"><a id="a06bb3f905459f7e25b15ec84dd3c6948"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> ()</td></tr>
+<tr class="memitem:a06bb3f905459f7e25b15ec84dd3c6948"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a06bb3f905459f7e25b15ec84dd3c6948">getId</a> ()</td></tr>
+<tr class="memdesc:a06bb3f905459f7e25b15ec84dd3c6948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#a06bb3f905459f7e25b15ec84dd3c6948">More...</a><br /></td></tr>
 <tr class="separator:a06bb3f905459f7e25b15ec84dd3c6948"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a740de4c2b13297152661213397ae2b54"><td class="memItemLeft" align="right" valign="top"><a id="a740de4c2b13297152661213397ae2b54"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>title</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a740de4c2b13297152661213397ae2b54">title</a></td></tr>
+<tr class="memdesc:a740de4c2b13297152661213397ae2b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a740de4c2b13297152661213397ae2b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaec1065132e0866d86a08c590c54a254"><td class="memItemLeft" align="right" valign="top"><a id="aaec1065132e0866d86a08c590c54a254"></a>
-<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><b>startDate</b></td></tr>
+<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#aaec1065132e0866d86a08c590c54a254">startDate</a></td></tr>
+<tr class="memdesc:aaec1065132e0866d86a08c590c54a254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start date of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:aaec1065132e0866d86a08c590c54a254"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a1ddec5e0dda30f6b437f9b288ceb8c"><td class="memItemLeft" align="right" valign="top"><a id="a1a1ddec5e0dda30f6b437f9b288ceb8c"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>language</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a1a1ddec5e0dda30f6b437f9b288ceb8c">language</a></td></tr>
+<tr class="memdesc:a1a1ddec5e0dda30f6b437f9b288ceb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Language of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a1a1ddec5e0dda30f6b437f9b288ceb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dcff501e2c926890ae6b6c2fcdf8840"><td class="memItemLeft" align="right" valign="top"><a id="a2dcff501e2c926890ae6b6c2fcdf8840"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>minAge</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a2dcff501e2c926890ae6b6c2fcdf8840">minAge</a></td></tr>
+<tr class="memdesc:a2dcff501e2c926890ae6b6c2fcdf8840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum age of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a2dcff501e2c926890ae6b6c2fcdf8840"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf3bd02948199ddac76db4143c238cca"><td class="memItemLeft" align="right" valign="top"><a id="acf3bd02948199ddac76db4143c238cca"></a>
-std::set&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>viewers</b></td></tr>
+std::set&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#acf3bd02948199ddac76db4143c238cca">viewers</a></td></tr>
+<tr class="memdesc:acf3bd02948199ddac76db4143c238cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>'s Viewers are stored in this set. <br /></td></tr>
 <tr class="separator:acf3bd02948199ddac76db4143c238cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63e54cdcf34f991e5f63bc09131b8a69"><td class="memItemLeft" align="right" valign="top"><a id="a63e54cdcf34f991e5f63bc09131b8a69"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>noLikes</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a63e54cdcf34f991e5f63bc09131b8a69">noLikes</a></td></tr>
+<tr class="memdesc:a63e54cdcf34f991e5f63bc09131b8a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of likes of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a63e54cdcf34f991e5f63bc09131b8a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cd58bd4498c0ad4f262927fd8efcf65"><td class="memItemLeft" align="right" valign="top"><a id="a1cd58bd4498c0ad4f262927fd8efcf65"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numViewers</b></td></tr>
+<tr class="memitem:a1cd58bd4498c0ad4f262927fd8efcf65"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a1cd58bd4498c0ad4f262927fd8efcf65">numViewers</a></td></tr>
 <tr class="separator:a1cd58bd4498c0ad4f262927fd8efcf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac255b3748bf158c1ff1213395307b369"><td class="memItemLeft" align="right" valign="top"><a id="ac255b3748bf158c1ff1213395307b369"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>streamerNick</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#ac255b3748bf158c1ff1213395307b369">streamerNick</a></td></tr>
+<tr class="memdesc:ac255b3748bf158c1ff1213395307b369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> controlling the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:ac255b3748bf158c1ff1213395307b369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04cd4819ec0a8e939187377cd9586164"><td class="memItemLeft" align="right" valign="top"><a id="a04cd4819ec0a8e939187377cd9586164"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a04cd4819ec0a8e939187377cd9586164">id</a></td></tr>
+<tr class="memdesc:a04cd4819ec0a8e939187377cd9586164"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a04cd4819ec0a8e939187377cd9586164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memItemLeft" align="right" valign="top"><a id="abdd6a43f2fb13544cb4c9c4ba8f1be7c"></a>
-static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID</b> = 0</td></tr>
+static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#abdd6a43f2fb13544cb4c9c4ba8f1be7c">nextID</a> = 0</td></tr>
+<tr class="memdesc:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the next <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> created. <br /></td></tr>
 <tr class="separator:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract class representing a stream. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab646e78aa883c366632166092d782d8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab646e78aa883c366632166092d782d8b">&#9670;&nbsp;</a></span>Stream()</h2>
 
@@ -209,7 +228,19 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor of class <a class="el" href="class_stream.html">Stream</a> </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Constructs a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> with given title, start date, language, minimum age and the nick of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Title of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
+    <tr><td class="paramname">startDate</td><td>Start date of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
+    <tr><td class="paramname">language</td><td>Language of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
+    <tr><td class="paramname">minAge</td><td>Minimum age of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
+    <tr><td class="paramname">streamerNick</td><td>Nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> controlling the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Constructor of class <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">title</td><td></td></tr>
     <tr><td class="paramname">startDate</td><td></td></tr>
@@ -222,6 +253,248 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a99ee9b0abe915b7d321967abfa22e479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99ee9b0abe915b7d321967abfa22e479">&#9670;&nbsp;</a></span>addUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Stream::addUser </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> to the viewers set. Only defined in the derived classes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td><a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> joining the stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_public_stream.html#ac3c268245a749b967d8a90a49d4db776">PublicStream</a>, and <a class="el" href="class_private_stream.html#a2e7fba4b23b20d0789a7854991a74a14">PrivateStream</a>.</p>
+
+</div>
+</div>
+<a id="a6d156ec1ac91a81db9d35977d332f9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d156ec1ac91a81db9d35977d332f9ca">&#9670;&nbsp;</a></span>feedback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::feedback </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>megaLikezao</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receives feedback from a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> in the form of a like (1) or a dislike (-1) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">megaLikezao</td><td>Value added to the overall feedback (1 or -1) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a06bb3f905459f7e25b15ec84dd3c6948"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06bb3f905459f7e25b15ec84dd3c6948">&#9670;&nbsp;</a></span>getId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Stream::getId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Unsigned int containing the ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
+
+</div>
+</div>
+<a id="a629a8b55e9a3c5e0929b3026f2632d53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a629a8b55e9a3c5e0929b3026f2632d53">&#9670;&nbsp;</a></span>getLanguage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Stream::getLanguage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the language of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the language of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab45d97c7dce808985df7a5d16b8e858a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab45d97c7dce808985df7a5d16b8e858a">&#9670;&nbsp;</a></span>getMinAge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Stream::getMinAge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the minimum age of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer containing the minimum age of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
+
+</div>
+</div>
+<a id="a015e9572d1da00b4b8f205c68702c99d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a015e9572d1da00b4b8f205c68702c99d">&#9670;&nbsp;</a></span>getNoLikes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Stream::getNoLikes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of likes of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer containing the number of likes </dd></dl>
+
+</div>
+</div>
+<a id="a34355dc5eb23b067a452474047fc936e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34355dc5eb23b067a452474047fc936e">&#9670;&nbsp;</a></span>getNumViewers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Stream::getNumViewers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets number of current Viewers in the stream. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer containing the number of Viewers </dd></dl>
+
+</div>
+</div>
+<a id="a39936f72e5cb68a7dd92c18e4f381049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39936f72e5cb68a7dd92c18e4f381049">&#9670;&nbsp;</a></span>getStartDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_date.html">Date</a> Stream::getStartDate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>'s start date. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_date.html" title="Auxiliary class used to store, manipulate and read dates.">Date</a> with the start date </dd></dl>
+
+</div>
+</div>
+<a id="af30faec5d1adc5b4759a558c51bc5223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af30faec5d1adc5b4759a558c51bc5223">&#9670;&nbsp;</a></span>getStreamerNick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Stream::getStreamerNick </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> controlling the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> </dd></dl>
+
+</div>
+</div>
+<a id="a4c8530018a56e2cd1ac7b10560b6eb8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8530018a56e2cd1ac7b10560b6eb8b">&#9670;&nbsp;</a></span>getTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Stream::getTitle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the tile of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the title of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa0f2cbac5df053349e7357c6cd4f634f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0f2cbac5df053349e7357c6cd4f634f">&#9670;&nbsp;</a></span>getViewers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt; unsigned int &gt; &amp; Stream::getViewers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the set of Viewers in the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> (by reference) </p>
+<dl class="section return"><dt>Returns</dt><dd>Set of Viewers in the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
+
+</div>
+</div>
 <a id="a9622d7730681e7a6ff780003d0916136"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9622d7730681e7a6ff780003d0916136">&#9670;&nbsp;</a></span>removeUser()</h2>
 
@@ -237,12 +510,44 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Remove user from vector that contains all users watching the stream </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Removes a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> from the viewers set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">user</td><td>unsigned int that represents a user index on the <a class="el" href="class_stream_z.html">StreamZ</a> class vector of users </td></tr>
+    <tr><td class="paramname">user</td><td>ID of the user intended to remove</td></tr>
   </table>
   </dd>
 </dl>
+<p>Remove user from vector that contains all users watching the stream </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td>unsigned int that represents a user index on the <a class="el" href="class_stream_z.html" title="Main class of the application. Manages all of the other ones, shows the menus and manipulates inputs.">StreamZ</a> class vector of users </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1cd58bd4498c0ad4f262927fd8efcf65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cd58bd4498c0ad4f262927fd8efcf65">&#9670;&nbsp;</a></span>numViewers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Stream::numViewers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Number of Viewers of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </p>
 
 </div>
 </div>

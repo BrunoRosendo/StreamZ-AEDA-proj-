@@ -71,30 +71,40 @@ $(function() {
 <div class="title">PastStream Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Struct used to store a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> which has already ended.  
+ <a href="struct_past_stream.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="past_stream_8h_source.html">pastStream.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a70e46eb879f19b3de9518c56a5f6c2ef"><td class="memItemLeft" align="right" valign="top"><a id="a70e46eb879f19b3de9518c56a5f6c2ef"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_past_stream.html#a70e46eb879f19b3de9518c56a5f6c2ef">PastStream</a> ()</td></tr>
-<tr class="memdesc:a70e46eb879f19b3de9518c56a5f6c2ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty past stream struct. Its members should be updated before using it. <br /></td></tr>
+<tr class="memdesc:a70e46eb879f19b3de9518c56a5f6c2ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty <a class="el" href="struct_past_stream.html" title="Struct used to store a Stream which has already ended.">PastStream</a> struct. Its members should be updated before using it. <br /></td></tr>
 <tr class="separator:a70e46eb879f19b3de9518c56a5f6c2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38ff43e2b6517d7c24cd6f3e3b284717"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_past_stream.html#a38ff43e2b6517d7c24cd6f3e3b284717">PastStream</a> (<a class="el" href="class_stream.html">Stream</a> *stream)</td></tr>
-<tr class="memdesc:a38ff43e2b6517d7c24cd6f3e3b284717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a struct storing a past stream, containing the stream title, its ID and the number of viewers when it ended.  <a href="struct_past_stream.html#a38ff43e2b6517d7c24cd6f3e3b284717">More...</a><br /></td></tr>
+<tr class="memdesc:a38ff43e2b6517d7c24cd6f3e3b284717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a struct storing a past <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>, containing the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> title, its ID and the number of Viewers when it ended.  <a href="struct_past_stream.html#a38ff43e2b6517d7c24cd6f3e3b284717">More...</a><br /></td></tr>
 <tr class="separator:a38ff43e2b6517d7c24cd6f3e3b284717"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8a7222798b6342378f85559d1795ad23"><td class="memItemLeft" align="right" valign="top"><a id="a8a7222798b6342378f85559d1795ad23"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_past_stream.html#a8a7222798b6342378f85559d1795ad23">name</a></td></tr>
+<tr class="memdesc:a8a7222798b6342378f85559d1795ad23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a8a7222798b6342378f85559d1795ad23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa708fd38a3a7565b89118c0fea372559"><td class="memItemLeft" align="right" valign="top"><a id="aa708fd38a3a7565b89118c0fea372559"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>noViewers</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_past_stream.html#aa708fd38a3a7565b89118c0fea372559">noViewers</a></td></tr>
+<tr class="memdesc:aa708fd38a3a7565b89118c0fea372559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of Viewers the moment the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> ended. <br /></td></tr>
 <tr class="separator:aa708fd38a3a7565b89118c0fea372559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc3b116c9e7bfc51248809598e1ce2f8"><td class="memItemLeft" align="right" valign="top"><a id="acc3b116c9e7bfc51248809598e1ce2f8"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_past_stream.html#acc3b116c9e7bfc51248809598e1ce2f8">id</a></td></tr>
+<tr class="memdesc:acc3b116c9e7bfc51248809598e1ce2f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:acc3b116c9e7bfc51248809598e1ce2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struct used to store a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> which has already ended. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a38ff43e2b6517d7c24cd6f3e3b284717"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a38ff43e2b6517d7c24cd6f3e3b284717">&#9670;&nbsp;</a></span>PastStream()</h2>
 
@@ -119,7 +129,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></
 </table>
 </div><div class="memdoc">
 
-<p>Creates a struct storing a past stream, containing the stream title, its ID and the number of viewers when it ended. </p>
+<p>Creates a struct storing a past <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>, containing the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> title, its ID and the number of Viewers when it ended. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream</td><td>Pointer to the stream intended to store </td></tr>

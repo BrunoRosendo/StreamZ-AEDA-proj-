@@ -13,7 +13,6 @@ using namespace std;
  * StreamZ class constructor
  */
 StreamZ::StreamZ() {
-
     try{
         fetchDataFromFile();
     }
@@ -470,7 +469,7 @@ void StreamZ::joinStream(int id, vector<Stream*> filteredStreams) {
         filteredStreams[num-1]->addUser(v->getID());
         v->joinStream(filteredStreams[num-1]);
     }
-    catch(noCapacity& e){
+    catch(NoCapacity& e){
         cout << e.what() << endl;
     }
     catch (NotSubscribed& e){
@@ -495,7 +494,7 @@ void StreamZ::watchingOptions(int id) {
              << "1- Give feedback" << endl << "2- Show stream details" << endl;
         if (s->isSubscriber(id)) cout << "3- Unsubscribe to the streamer";
         else cout << "3- Subscribe to the streamer";
-        cout << endl << "4- Leave stream" << endl<< "5- Go back" << endl;
+        cout << endl << "4- Leave stream" << endl << "5- Account Settings" << endl<< "6- Go back" << endl;
         int choice;
         cin >> choice;
         if(cin.fail() || cin.eof()){
@@ -536,7 +535,11 @@ void StreamZ::watchingOptions(int id) {
             case 4:
                 v->getStream()->removeUser(v->getID());
                 v->leaveStream();
+                return;
             case 5:
+                viewerSettings(id);
+                break;
+            case 6:
                 return;
             default:
                 cout << "Enter a valid number" << endl << endl;
@@ -650,11 +653,11 @@ void StreamZ::streamingOptions(int id) {
 void StreamZ::adminMenu() {
     cout << "Welcome " << admin->getName() << endl << endl;
 
-    cout << "Total number of Streams created: " << admin->getNumStreams() << endl <<endl;
+    cout << "Total number of active Streams: " << admin->getNumStreams() << endl <<endl;
 
-    cout << "Number of Public Streams created: " << admin->getNumPublicStreams() <<endl<<endl;
+    cout << "Number of active Public Streams: " << admin->getNumPublicStreams() <<endl<<endl;
 
-    cout << "Number of Private Streams created: " << admin->getNumPrivateStreams() <<endl<<endl;
+    cout << "Number of active Private Streams: " << admin->getNumPrivateStreams() <<endl<<endl;
     try {
         float views = admin->getAvgViews();
         cout << "Average stream views: " << views << endl << endl;
@@ -665,7 +668,7 @@ void StreamZ::adminMenu() {
 
         cout << "Most viewed streamer: " << admin->getMostViewedStreamer()->getNick() << endl << endl;
     }
-    catch(noActiveStreams& e){
+    catch(NoActiveStreams& e){
         cout << e.what() << endl;
     }
     while(true) {
@@ -748,7 +751,7 @@ void StreamZ::adminMenu() {
         catch(badDateComp& e){
             cout << e.what() << endl;
         }
-        catch(noActiveStreams& e){
+        catch(NoActiveStreams& e){
             cout << e.what() << endl;
         }
     }
@@ -1258,7 +1261,7 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
     }
 }
 
-std::vector<Stream*> StreamZ::searchStreamsByTitle(const std::string& title) const { // USE A BETTER ALGORITHM?
+std::vector<Stream*> StreamZ::searchStreamsByTitle(const std::string& title) const {
     std::vector<Stream *> ans;
     for(int i = 0; i < this->streams.size(); i++){
         if(this->streams[i]->getTitle().find(title) != string::npos){   // check string::npos on hover

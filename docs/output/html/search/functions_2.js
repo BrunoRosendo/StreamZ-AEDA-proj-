@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['date_95',['Date',['../class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd',1,'Date::Date()'],['../class_date.html#ae063b68b67f7120b5f2f982cb6c08054',1,'Date::Date(unsigned int year, unsigned int month, unsigned int day)'],['../class_date.html#a01d8817df1929133c9213fdf1f4db259',1,'Date::Date(const string &amp;yearMonthDay)']]],
-  ['dateisnotvalid_96',['DateIsNotValid',['../class_date_is_not_valid.html#a201687b0cbddfd100f7ec4fe548a8522',1,'DateIsNotValid']]],
-  ['daysofmonth_97',['daysOfMonth',['../class_date.html#ab848f14fc2251d98f26767a39fd6828d',1,'Date']]]
+  ['createadmin_167',['createAdmin',['../class_stream_z.html#a587736e3f9f730f2d8102eff02df205f',1,'StreamZ']]],
+  ['createstream_168',['createStream',['../class_stream_z.html#af05f7f424bb43a587c8c9cb4242c3453',1,'StreamZ']]],
+  ['createstreamer_169',['createStreamer',['../class_stream_z.html#a0ead2f3d9c93ed9a8bb3c1086080cff0',1,'StreamZ']]],
+  ['createviewer_170',['createViewer',['../class_stream_z.html#aae46f2f7350b5e74fe9137c59166b5b2',1,'StreamZ']]]
 ];

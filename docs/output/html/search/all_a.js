@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['noactivestreams_39',['noActiveStreams',['../classno_active_streams.html',1,'noActiveStreams'],['../classno_active_streams.html#a4680b464c91eb6ca192edbd119c77a5c',1,'noActiveStreams::noActiveStreams()']]],
-  ['nocapacity_40',['noCapacity',['../classno_capacity.html',1,'']]],
-  ['notinastream_41',['NotInAStream',['../class_not_in_a_stream.html',1,'NotInAStream'],['../class_not_in_a_stream.html#a060fd05a3f8bc149b5ef2c45a6e27439',1,'NotInAStream::NotInAStream()']]],
-  ['notoldenough_42',['NotOldEnough',['../class_not_old_enough.html',1,'NotOldEnough'],['../class_not_old_enough.html#ae03ec042f22c493c35af9bd5a693cf33',1,'NotOldEnough::NotOldEnough()']]],
-  ['notsubscribed_43',['NotSubscribed',['../class_not_subscribed.html',1,'']]]
+  ['message_64',['message',['../class_viewer.html#a9b90e472777b0b10c520863762772157',1,'Viewer']]],
+  ['messages_65',['messages',['../class_private_stream.html#a5e3d782d8772fb2620d7a022875e13be',1,'PrivateStream']]],
+  ['minage_66',['minAge',['../class_stream.html#a2dcff501e2c926890ae6b6c2fcdf8840',1,'Stream']]]
 ];

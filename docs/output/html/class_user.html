@@ -90,10 +90,10 @@ Inheritance diagram for User:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab301cd7223c67a704a58834ffa76c068"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068">User</a> (const std::string &amp;name, const std::string &amp;nick, const <a class="el" href="class_date.html">Date</a> &amp;birthDate)</td></tr>
+<tr class="memitem:ab301cd7223c67a704a58834ffa76c068"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068">User</a> (const std::string &amp;<a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a>, const std::string &amp;<a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a>, const <a class="el" href="class_date.html">Date</a> &amp;<a class="el" href="class_user.html#ab7c87186af8bdb92822402b2e93e9b64">birthDate</a>)</td></tr>
 <tr class="memdesc:ab301cd7223c67a704a58834ffa76c068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> with given name, nick and birthdate; stream is initialized with nullptr.  <a href="class_user.html#ab301cd7223c67a704a58834ffa76c068">More...</a><br /></td></tr>
 <tr class="separator:ab301cd7223c67a704a58834ffa76c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a2d627b0dfcc6b2df9e56b93d970b52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a3a2d627b0dfcc6b2df9e56b93d970b52">User</a> (const std::string &amp;name, const std::string &amp;nick, const <a class="el" href="class_date.html">Date</a> &amp;birthDate, unsigned int id)</td></tr>
+<tr class="memitem:a3a2d627b0dfcc6b2df9e56b93d970b52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a3a2d627b0dfcc6b2df9e56b93d970b52">User</a> (const std::string &amp;<a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a>, const std::string &amp;<a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a>, const <a class="el" href="class_date.html">Date</a> &amp;<a class="el" href="class_user.html#ab7c87186af8bdb92822402b2e93e9b64">birthDate</a>, unsigned int id)</td></tr>
 <tr class="memdesc:a3a2d627b0dfcc6b2df9e56b93d970b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> with given name, nick, birthdate and ID. Useful when reading from files; stream is initialized with nullptr.  <a href="class_user.html#a3a2d627b0dfcc6b2df9e56b93d970b52">More...</a><br /></td></tr>
 <tr class="separator:a3a2d627b0dfcc6b2df9e56b93d970b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac00b72ad64eb4149f7b21b9f5468c2b2"><td class="memItemLeft" align="right" valign="top"><a id="ac00b72ad64eb4149f7b21b9f5468c2b2"></a>
@@ -101,68 +101,75 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:ac00b72ad64eb4149f7b21b9f5468c2b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor of the base class <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. <br /></td></tr>
 <tr class="separator:ac00b72ad64eb4149f7b21b9f5468c2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a086281caa00001986f9310092c025bc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a086281caa00001986f9310092c025bc2">setStreamHistory</a> (std::set&lt; unsigned int &gt; &amp;pastStreams)</td></tr>
-<tr class="memdesc:a086281caa00001986f9310092c025bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the stream history of the user (either streamed or watched)  <a href="class_user.html#a086281caa00001986f9310092c025bc2">More...</a><br /></td></tr>
+<tr class="memdesc:a086281caa00001986f9310092c025bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the streamHistory of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streamed or watched)  <a href="class_user.html#a086281caa00001986f9310092c025bc2">More...</a><br /></td></tr>
 <tr class="separator:a086281caa00001986f9310092c025bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe087f191699f9d61bdc94d041e4fada"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#abe087f191699f9d61bdc94d041e4fada">setName</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:abe087f191699f9d61bdc94d041e4fada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the name of the user.  <a href="class_user.html#abe087f191699f9d61bdc94d041e4fada">More...</a><br /></td></tr>
+<tr class="memitem:abe087f191699f9d61bdc94d041e4fada"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#abe087f191699f9d61bdc94d041e4fada">setName</a> (const std::string &amp;<a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a>)</td></tr>
+<tr class="memdesc:abe087f191699f9d61bdc94d041e4fada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the name of the Sser.  <a href="class_user.html#abe087f191699f9d61bdc94d041e4fada">More...</a><br /></td></tr>
 <tr class="separator:abe087f191699f9d61bdc94d041e4fada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4385e7fd2a3d82289c7939fd761f2b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#af4385e7fd2a3d82289c7939fd761f2b7">setNick</a> (const std::string &amp;nick)</td></tr>
-<tr class="memdesc:af4385e7fd2a3d82289c7939fd761f2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the nickname of the user.  <a href="class_user.html#af4385e7fd2a3d82289c7939fd761f2b7">More...</a><br /></td></tr>
+<tr class="memitem:af4385e7fd2a3d82289c7939fd761f2b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#af4385e7fd2a3d82289c7939fd761f2b7">setNick</a> (const std::string &amp;<a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a>)</td></tr>
+<tr class="memdesc:af4385e7fd2a3d82289c7939fd761f2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#af4385e7fd2a3d82289c7939fd761f2b7">More...</a><br /></td></tr>
 <tr class="separator:af4385e7fd2a3d82289c7939fd761f2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a446a64e63adafbc2e1428532275ad6a1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a446a64e63adafbc2e1428532275ad6a1">getName</a> () const</td></tr>
-<tr class="memdesc:a446a64e63adafbc2e1428532275ad6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the user.  <a href="class_user.html#a446a64e63adafbc2e1428532275ad6a1">More...</a><br /></td></tr>
+<tr class="memdesc:a446a64e63adafbc2e1428532275ad6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#a446a64e63adafbc2e1428532275ad6a1">More...</a><br /></td></tr>
 <tr class="separator:a446a64e63adafbc2e1428532275ad6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d92dd92076037e61fc17e6d67e35698"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a0d92dd92076037e61fc17e6d67e35698">getNick</a> () const</td></tr>
-<tr class="memdesc:a0d92dd92076037e61fc17e6d67e35698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the nickname of the user.  <a href="class_user.html#a0d92dd92076037e61fc17e6d67e35698">More...</a><br /></td></tr>
+<tr class="memdesc:a0d92dd92076037e61fc17e6d67e35698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#a0d92dd92076037e61fc17e6d67e35698">More...</a><br /></td></tr>
 <tr class="separator:a0d92dd92076037e61fc17e6d67e35698"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71385d4c5a3a509af5024b3c8e1e1aa9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a71385d4c5a3a509af5024b3c8e1e1aa9">getAge</a> () const</td></tr>
-<tr class="memdesc:a71385d4c5a3a509af5024b3c8e1e1aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the age of the user.  <a href="class_user.html#a71385d4c5a3a509af5024b3c8e1e1aa9">More...</a><br /></td></tr>
+<tr class="memdesc:a71385d4c5a3a509af5024b3c8e1e1aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#a71385d4c5a3a509af5024b3c8e1e1aa9">More...</a><br /></td></tr>
 <tr class="separator:a71385d4c5a3a509af5024b3c8e1e1aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e696943ac4109f29fece3557b7823fb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a1e696943ac4109f29fece3557b7823fb">getAgeString</a> () const</td></tr>
-<tr class="memdesc:a1e696943ac4109f29fece3557b7823fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the age of the user as a string.  <a href="class_user.html#a1e696943ac4109f29fece3557b7823fb">More...</a><br /></td></tr>
+<tr class="memdesc:a1e696943ac4109f29fece3557b7823fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> as a string.  <a href="class_user.html#a1e696943ac4109f29fece3557b7823fb">More...</a><br /></td></tr>
 <tr class="separator:a1e696943ac4109f29fece3557b7823fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85902911ca470dc35d9fe98c4ea4af21"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a85902911ca470dc35d9fe98c4ea4af21">getID</a> () const</td></tr>
-<tr class="memdesc:a85902911ca470dc35d9fe98c4ea4af21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID of user.  <a href="class_user.html#a85902911ca470dc35d9fe98c4ea4af21">More...</a><br /></td></tr>
+<tr class="memdesc:a85902911ca470dc35d9fe98c4ea4af21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#a85902911ca470dc35d9fe98c4ea4af21">More...</a><br /></td></tr>
 <tr class="separator:a85902911ca470dc35d9fe98c4ea4af21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00c6587c94aae64905bd67268cc34e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">getStream</a> () const</td></tr>
-<tr class="memdesc:ae00c6587c94aae64905bd67268cc34e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pointer to the stream of the user (either streaming or watching). Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a user is unexpectedly not in a stream.">NotInAStream</a> exception if the user isn't in one.  <a href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">More...</a><br /></td></tr>
+<tr class="memdesc:ae00c6587c94aae64905bd67268cc34e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streaming or watching). Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> isn't in one.  <a href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">More...</a><br /></td></tr>
 <tr class="separator:ae00c6587c94aae64905bd67268cc34e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f6fa1bffa8bfb7714e700e4d0cc9da6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6">inAStream</a> () const</td></tr>
-<tr class="memdesc:a1f6fa1bffa8bfb7714e700e4d0cc9da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the user is currently in a stream (either streaming or watching)  <a href="class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6">More...</a><br /></td></tr>
+<tr class="memdesc:a1f6fa1bffa8bfb7714e700e4d0cc9da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is currently in a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> (either streaming or watching)  <a href="class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6">More...</a><br /></td></tr>
 <tr class="separator:a1f6fa1bffa8bfb7714e700e4d0cc9da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a631073a0292f47702b40ce82eae92964"><td class="memItemLeft" align="right" valign="top">std::set&lt; unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a631073a0292f47702b40ce82eae92964">getStreamHistory</a> ()</td></tr>
-<tr class="memdesc:a631073a0292f47702b40ce82eae92964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stream history of the user (either streamed or watched)  <a href="class_user.html#a631073a0292f47702b40ce82eae92964">More...</a><br /></td></tr>
+<tr class="memdesc:a631073a0292f47702b40ce82eae92964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> history of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streamed or watched)  <a href="class_user.html#a631073a0292f47702b40ce82eae92964">More...</a><br /></td></tr>
 <tr class="separator:a631073a0292f47702b40ce82eae92964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29697f27203ca7451ca3b01d2f021f50"><td class="memItemLeft" align="right" valign="top"><a id="a29697f27203ca7451ca3b01d2f021f50"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a29697f27203ca7451ca3b01d2f021f50">showUser</a> () const =0</td></tr>
-<tr class="memdesc:a29697f27203ca7451ca3b01d2f021f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the user's information to the standard output. <br /></td></tr>
+<tr class="memdesc:a29697f27203ca7451ca3b01d2f021f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>'s information to the standard output. Only defined in the derived classes. <br /></td></tr>
 <tr class="separator:a29697f27203ca7451ca3b01d2f021f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a085d8d69282b6298964eab8351584536"><td class="memItemLeft" align="right" valign="top"><a id="a085d8d69282b6298964eab8351584536"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a></td></tr>
+<tr class="memdesc:a085d8d69282b6298964eab8351584536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. <br /></td></tr>
 <tr class="separator:a085d8d69282b6298964eab8351584536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6097de89cf5d8fd945c6782cfa7e89fe"><td class="memItemLeft" align="right" valign="top"><a id="a6097de89cf5d8fd945c6782cfa7e89fe"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>nick</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a></td></tr>
+<tr class="memdesc:a6097de89cf5d8fd945c6782cfa7e89fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. <br /></td></tr>
 <tr class="separator:a6097de89cf5d8fd945c6782cfa7e89fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7c87186af8bdb92822402b2e93e9b64"><td class="memItemLeft" align="right" valign="top"><a id="ab7c87186af8bdb92822402b2e93e9b64"></a>
-<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><b>birthDate</b></td></tr>
+<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ab7c87186af8bdb92822402b2e93e9b64">birthDate</a></td></tr>
+<tr class="memdesc:ab7c87186af8bdb92822402b2e93e9b64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Birthdate of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. <br /></td></tr>
 <tr class="separator:ab7c87186af8bdb92822402b2e93e9b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9019cb0d5738e57f3881b61b6b97dfc"><td class="memItemLeft" align="right" valign="top"><a id="aa9019cb0d5738e57f3881b61b6b97dfc"></a>
-<a class="el" href="class_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>stream</b></td></tr>
+<a class="el" href="class_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#aa9019cb0d5738e57f3881b61b6b97dfc">stream</a></td></tr>
+<tr class="memdesc:aa9019cb0d5738e57f3881b61b6b97dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is watching; nullptr if he's not watching a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:aa9019cb0d5738e57f3881b61b6b97dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8937fbf44a5ca1f0f86fe00e2939b692"><td class="memItemLeft" align="right" valign="top"><a id="a8937fbf44a5ca1f0f86fe00e2939b692"></a>
-std::set&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>streamHistory</b></td></tr>
+std::set&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a8937fbf44a5ca1f0f86fe00e2939b692">streamHistory</a></td></tr>
+<tr class="memdesc:a8937fbf44a5ca1f0f86fe00e2939b692"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> history of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. Only the IDs are stored on the set. <br /></td></tr>
 <tr class="separator:a8937fbf44a5ca1f0f86fe00e2939b692"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5a20de1b7090dfb3a3c066761252ede"><td class="memItemLeft" align="right" valign="top"><a id="af5a20de1b7090dfb3a3c066761252ede"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b></td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#af5a20de1b7090dfb3a3c066761252ede">ID</a></td></tr>
+<tr class="memdesc:af5a20de1b7090dfb3a3c066761252ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. <br /></td></tr>
 <tr class="separator:af5a20de1b7090dfb3a3c066761252ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a70ac5a59d4a8180114981d47f2ec1fb7"><td class="memItemLeft" align="right" valign="top"><a id="a70ac5a59d4a8180114981d47f2ec1fb7"></a>
-static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID</b> = 0</td></tr>
+static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a70ac5a59d4a8180114981d47f2ec1fb7">nextID</a> = 0</td></tr>
+<tr class="memdesc:a70ac5a59d4a8180114981d47f2ec1fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the next <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> created. <br /></td></tr>
 <tr class="separator:a70ac5a59d4a8180114981d47f2ec1fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -203,9 +210,9 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
 <p>Creates a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> with given name, nick and birthdate; stream is initialized with nullptr. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the user </td></tr>
-    <tr><td class="paramname">nick</td><td>Nickname of the user </td></tr>
-    <tr><td class="paramname">birthDate</td><td>Birthdate of the user </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
+    <tr><td class="paramname">nick</td><td>Nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
+    <tr><td class="paramname">birthDate</td><td>Birthdate of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -253,10 +260,10 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
 <p>Creates a <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> with given name, nick, birthdate and ID. Useful when reading from files; stream is initialized with nullptr. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the user </td></tr>
-    <tr><td class="paramname">nick</td><td>Nickname of the user </td></tr>
-    <tr><td class="paramname">birthDate</td><td>Birthdate of the user </td></tr>
-    <tr><td class="paramname">id</td><td>ID of the user </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
+    <tr><td class="paramname">nick</td><td>Nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
+    <tr><td class="paramname">birthDate</td><td>Birthdate of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
+    <tr><td class="paramname">id</td><td>ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -279,8 +286,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the age of the user. </p>
-<dl class="section return"><dt>Returns</dt><dd>Integer containing the age of the user </dd></dl>
+<p>Gets the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer containing the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </dd></dl>
 
 </div>
 </div>
@@ -299,8 +306,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the age of the user as a string. </p>
-<dl class="section return"><dt>Returns</dt><dd>String containing the age of the user </dd></dl>
+<p>Gets the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the age of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </dd></dl>
 
 </div>
 </div>
@@ -319,8 +326,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the ID of user. </p>
-<dl class="section return"><dt>Returns</dt><dd>Unsigned int containing the ID of the user </dd></dl>
+<p>Gets the ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Unsigned int containing the ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </dd></dl>
 
 </div>
 </div>
@@ -339,8 +346,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the name of the user. </p>
-<dl class="section return"><dt>Returns</dt><dd>String containing the name of the user </dd></dl>
+<p>Gets the name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the name of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </dd></dl>
 
 </div>
 </div>
@@ -359,8 +366,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the nickname of the user. </p>
-<dl class="section return"><dt>Returns</dt><dd>String containing the nickname of the user </dd></dl>
+<p>Gets the nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>String containing the nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </dd></dl>
 
 </div>
 </div>
@@ -379,8 +386,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the pointer to the stream of the user (either streaming or watching). Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a user is unexpectedly not in a stream.">NotInAStream</a> exception if the user isn't in one. </p>
-<dl class="section return"><dt>Returns</dt><dd>Stream* of the user's stream </dd></dl>
+<p>Gets the pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streaming or watching). Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> isn't in one. </p>
+<dl class="section return"><dt>Returns</dt><dd>Stream* of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>'s <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </dd></dl>
 
 </div>
 </div>
@@ -399,8 +406,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Gets the stream history of the user (either streamed or watched) </p>
-<dl class="section return"><dt>Returns</dt><dd>Set containing the IDs of the past streams </dd></dl>
+<p>Gets the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> history of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streamed or watched) </p>
+<dl class="section return"><dt>Returns</dt><dd>Set containing the IDs of the past Streams </dd></dl>
 
 </div>
 </div>
@@ -419,8 +426,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the user is currently in a stream (either streaming or watching) </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if the user is in a stream and false otherwise </dd></dl>
+<p>Checks if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is currently in a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> (either streaming or watching) </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is in a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> and false otherwise </dd></dl>
 
 </div>
 </div>
@@ -440,10 +447,10 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Updates the name of the user. </p>
+<p>Updates the name of the Sser. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the user </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the Sser </td></tr>
   </table>
   </dd>
 </dl>
@@ -466,10 +473,10 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Updates the nickname of the user. </p>
+<p>Updates the nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nick</td><td>Nickname of the user </td></tr>
+    <tr><td class="paramname">nick</td><td>Nickname of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -492,10 +499,10 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextID
       </table>
 </div><div class="memdoc">
 
-<p>Sets the stream history of the user (either streamed or watched) </p>
+<p>Sets the streamHistory of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streamed or watched) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pastStreams</td><td>Set including the IDs of the past streams </td></tr>
+    <tr><td class="paramname">pastStreams</td><td>Set including the IDs of the past Streams </td></tr>
   </table>
   </dd>
 </dl>

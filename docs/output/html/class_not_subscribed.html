@@ -71,22 +71,75 @@ $(function() {
 <div class="title">NotSubscribed Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Exception class which should be thrown when a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> tries to join a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a> he is not subscribed to.  
+ <a href="class_not_subscribed.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="stream_8h_source.html">stream.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32b4e16a7c64f3fa559df79bbd609a59"><td class="memItemLeft" align="right" valign="top"><a id="a32b4e16a7c64f3fa559df79bbd609a59"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>NotSubscribed</b> (const string &amp;reason)</td></tr>
+<tr class="memitem:a32b4e16a7c64f3fa559df79bbd609a59"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_not_subscribed.html#a32b4e16a7c64f3fa559df79bbd609a59">NotSubscribed</a> (const string &amp;<a class="el" href="class_not_subscribed.html#a232fef931b5254397509ec82dfc57657">reason</a>)</td></tr>
+<tr class="memdesc:a32b4e16a7c64f3fa559df79bbd609a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_not_subscribed.html" title="Exception class which should be thrown when a Viewer tries to join a PrivateStream he is not subscrib...">NotSubscribed</a> exception with a given reason.  <a href="class_not_subscribed.html#a32b4e16a7c64f3fa559df79bbd609a59">More...</a><br /></td></tr>
 <tr class="separator:a32b4e16a7c64f3fa559df79bbd609a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaab8d332e697a37f072e780f32cbf0f"><td class="memItemLeft" align="right" valign="top"><a id="afaab8d332e697a37f072e780f32cbf0f"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const</td></tr>
+<tr class="memitem:afaab8d332e697a37f072e780f32cbf0f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_not_subscribed.html#afaab8d332e697a37f072e780f32cbf0f">what</a> () const</td></tr>
 <tr class="separator:afaab8d332e697a37f072e780f32cbf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a232fef931b5254397509ec82dfc57657"><td class="memItemLeft" align="right" valign="top"><a id="a232fef931b5254397509ec82dfc57657"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>reason</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_not_subscribed.html#a232fef931b5254397509ec82dfc57657">reason</a></td></tr>
+<tr class="memdesc:a232fef931b5254397509ec82dfc57657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reason the exception was thrown. <br /></td></tr>
 <tr class="separator:a232fef931b5254397509ec82dfc57657"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Exception class which should be thrown when a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> tries to join a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a> he is not subscribed to. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a32b4e16a7c64f3fa559df79bbd609a59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b4e16a7c64f3fa559df79bbd609a59">&#9670;&nbsp;</a></span>NotSubscribed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NotSubscribed::NotSubscribed </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>reason</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="class_not_subscribed.html" title="Exception class which should be thrown when a Viewer tries to join a PrivateStream he is not subscrib...">NotSubscribed</a> exception with a given reason. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reason</td><td>Reason for the exception to be thrown </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afaab8d332e697a37f072e780f32cbf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaab8d332e697a37f072e780f32cbf0f">&#9670;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string NotSubscribed::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the reason for which the exception was thrown </p><dl class="section return"><dt>Returns</dt><dd>String containing the reason </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/<a class="el" href="stream_8h_source.html">stream.h</a></li>
 <li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/stream.cpp</li>

@@ -123,6 +123,9 @@ public:
      */
     bool operator<=(const Date& date);
 private:
+    /**
+     * @brief String containing the information of the Date in the format yyyy/mm/dd
+     */
     string datestring;
 
     /**
@@ -143,6 +146,9 @@ private:
  */
 class DateIsNotValid{
 private:
+    /**
+     * @brief String containing the date in the format yyyy/mm/dd
+     */
     string date;
 public:
     /**
