@@ -30,11 +30,11 @@ string NotInAStream::what() const {
 }
 
 
-AlreadyStreaming::AlreadyStreaming(const string& reason) {
+AlreadyInAStream::AlreadyInAStream(const string& reason) {
     this->reason = reason;
 }
 
-string AlreadyStreaming::what() const {
+string AlreadyInAStream::what() const {
     return reason;
 }
 
@@ -107,13 +107,6 @@ std::set<unsigned int>& User::getStreamHistory() {
     return streamHistory;
 }
 
-/*void User::addPastStream(PastStream *pastStream) {
-    streamHistory.push_back(pastStream);
-} */
-
-void User::addPastStream(unsigned int pastStreamId) {
-    streamHistory.insert(pastStreamId);
-}
 
 Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
@@ -123,7 +116,6 @@ Streamer::Streamer(const std::string& name, const std::string& nick, const Date&
 
 Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
-    nextID++;   // only after the check
 }
 
 Streamer::~Streamer() = default;
@@ -149,7 +141,7 @@ void Streamer::endStream() {
 }
 
 void Streamer::startStream(Stream *stream) {
-    if (this->stream != nullptr) throw AlreadyStreaming(this->nick + " is already streaming");
+    if (this->stream != nullptr) throw AlreadyInAStream(this->nick + " is already streaming");
     this->stream = stream;
 }
 
@@ -206,13 +198,12 @@ Viewer::Viewer(const std::string& name, const std::string& nick, const Date& bir
 
 Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
-    nextID++;   // only after the check
 }
 
 Viewer::~Viewer() = default;
 
 void Viewer::joinStream(Stream *stream) {
-    if (this->stream != nullptr) throw AlreadyStreaming(this->nick + " is already watching a stream");
+    if (this->stream != nullptr) throw AlreadyInAStream(this->nick + " is already watching a stream");
     if (getAge() < stream->getMinAge())
         throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
@@ -220,12 +211,6 @@ void Viewer::joinStream(Stream *stream) {
 
 void Viewer::leaveStream() {
     if (stream == nullptr) throw NotInAStream(this->nick + " is currently not watching any stream");
-    /*
-    PastStream* p = new PastStream;         // this needs to be done on streamZ scope
-    p->name = stream->getTitle();
-    p->noViewers = stream->getNumViewers();
-    streamHistory.push_back(p);
-     */
     this->streamHistory.insert(this->stream->getId());
     stream = nullptr;
 }
