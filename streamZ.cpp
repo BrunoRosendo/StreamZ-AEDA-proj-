@@ -476,7 +476,7 @@ void StreamZ::joinStream(int id, vector<Stream*> filteredStreams) {
     catch (NotSubscribed& e){
         cout << e.what() << endl;
     }
-    catch (AlreadyStreaming& e){
+    catch (AlreadyInAStream& e){
         cout << e.what() << endl;
         filteredStreams[num-1]->removeUser(v->getID());
     }
@@ -719,7 +719,7 @@ void StreamZ::adminMenu() {
             cin.ignore(1000, '\n');
             Date t(to);
             switch (choice) {
-                case 1: { //passar isto pro menu seguinte adminMenu2()
+                case 1: {
                     int numAll = admin->getNumCreatedStreams(f, t);
                     cout << "Streams created from " << f.getDate() << " to " << t.getDate() << " : "
                          << numAll << endl;
@@ -941,7 +941,7 @@ void StreamZ::createStream(Streamer *streamer) {
                     error = false;
                     break;
                 }
-                catch (AlreadyStreaming &e) {
+                catch (AlreadyInAStream &e) {
                     cout << e.what() << endl;
                     error = true;   // desnecessario?
                     break;
@@ -960,7 +960,7 @@ void StreamZ::createStream(Streamer *streamer) {
                     error = false;
                     break;
                 }
-                catch (AlreadyStreaming& e){
+                catch (AlreadyInAStream& e){
                     cout << e.what() << endl;
                     error = true;
                     break;

@@ -10,29 +10,6 @@
 
 using namespace std;
 
-bool Date::isValid() {
-    int year = stoi(datestring.substr(0, 4));
-    int month = stoi(datestring.substr(4, 2));
-    int day = stoi(datestring.substr(6, 2));
-    if (month > 12 || month < 1) return false;
-    if (day > daysOfMonth() || day < 1) return false;
-    if (year < 0) return false;
-    return true;
-}
-
-void Date::setDate(unsigned int year, unsigned int month, unsigned int day) {
-    string years, months, days;
-    if (year < 10) years = "000" + to_string(year);
-    else if (year < 100) years = "00" + to_string(year);
-    else if (year < 1000) years = "0" + to_string(year);
-    else years = to_string(year);
-    if (month < 10) months = "0" + to_string(month);
-    else months = to_string(month);
-    if (day < 10) days = "0" + to_string(day);
-    else days = to_string(day);
-    datestring = years + months + days;
-    if (!isValid()) throw DateIsNotValid(getDate());
-}
 
 Date::Date() {
     time_t now = time(NULL);
@@ -62,6 +39,30 @@ Date::Date(const string& yearMonthDay) {
     setDate(year1, month1, day1);
 }
 
+bool Date::isValid() const{
+    int year = stoi(datestring.substr(0, 4));
+    int month = stoi(datestring.substr(4, 2));
+    int day = stoi(datestring.substr(6, 2));
+    if (month > 12 || month < 1) return false;
+    if (day > daysOfMonth() || day < 1) return false;
+    if (year < 0) return false;
+    return true;
+}
+
+void Date::setDate(unsigned int year, unsigned int month, unsigned int day) {
+    string years, months, days;
+    if (year < 10) years = "000" + to_string(year);
+    else if (year < 100) years = "00" + to_string(year);
+    else if (year < 1000) years = "0" + to_string(year);
+    else years = to_string(year);
+    if (month < 10) months = "0" + to_string(month);
+    else months = to_string(month);
+    if (day < 10) days = "0" + to_string(day);
+    else days = to_string(day);
+    datestring = years + months + days;
+    if (!isValid()) throw DateIsNotValid(getDate());
+}
+
 unsigned int Date::getYear() const {
     return stoi(datestring.substr(0, 4));
 }
@@ -79,13 +80,13 @@ string Date::getDate() const {
     return data;
 }
 
-bool Date::isleap() {
+bool Date::isleap() const{
     int year = stoi(datestring.substr(0, 4));
     if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) return true;
     return false;
 }
 
-int Date::daysOfMonth() {
+int Date::daysOfMonth() const{
     int month = stoi(datestring.substr(4, 2));
     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) return 31;
     else if (month == 4 || month == 6 || month == 9 || month == 11) return 30;

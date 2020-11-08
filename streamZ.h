@@ -36,7 +36,7 @@ public:
     void storeDataInFile();
     std::vector<Stream*> topViews();
     std::vector<Stream*> topLikes();
-    std::vector<Stream*> searchStreams(const std::string& language/*, int minAge*/) const;
+    std::vector<Stream*> searchStreams(const std::string& language) const;
     std::vector<Stream*> searchStreams(int minAge) const;
     void listStreams(std::vector<Stream *> streams) const;
     void listUsers() const;
@@ -49,7 +49,6 @@ public:
     void watchingOptions(int id);
     void joinStream(int id, vector<Stream*> streams);
     void adminMenu();
-    void adminMenu2();  //retirar ou modificar
     void loginViewer();
     void loginStreamer();
     void viewerMenu(int id);
