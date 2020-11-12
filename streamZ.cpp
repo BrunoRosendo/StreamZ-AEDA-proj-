@@ -694,9 +694,10 @@ void StreamZ::adminMenu() {
                 continue;
             case 6:
                 return;
-            default:
-                cout << "Insert a valid number" << endl << endl;
-                continue;
+        }
+        if (choice > 6){
+            cout << "Insert a valid number" << endl;
+            continue;
         }
         try{
             string from;
@@ -978,6 +979,7 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
         try {
             Stream* stream = streamer->getStream();
             this->pastStreams.at(stream->getId())->noViewers = stream->getNumViewers();
+            //this->pastStreams.at(stream->getId())->name = stream->getTitle();
             streamer->endStream();
             set<unsigned int> viewers = stream->getViewers();
             for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){
