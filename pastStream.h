@@ -14,7 +14,7 @@ struct PastStream{
     /**
      * @brief Creates an empty PastStream struct. Its members should be updated before using it
      */
-    PastStream(){};
+    PastStream(){Stream::nextID++;};
 
     /**
      * @brief Creates a struct storing a past Stream, containing the Stream title, its ID and the number of Viewers

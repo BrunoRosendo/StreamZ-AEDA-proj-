@@ -40,7 +40,6 @@ StreamZ::~StreamZ() {
 void StreamZ::fetchDataFromFile() {
     string streamersFile = "streamers.txt";
     string viewersFile = "viewers.txt";
-    string streamsFile = "streams.txt";
     string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
     fstream fin;
@@ -167,8 +166,8 @@ void StreamZ::fetchDataFromFile() {
     fin.open(pastStreamsFile);
     string line3;
     if(!fin.is_open()){
-        cout << "Couldn't open " << streamsFile << " file!" << endl;
-        throw runtime_error("Couldn't open " + streamsFile + " file!");
+        cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
     }
     while(getline(fin, line )) {
         getline(fin, line2);    // id
@@ -193,7 +192,6 @@ void StreamZ::fetchDataFromFile() {
     else
         this->admin = nullptr;
     fin.close();
-
 
 }
 
@@ -249,14 +247,18 @@ void StreamZ::storeDataInFile(){
         cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
         throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
     }
+    for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){      //iterates streamers and if they have an active stream, ends it updating PastStream
+        this->deleteStream( (Streamer*) this->users[ it->second ] );
+    }
     for(auto it = this->pastStreams.begin(); it != this->pastStreams.end(); it++){
         pastStream = it->second;
         fout << pastStream->name << endl << pastStream->id << endl << pastStream->noViewers << endl;
     }
+    /*
     for(auto it2 = this->streams.begin(); it2 != this->streams.end(); it2++){
         PastStream ps(*it2);        //creates a past stream by passing a stream as arg
         fout << ps.name << endl << ps.id << endl << ps.noViewers << endl;
-    }
+    } */
     fout.close();
 
     fout.open(adminFile, ios::out | ios::trunc);
@@ -978,23 +980,26 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
     while(1) {
         try {
             Stream* stream = streamer->getStream();
-            this->pastStreams.at(stream->getId())->noViewers = stream->getNumViewers();
-            //this->pastStreams.at(stream->getId())->name = stream->getTitle();
-            streamer->endStream();
-            set<unsigned int> viewers = stream->getViewers();
-            for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){
-                Viewer* v = (Viewer*) users[(*it)];
-                v->leaveStream();
+            if(stream != nullptr){
+                this->pastStreams.at(stream->getId())->noViewers = stream->getNumViewers();     //update no_viewers on the PastStream
+                //this->pastStreams.at(stream->getId())->name = stream->getTitle();
+                streamer->endStream();
+                set<unsigned int> viewers = stream->getViewers();
+                for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){
+                    Viewer* v = (Viewer*) users[(*it)];
+                    v->leaveStream();
+                }
+                streams.erase(find(streams.begin(), streams.end(), stream));
+                vector<PublicStream*>::iterator it = find(publicStreams.begin(), publicStreams.end(), stream);
+                if (it != publicStreams.end()) publicStreams.erase(it);
+                else privateStreams.erase(find(privateStreams.begin(), privateStreams.end(), stream));
+                delete stream;
+                break;
             }
-            streams.erase(find(streams.begin(), streams.end(), stream));
-            vector<PublicStream*>::iterator it = find(publicStreams.begin(), publicStreams.end(), stream);
-            if (it != publicStreams.end()) publicStreams.erase(it);
-            else privateStreams.erase(find(privateStreams.begin(), privateStreams.end(), stream));
-            delete stream;
-            break;
         }
         catch (NotInAStream &e) {
-            cout << e.what() << endl;
+            //cout << e.what() << endl;
+            break;
         }
     }
 }
