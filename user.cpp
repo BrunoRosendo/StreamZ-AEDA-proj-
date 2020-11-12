@@ -116,6 +116,7 @@ Streamer::Streamer(const std::string& name, const std::string& nick, const Date&
 
 Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
+    nextID++;   // only after the check
 }
 
 Streamer::~Streamer() = default;
@@ -198,6 +199,7 @@ Viewer::Viewer(const std::string& name, const std::string& nick, const Date& bir
 
 Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
+    nextID++;   // only after the check
 }
 
 Viewer::~Viewer() = default;

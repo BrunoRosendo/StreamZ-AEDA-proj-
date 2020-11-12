@@ -61,11 +61,11 @@ protected:
      */
     unsigned int id;
 
+public:
     /**
      * @brief ID of the next Stream created
      */
     static unsigned int nextID;
-public:
 
     /**
      * @brief Constructs a Stream with given title, start date, language, minimum age and the nick of the Streamer
