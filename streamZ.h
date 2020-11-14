@@ -131,7 +131,7 @@ public:
      * @param language Language to search for
      * @return Vector of all the Streams (pointers) with the given language
      */
-    std::vector<Stream*> searchStreams(const std::string& language) const;
+    std::vector<Stream*> searchStreams(std::string language) const;
 
     /**
      * @brief Searches all Streams with the same or less minimum age and saves them in a vector
@@ -168,7 +168,7 @@ public:
      * @param title String which should be included in the Streams' title (can either be the title itself or not)
      * @return Vector of Streams (pointers) that include the given string in the title
      */
-    std::vector<Stream* > searchStreamsByTitle(const std::string& title) const;
+    std::vector<Stream* > searchStreamsByTitle(std::string title) const;
 
     // Menus
 

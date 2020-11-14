@@ -5,7 +5,6 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include <vector>
 #include "user.h"
 
 using namespace std;
@@ -167,10 +166,14 @@ bool Streamer::isSubscriber(unsigned int id) const {
 
 void Streamer::showUser() const {
     cout << nick << "( " << name << " )" << endl
-        << getAge() << " Years Old" << endl << getNumSubs() << " Subscribers" << endl;
-    if (stream != nullptr)
+        << getAge() << " Years Old" << endl << getNumSubs() << " Subscriber";
+    if (getNumSubs() != 1) cout << "s"; cout << endl;
+    if (stream != nullptr) {
         cout << "Currently streaming " << stream->getTitle() << " with "
-            << getNumViewers() << " viewers" << endl;
+             << getNumViewers() << " viewer";
+        if (getNumViewers() != 1) cout << "s";
+        cout << endl;
+    }
     else{
         cout << "Currently not streaming" << endl;
     }
@@ -178,10 +181,14 @@ void Streamer::showUser() const {
 
 ostream& operator<<(ostream& out, const Streamer& streamer){
     out << streamer.getNick() << "( " << streamer.getName() << " )" << endl
-        << streamer.getAge() << " Years Old" << endl << streamer.getNumSubs() << " Subscribers" << endl;
-    if (streamer.inAStream())
+        << streamer.getAge() << " Years Old" << endl << streamer.getNumSubs() << " Subscriber";
+    if (streamer.getNumSubs() != 1) cout << "s"; cout << endl;
+    if (streamer.inAStream()) {
         out << "Currently streaming " << streamer.getStream()->getTitle() << " with "
-            << streamer.getNumViewers() << " viewers" << endl;
+            << streamer.getNumViewers() << " viewer";
+        if (streamer.getNumViewers() != 1) cout << "s";
+        cout << endl;
+    }
     else{
         out << "Currently not streaming" << endl;
     }
