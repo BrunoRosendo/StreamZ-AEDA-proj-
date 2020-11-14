@@ -1,24 +1,19 @@
 Stream1
 0
 400
+2020/11/13
 Stream2
 1
 7
+2020/11/14
 Stream3
 2
 110
+2020/11/10
 Im back
 3
 0
-lelele
+2020/10/10
+Shrimp party
 4
-0
-Testerino
-5
-1
-O Rei das Batas em Acao!
-6
-1
-Destroying noobs in Valorant
-7
 1

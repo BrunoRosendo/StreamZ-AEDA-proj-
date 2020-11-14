@@ -164,7 +164,7 @@ void StreamZ::fetchDataFromFile() {
     pastStreams.clear();
 
     fin.open(pastStreamsFile);
-    string line3;
+    string line3, dateString;
     if(!fin.is_open()){
         cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
         throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
@@ -172,9 +172,10 @@ void StreamZ::fetchDataFromFile() {
     while(getline(fin, line )) {
         getline(fin, line2);    // id
         getline(fin, line3);    // no_viewers when stream ended
+        getline(fin, dateString);   // date in the format of a string
         id = stoi(line2);
         struct PastStream* s = new PastStream;          // !! VERIFY WHEN YOU NEED TO FREE THIS MEMORY
-        s->name = line, s->id = id, s->noViewers = stoi(line3); // NEEDS THE STARTDATE AS WELL
+        s->name = line, s->id = id, s->noViewers = stoi(line3), s->StartDate = Date(dateString); // NEEDS THE STARTDATE AS WELL
         this->pastStreams.insert({id, s});
     }
     fin.close();
@@ -205,6 +206,21 @@ void StreamZ::storeDataInFile(){
     string adminFile = "admin.txt";
     fstream fout;
     unsigned int currUserId;
+
+    fout.open(pastStreamsFile, ios::out | ios::trunc);      // need to call this first since users are changed here
+    PastStream* pastStream;
+    if(!fout.is_open()){
+        cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
+    }
+    for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){      //iterates streamers and if they have an active stream, ends it updating PastStream
+        this->deleteStream( (Streamer*) this->users[ it->second ] );
+    }
+    for(auto it = this->pastStreams.begin(); it != this->pastStreams.end(); it++){
+        pastStream = it->second;
+        fout << pastStream->name << endl << pastStream->id << endl << pastStream->noViewers << endl << pastStream->StartDate.getDate() << endl;
+    }
+    fout.close();
 
     fout.open(viewersFile, ios::out | ios::trunc);  // Overwrite previous info
     Viewer* viewer;
@@ -239,26 +255,6 @@ void StreamZ::storeDataInFile(){
             fout << '/' << *subsIt << endl;
         }
     }
-    fout.close();
-
-    fout.open(pastStreamsFile, ios::out | ios::trunc);
-    PastStream* pastStream;
-    if(!fout.is_open()){
-        cout << "Couldn't open " << pastStreamsFile << " file!" << endl;
-        throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
-    }
-    for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){      //iterates streamers and if they have an active stream, ends it updating PastStream
-        this->deleteStream( (Streamer*) this->users[ it->second ] );
-    }
-    for(auto it = this->pastStreams.begin(); it != this->pastStreams.end(); it++){
-        pastStream = it->second;
-        fout << pastStream->name << endl << pastStream->id << endl << pastStream->noViewers << endl;
-    }
-    /*
-    for(auto it2 = this->streams.begin(); it2 != this->streams.end(); it2++){
-        PastStream ps(*it2);        //creates a past stream by passing a stream as arg
-        fout << ps.name << endl << ps.id << endl << ps.noViewers << endl;
-    } */
     fout.close();
 
     fout.open(adminFile, ios::out | ios::trunc);
