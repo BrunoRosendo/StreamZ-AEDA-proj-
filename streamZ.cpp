@@ -420,6 +420,7 @@ void StreamZ::viewerMenu(int id) {
             case 3:
                 listStreams(topLikes());
                 joinStream(id, topLikes());
+                break;
             case 4:
                 this->listStreams(this->streams);
                 joinStream(id, this->streams);
@@ -578,7 +579,10 @@ void StreamZ::streamerMenu(int id) {
                 break;
             case 6: {
                 Streamer *s = (Streamer *) users[id];
-                cout << "You currently have " << s->getNumSubs() << " subscribers" << endl;
+                int num = s->getNumSubs();
+                cout << "You currently have " << num << " subscriber";
+                if (num != 1) cout << "s";
+                cout << endl;
                 break;
             }
             case 7: {
@@ -625,9 +629,13 @@ void StreamZ::streamingOptions(int id) {
         }
         cin.ignore(1000, '\n');
         switch (c) {
-            case 1:
-                cout << "You currently have " << s->getNumViewers() << " viewers" << endl;
+            case 1: {
+                int num = s->getNumViewers();
+                cout << "You currently have " << num << " viewer";
+                if (num != 1) cout << "s";
+                cout << endl;
                 break;
+            }
             case 2: {
                 vector<PrivateStream *>::iterator it = find(privateStreams.begin(), privateStreams.end(),
                                                             s->getStream());
@@ -635,7 +643,10 @@ void StreamZ::streamingOptions(int id) {
                     PrivateStream *p = (PrivateStream *) s->getStream();
                     p->showMessages();
                 }
-                cout << "You currently have " << s->getStream()->getNoLikes() << " likes" << endl;
+                int noLikes = s->getStream()->getNoLikes();
+                cout << "You currently have " << noLikes << " like";
+                if (noLikes != 1) cout << "s";
+                cout << endl;
                 break;
             }
             case 3:
@@ -926,7 +937,7 @@ void StreamZ::createStream(Streamer *streamer) {
                 continue;
             }
             if (typeOfStream != 1 && typeOfStream != 2){
-                cout << "Entere a number between 1 and 2" << endl;
+                cout << "Enter a number between 1 and 2" << endl;
                 cin >> typeOfStream;
             }
             break;
@@ -1000,7 +1011,7 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
             }
         }
         catch (NotInAStream &e) {
-            //cout << e.what() << endl;
+            cout << e.what() << endl;
             break;
         }
     }
@@ -1270,20 +1281,26 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
     }
 }
 
-std::vector<Stream*> StreamZ::searchStreamsByTitle(const std::string& title) const {
+std::vector<Stream*> StreamZ::searchStreamsByTitle(std::string title) const {
     std::vector<Stream *> ans;
+    transform(title.begin(), title.end(), title.begin(), ::toupper);
     for(int i = 0; i < this->streams.size(); i++){
-        if(this->streams[i]->getTitle().find(title) != string::npos){   // check string::npos on hover
+        string streamTitle = this->streams[i]->getTitle();
+        transform(streamTitle.begin(), streamTitle.end(), streamTitle.begin(), ::toupper);
+        if(streamTitle.find(title) != string::npos){   // check string::npos on hover
             ans.push_back(this->streams[i]);
         }
     }
     return ans;
 }
 
-std::vector<Stream *> StreamZ::searchStreams(const std::string& language) const {
+std::vector<Stream *> StreamZ::searchStreams(std::string language) const {
     std::vector<Stream *> ans;
+    transform(language.begin(), language.end(), language.begin(), ::toupper);
     for(int i = 0; i < this->streams.size(); i++){
-        if( this->streams[i]->getLanguage() == language )
+        string streamLanguage = this->streams[i]->getLanguage();
+        transform(streamLanguage.begin(), streamLanguage.end(), streamLanguage.begin(), ::toupper);
+        if( streamLanguage == language )
             ans.push_back(this->streams[i]);
     }
     return ans;

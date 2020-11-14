@@ -153,5 +153,5 @@ DateIsNotValid::DateIsNotValid(string date){
 }
 
 string DateIsNotValid::what(){
-    return "The date " + date + " is not valid!";
+    return "The date is not valid!";
 }

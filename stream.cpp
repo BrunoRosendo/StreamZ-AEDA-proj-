@@ -48,7 +48,7 @@ Stream::~Stream() = default;
  */
 void Stream::removeUser(unsigned int user) {
     this->viewers.erase(viewers.find(user));
-    this->numViewers--;             // Need to confirm if it is not needed to check if user exists on set
+    this->numViewers--;
 }
 
 int Stream::getNumViewers() const {
@@ -126,7 +126,9 @@ void PublicStream::addUser(unsigned int user) {
 void PrivateStream::showStream() const {
     Stream::showStream();
     cout << endl << "This stream is only accessible to subscribers and has " << capacity - numViewers
-    << " spaces available" << endl << " and " << subscribers.size() << " subscribers" << endl;
+    << " space"; if (capacity-numViewers != 1) cout << "s";
+    cout << "available" << endl << " and " << subscribers.size() << " subscriber";
+    if (subscribers.size() != 1) cout << "s"; cout << endl;
 }
 
 void PrivateStream::showMessages() const {
