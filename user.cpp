@@ -209,6 +209,7 @@ void Viewer::joinStream(Stream *stream) {
     if (getAge() < stream->getMinAge())
         throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
+    //this->streamHistory.insert(stream->getId());       // inserts the stream on the user history, since it is a set its ok if it duplicates somewhere else
 }
 
 void Viewer::leaveStream() {
