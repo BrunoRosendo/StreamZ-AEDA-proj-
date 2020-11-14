@@ -174,7 +174,7 @@ void StreamZ::fetchDataFromFile() {
         getline(fin, line3);    // no_viewers when stream ended
         id = stoi(line2);
         struct PastStream* s = new PastStream;          // !! VERIFY WHEN YOU NEED TO FREE THIS MEMORY
-        s->name = line, s->id = id, s->noViewers = stoi(line3);
+        s->name = line, s->id = id, s->noViewers = stoi(line3); // NEEDS THE STARTDATE AS WELL
         this->pastStreams.insert({id, s});
     }
     fin.close();
@@ -674,11 +674,11 @@ void StreamZ::adminMenu() {
         cout << e.what() << endl;
     }
     while(true) {
-        cout << "More stats?" << endl << endl
+        cout << "Stats about all streams?" << endl << endl
              << "1- Number of Streams created (interval)" << endl
-             << "2- Number of Public Streams created (interval)" << endl
-             << "3- Number of Private Streams created (interval)" << endl
-             << "4- Average stream views (interval)" << endl
+             << "2- Number of Public active Streams (interval)" << endl
+             << "3- Number of Private active Streams (interval)" << endl
+             << "4- Average views for all streams (interval)" << endl
              << "5- Account Settings" << endl
              << "6- Go back" << endl;
         int choice;
@@ -704,7 +704,7 @@ void StreamZ::adminMenu() {
         try{
             string from;
             string to;
-            cout << "Start date: " << endl;
+            cout << "Start date (yyyy/mm/dd): " << endl;
             cin >> from;
             while (cin.fail() || cin.eof()) {
                 cin.clear();
@@ -714,7 +714,7 @@ void StreamZ::adminMenu() {
             }
             cin.ignore(1000, '\n');
             Date f(from);
-            cout << "End date: " << endl;
+            cout << "End date (yyyy/mm/dd): " << endl;
             cin >> to;
             while (cin.fail() || cin.eof()) {
                 cin.clear();
@@ -752,6 +752,9 @@ void StreamZ::adminMenu() {
             }
         }
         catch(badDateComp& e){
+            cout << e.what() << endl;
+        }
+        catch(DateIsNotValid& e){
             cout << e.what() << endl;
         }
         catch(NoActiveStreams& e){
@@ -963,6 +966,10 @@ void StreamZ::createStream(Streamer *streamer) {
                     streamer->startStream(newStream);
                     streams.push_back(newStream);
                     privateStreams.push_back(newStream);
+
+                    struct PastStream* pastStream = new PastStream(newStream);      //add a past stream to the global map
+                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of 0
+
                     error = false;
                     break;
                 }
@@ -982,7 +989,6 @@ void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the hi
             Stream* stream = streamer->getStream();
             if(stream != nullptr){
                 this->pastStreams.at(stream->getId())->noViewers = stream->getNumViewers();     //update no_viewers on the PastStream
-                //this->pastStreams.at(stream->getId())->name = stream->getTitle();
                 streamer->endStream();
                 set<unsigned int> viewers = stream->getViewers();
                 for (set<unsigned int>::iterator it = viewers.begin(); it != viewers.end(); ++it){

@@ -172,7 +172,7 @@ public:
     Streamer(const std::string& name, const std::string& nick, const Date& birthDate);
 
     /**
-     * @brief Creates a Streamer with given name, nick, birthdate and ID. Doesn't increment nextID.
+     * @brief Creates a Streamer with given name, nick, birthdate and ID. Increments nextID.
      * Throws NotOldEnough exception if the User is younger than 15. Also see User()
      * @param name Name of the Streamer
      * @param nick Nickname of the Streamer
@@ -264,7 +264,7 @@ public:
     Viewer(const std::string& name, const std::string& nick, const Date& birthDate);
 
     /**
-     * @brief Creates a Viewer with given name, nick, birthdate and ID. Doesn't increment nextID.
+     * @brief Creates a Viewer with given name, nick, birthdate and ID. Increments nextID.
      * Throws NotOldEnough exception if the user is younger than 12. Also see User()
      * @param name Name of the Viewer
      * @param nick Nickname of the Viewer

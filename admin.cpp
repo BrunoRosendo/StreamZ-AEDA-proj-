@@ -39,13 +39,20 @@ void Admin::setName(const std::string& name) {
     this->name = name;
 }
 
-int Admin::getNumCreatedStreams(Date& from, const Date& to) const {
+int Admin::getNumCreatedStreams(Date& from, const Date& to) const { // from pastStreams aswell
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
     int cnt = 0;
     Date d;
     vector<Stream*>::const_iterator it;
     for (it = site->streams.begin();it != site->streams.end(); it++){
         d = (*it)->getStartDate();
+        if (d >= from && d <= to)
+            cnt ++;
+    }
+    Date dMap;
+    map<unsigned int, PastStream*>::const_iterator itMap;
+    for (itMap = site->pastStreams.begin();itMap != site->pastStreams.end(); itMap++){
+        dMap = itMap->second->StartDate;
         if (d >= from && d <= to)
             cnt ++;
     }
@@ -64,19 +71,30 @@ float Admin::getAvgViews() const {
     return avg;
 }
 
-float Admin::getAvgViews(Date& from, const Date& to) const {
+float Admin::getAvgViews(Date& from, const Date& to) const {    // paststreams aswell
     if (from > to) throw badDateComp("ERROR: Start date is after end date");
-    if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     int sum = 0;
+    int count = 0;
     float avg;
     Date d;
     vector<Stream *>::const_iterator it;
     for (it = site->streams.begin(); it != site->streams.end(); it++){
         d = (*it)->getStartDate();
-        if (d >= from && d <= to)
+        if (d >= from && d <= to) {
             sum += (*it)->getNumViewers();
+            count++;
+        }
     }
-    avg = (float) sum/getNumStreams();
+    Date dMap;
+    map<unsigned int, PastStream*>::const_iterator itMap;
+    for (itMap = site->pastStreams.begin();itMap != site->pastStreams.end(); itMap++){
+        dMap = itMap->second->StartDate;
+        if (d >= from && d <= to) {
+            sum += itMap->second->noViewers;
+            count++;
+        }
+    }
+    avg = (float) sum/count;
     return avg;
 }
 
@@ -142,7 +160,7 @@ string Admin::getPreferredStreamType() const {
 
 }
 
-Streamer * Admin::getMostViewedStreamer() const {   // this will be different
+Streamer * Admin::getMostViewedStreamer() const {
     if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     Streamer* best;
     int maxViews = 0;

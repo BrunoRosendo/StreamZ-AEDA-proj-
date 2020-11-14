@@ -21,7 +21,8 @@ struct PastStream{
      * when it ended
      * @param stream Pointer to the stream intended to store
      */
-    PastStream(Stream* stream){this->name = stream->getTitle(), this->noViewers = 0, this->id = stream->getId();};
+    PastStream(Stream* stream){this->name = stream->getTitle(), this->noViewers = 0, this->id = stream->getId(),
+                               this->StartDate = stream->getStartDate();};
 
     /**
      * @brief Name of the Stream
@@ -37,6 +38,11 @@ struct PastStream{
      * @brief ID of the Stream
      */
     unsigned int id;
+
+    /**
+     * @brief Start Date of the Stream
+     */
+    Date StartDate;
 };
 
 #endif //PROJETO1_PASTSTREAM_H
