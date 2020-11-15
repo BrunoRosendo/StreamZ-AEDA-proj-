@@ -10,7 +10,6 @@
 #include <set>
 #include "date.h"
 #include "stream.h"
-#include "pastStream.h"
 
 using namespace std;
 

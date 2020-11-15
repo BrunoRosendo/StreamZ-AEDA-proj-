@@ -165,7 +165,7 @@ bool Streamer::isSubscriber(unsigned int id) const {
 }
 
 void Streamer::showUser() const {
-    cout << nick << "( " << name << " )" << endl
+    cout << nick << " (" << name << ")" << endl
         << getAge() << " Years Old" << endl << getNumSubs() << " Subscriber";
     if (getNumSubs() != 1) cout << "s"; cout << endl;
     if (stream != nullptr) {
@@ -233,11 +233,11 @@ void Viewer::feedback(int like) {
 void Viewer::message(std::string text) const {
     if (stream == nullptr) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
     PrivateStream* s = (PrivateStream*) stream;
-    s->addMessage(name + ": " + text);
+    s->addMessage(nick + ": " + text);
 }
 
 void Viewer::showUser() const {
-    cout << nick << "( " << name << " )" << endl
+    cout << nick << " (" << name << ")" << endl
         << getAge() << " Years Old" << endl;
     if (stream != nullptr)
         cout << "Currently watching " << stream->getTitle() << endl;

@@ -3,16 +3,32 @@ Le King
 2005/10/12
 4
 /3
+Claudia
+Miss Mushrooms
+1994/12/12
+6
+*9
+*10
+/1
+/3
 Joao Gil
 Monkin
 2001/04/07
 0
 *0
 *1
+*7
+*11
 /1
+/3
 Shroud
-Shrimp
+Russian Shrimp
 2000/01/02
 2
 *4
+*5
+*6
+*8
 /1
+/3
+/5

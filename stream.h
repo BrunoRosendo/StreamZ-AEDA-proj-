@@ -158,6 +158,12 @@ public:
      * @return Unsigned int containing the ID of the Stream
      */
     unsigned int getId();
+
+    /**
+     * @brief Sets the nickname of the Streamer
+     * @param nick Nickname of the Streamer
+     */
+    void setStreamerNick(string nick);
 };
 
 /**
@@ -261,6 +267,45 @@ public:
  * @return Returns the given ostream out
  */
 ostream& operator<<(ostream& out, Stream& stream );
+
+/**
+ * @brief Struct used to store a Stream which has already ended
+ */
+struct PastStream{
+    /**
+     * @brief Creates an empty PastStream struct. Its members should be updated before using it
+     */
+    PastStream(){Stream::nextID++;};
+
+    /**
+     * @brief Creates a struct storing a past Stream, containing the Stream title, its ID and its start date;
+     * noViewers is set to -1 and updated when the Stream ends.
+     * @param stream Pointer to the stream intended to store
+     */
+    PastStream(Stream* stream){this->name = stream->getTitle(), this->noViewers = -1, this->id = stream->getId(),
+                               this->StartDate = stream->getStartDate();};
+
+    /**
+     * @brief Name of the Stream
+     */
+    std::string name;
+
+    /**
+     * @brief Number of Viewers the moment the Stream ended
+     */
+    int noViewers;
+
+    /**
+     * @brief ID of the Stream
+     */
+    unsigned int id;
+
+    /**
+     * @brief Start Date of the Stream
+     */
+    Date StartDate;
+};
+
 
 // Exceptions
 

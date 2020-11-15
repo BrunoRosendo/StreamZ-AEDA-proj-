@@ -154,3 +154,7 @@ ostream& operator<<(ostream& out, Stream& stream){
 unsigned int Stream::getId() {
     return this->id;
 }
+
+void Stream::setStreamerNick(string nick) {
+    this->streamerNick = nick;
+}

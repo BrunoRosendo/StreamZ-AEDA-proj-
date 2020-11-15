@@ -170,6 +170,7 @@ void StreamZ::fetchDataFromFile() {
         throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
     }
     while(getline(fin, line )) {
+        if (line == "\n") break;
         getline(fin, line2);    // id
         getline(fin, line3);    // no_viewers when stream ended
         getline(fin, dateString);   // date in the format of a string
@@ -214,7 +215,9 @@ void StreamZ::storeDataInFile(){
         throw runtime_error("Couldn't open " + pastStreamsFile + " file!");
     }
     for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){      //iterates streamers and if they have an active stream, ends it updating PastStream
-        this->deleteStream( (Streamer*) this->users[ it->second ] );
+        if (this->users[ it->second ]->inAStream()) {
+            this->deleteStream((Streamer *) this->users[it->second]);
+        }
     }
     for(auto it = this->pastStreams.begin(); it != this->pastStreams.end(); it++){
         pastStream = it->second;
@@ -510,7 +513,11 @@ void StreamZ::watchingOptions(int id) {
                 cin >> like;
                 cin.ignore(100, '\n');
                 if (like == 1) megaLikezao = 1;
-                else megaLikezao = -1;
+                else if (like == 2) megaLikezao = -1;
+                else {
+                    cout << "That's not a valid number!" << endl;
+                    break;
+                }
                 v->feedback(megaLikezao);
                 vector<PrivateStream *>::iterator it = find(privateStreams.begin(), privateStreams.end(),
                                                             v->getStream());
@@ -588,7 +595,8 @@ void StreamZ::streamerMenu(int id) {
             case 7: {
                 Streamer *s = (Streamer *) users[id];
                 set<unsigned int> subs = s->getSubscribers();
-                listUsers(subs);
+                if (subs.empty()) cout << "You don't have any subscribers yet :(" << endl;
+                else listUsers(subs);
                 break;
             }
             case 8:
@@ -1048,7 +1056,6 @@ bool StreamZ::viewerSettings(int id) {
                 viewersNickID.erase(users.at(id)->getNick());
                 std::string nick;
                 cout << "Insert your new nickname: " << endl;
-                getline(cin, nick);
                 while (true) {
                     getline(cin, nick);
                     if(nick.find_first_not_of (' ') == nick.npos || cin.fail() || cin.eof()){
@@ -1079,6 +1086,7 @@ bool StreamZ::viewerSettings(int id) {
                     set<unsigned int>::iterator search = subs.find(id);
                     if (search != subs.end()) s->removeSubscriber(id);
                 }
+                cout << "Account successfully deleted!" << endl;
                 return true;
             }
             case 4:
@@ -1123,7 +1131,6 @@ bool StreamZ::streamerSettings(int id) {
                 streamersNickID.erase(users.at(id)->getNick());
                 std::string nick;
                 cout << "Insert your new nickname: " << endl;
-                getline(cin, nick);
                 while (true) {
                     getline(cin, nick);
                     if (nick.find_first_not_of(' ') == nick.npos || cin.fail() || cin.eof()) {
@@ -1135,6 +1142,7 @@ bool StreamZ::streamerSettings(int id) {
                         cout << "That nickname is already taken. Choose another one: ";
                         continue;
                     }
+                    if (users.at(id)->inAStream()) users.at(id)->getStream()->setStreamerNick(nick);
                     break;
                 }
                 users.at(id)->setNick(nick);
@@ -1147,6 +1155,7 @@ bool StreamZ::streamerSettings(int id) {
                 if (s->inAStream()) s->endStream();
                 delete s;
                 users.erase(id);
+                cout << "Account successfully deleted!" << endl;
                 return true;
             }
             case 4:
@@ -1347,8 +1356,12 @@ void StreamZ::showStreamHistory(int id) const {
     }
     set<unsigned int>::iterator it;
     for (it = history.begin(); it != history.end(); ++it){
-        cout << endl << pastStreams.at(*it)->name << endl << "Ended with " << pastStreams.at(*it)->noViewers
-        << " viewers" << endl;
+        cout << endl << pastStreams.at(*it)->name << endl;
+        int noViewers = pastStreams.at(*it)->noViewers;
+        if (noViewers == - 1)
+            cout << "Stream is still active" << endl;
+        else
+            cout << "Ended with " << noViewers << " viewers" << endl;
     }
     cout << endl;
 }

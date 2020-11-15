@@ -167,7 +167,10 @@ Streamer * Admin::getMostViewedStreamer() const {
     for (std::map<std::string, unsigned int>::const_iterator it = site->streamersNickID.begin(); it != site->streamersNickID.end(); ++it){
         unsigned int id = it->second;
         Streamer* streamer = (Streamer*) site->users.at(id);
-        int views = streamer->getNumViewers();
+        int views;
+        if (streamer->inAStream())
+            views = streamer->getNumViewers();
+        else views = -1;
         if (views > maxViews){
             maxViews = views;
             best = streamer;
