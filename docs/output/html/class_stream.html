@@ -65,8 +65,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="class_stream-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Stream Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -137,6 +137,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a06bb3f905459f7e25b15ec84dd3c6948"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a06bb3f905459f7e25b15ec84dd3c6948">getId</a> ()</td></tr>
 <tr class="memdesc:a06bb3f905459f7e25b15ec84dd3c6948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>.  <a href="class_stream.html#a06bb3f905459f7e25b15ec84dd3c6948">More...</a><br /></td></tr>
 <tr class="separator:a06bb3f905459f7e25b15ec84dd3c6948"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649a24b0d20b4b88c0350b8c2cfd08d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a649a24b0d20b4b88c0350b8c2cfd08d8">setStreamerNick</a> (string nick)</td></tr>
+<tr class="memdesc:a649a24b0d20b4b88c0350b8c2cfd08d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>.  <a href="class_stream.html#a649a24b0d20b4b88c0350b8c2cfd08d8">More...</a><br /></td></tr>
+<tr class="separator:a649a24b0d20b4b88c0350b8c2cfd08d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memItemLeft" align="right" valign="top"><a id="abdd6a43f2fb13544cb4c9c4ba8f1be7c"></a>
+static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#abdd6a43f2fb13544cb4c9c4ba8f1be7c">nextID</a> = 0</td></tr>
+<tr class="memdesc:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the next <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> created. <br /></td></tr>
+<tr class="separator:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -174,13 +184,6 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#a04cd4819ec0a8e939187377cd9586164">id</a></td></tr>
 <tr class="memdesc:a04cd4819ec0a8e939187377cd9586164"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a04cd4819ec0a8e939187377cd9586164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
-Static Protected Attributes</h2></td></tr>
-<tr class="memitem:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memItemLeft" align="right" valign="top"><a id="abdd6a43f2fb13544cb4c9c4ba8f1be7c"></a>
-static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream.html#abdd6a43f2fb13544cb4c9c4ba8f1be7c">nextID</a> = 0</td></tr>
-<tr class="memdesc:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the next <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> created. <br /></td></tr>
-<tr class="separator:abdd6a43f2fb13544cb4c9c4ba8f1be7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class representing a stream. </p>
@@ -521,6 +524,32 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Remove user from vector that contains all users watching the stream </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">user</td><td>unsigned int that represents a user index on the <a class="el" href="class_stream_z.html" title="Main class of the application. Manages all of the other ones, shows the menus and manipulates inputs.">StreamZ</a> class vector of users </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a649a24b0d20b4b88c0350b8c2cfd08d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a649a24b0d20b4b88c0350b8c2cfd08d8">&#9670;&nbsp;</a></span>setStreamerNick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::setStreamerNick </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nick</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nick</td><td>Nickname of the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> </td></tr>
   </table>
   </dd>
 </dl>
