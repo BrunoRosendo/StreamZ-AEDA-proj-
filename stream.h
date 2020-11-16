@@ -157,13 +157,13 @@ public:
      * @brief Gets the ID of the Stream
      * @return Unsigned int containing the ID of the Stream
      */
-    unsigned int getId();
+    unsigned int getId() const;
 
     /**
      * @brief Sets the nickname of the Streamer
      * @param nick Nickname of the Streamer
      */
-    void setStreamerNick(string nick);
+    void setStreamerNick(const string& nick);
 };
 
 /**
@@ -225,7 +225,7 @@ public:
      * @brief Adds a message from a Viewer to the messages vector
      * @param message Message written by a Viewer
      */
-    void addMessage(std::string message); // the message includes the name of the user
+    void addMessage(const std::string& message); // the message includes the name of the user
 };
 
 /**

@@ -10,7 +10,7 @@
 #include "stream.h"
 
 
-class Admin;    // forward declaration, in order to seperate the files
+class Admin;    // forward declaration, in order to separate the files
 
 /**
  * @brief Main class of the application. Manages all of the other ones, shows the menus and manipulates inputs
@@ -79,7 +79,7 @@ public:
     /**
      * @brief Creates a Streamer using user inputs
      */
-    void createStreamer();   //args will be received by input from console
+    void createStreamer();
 
     /**
      * @brief Creates a Viewer using user input
@@ -102,7 +102,7 @@ public:
      * history accordingly
      * @param streamer Streamer who will end the Stream
      */
-    void deleteStream(Streamer* streamer);  // deletes the stream which the streamer wants to end
+    void deleteStream(Streamer* streamer);
 
     /**
      * @brief Fetches data from the files and restores a previously saved state of the site

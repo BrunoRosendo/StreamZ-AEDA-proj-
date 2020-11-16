@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <algorithm>
 #include <string>
 #include "user.h"
 
@@ -54,7 +53,7 @@ User::User(const std::string& name, const std::string& nick, const Date& birthDa
     this->nick = nick;
     this->birthDate = birthDate;
     this->ID = id;
-    stream = NULL;
+    stream = nullptr;
 }
 
 User::~User() = default;
@@ -77,7 +76,7 @@ std::string User::getName() const {
     return name;
 }
 
-int User::getAge() const {
+unsigned int User::getAge() const {
     return birthDate.getAge();
 }
 
@@ -216,7 +215,6 @@ void Viewer::joinStream(Stream *stream) {
     if (getAge() < stream->getMinAge())
         throw NotOldEnough(this->name + " is not old enough to watch " + stream->getTitle());
     this->stream = stream;
-    //this->streamHistory.insert(stream->getId());       // inserts the stream on the user history, since it is a set its ok if it duplicates somewhere else
 }
 
 void Viewer::leaveStream() {
@@ -230,7 +228,7 @@ void Viewer::feedback(int like) {
     stream->feedback(like);
 }
 
-void Viewer::message(std::string text) const {
+void Viewer::message(const std::string& text) const {
     if (stream == nullptr) throw NotInAStream(this->nick + " can't message because he's not watching any stream");
     PrivateStream* s = (PrivateStream*) stream;
     s->addMessage(nick + ": " + text);

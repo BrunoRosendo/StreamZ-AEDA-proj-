@@ -26,14 +26,6 @@ string NoCapacity::what() {
 }
 
 
-
-/**
- * Constructor of class Stream
- * @param title
- * @param startDate
- * @param language
- * @param minAge
- */
 Stream::Stream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick) {
     this->title = title, this->startDate = startDate, this->language = language, this->minAge = minAge, this->numViewers = 0;
     this->streamerNick = streamerNick; noLikes = 0;
@@ -42,10 +34,7 @@ Stream::Stream(const string& title, const Date& startDate, const string& languag
 
 Stream::~Stream() = default;
 
-/**
- * Remove user from vector that contains all users watching the stream
- * @param user unsigned int that represents a user index on the StreamZ class vector of users
- */
+
 void Stream::removeUser(unsigned int user) {
     this->viewers.erase(viewers.find(user));
     this->numViewers--;
@@ -140,7 +129,7 @@ void PrivateStream::showMessages() const {
     }
 }
 
-void PrivateStream::addMessage(std::string message) {
+void PrivateStream::addMessage(const std::string& message) {
     messages.push_back(message);
 }
 
@@ -151,10 +140,10 @@ ostream& operator<<(ostream& out, Stream& stream){
     return out;
 }
 
-unsigned int Stream::getId() {
+unsigned int Stream::getId() const{
     return this->id;
 }
 
-void Stream::setStreamerNick(string nick) {
+void Stream::setStreamerNick(const string& nick) {
     this->streamerNick = nick;
 }

@@ -111,7 +111,7 @@ public:
      * @brief Gets the age of the User
      * @return Integer containing the age of the User
      */
-    int getAge() const;
+    unsigned int getAge() const;
 
     /**
      * @brief Gets the age of the User as a string
@@ -295,7 +295,7 @@ public:
      * Throw NotInAStream exception if the Viewer is not watching a PrivateStream
      * @param text Message the Viewer wants to send to the Streamer
      */
-    void message(std::string text) const;
+    void message(const std::string& text) const;
 
     /**
      * @brief TheViewer sends feedback to the Stream he's currently watching, in the form of a like or a dislike

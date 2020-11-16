@@ -86,14 +86,14 @@ public:
      * @param date Date used for comparison
      * @return Returns true if the dates are equal and false otherwise
      */
-    bool operator==(const Date& date);
+    bool operator==(const Date& date) const;
 
     /**
      * @brief Checks if two dates are different
      * @param date Date used for comparison
      * @return Returns true if the dates are different and false otherwise
      */
-    bool operator!=(const Date& date);
+    bool operator!=(const Date& date) const;
 
     /**
      * @brief Checks if this date is after a given date
@@ -155,7 +155,7 @@ public:
      * @brief Creates a DateIsNotValid exception with a given date
      * @param date Date which was invalid
      */
-    DateIsNotValid(string date);
+    DateIsNotValid(const string& date);
 
     /**
      * @brief Gets the date which was invalid

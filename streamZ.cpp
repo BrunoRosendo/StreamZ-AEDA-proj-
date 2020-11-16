@@ -47,7 +47,6 @@ void StreamZ::fetchDataFromFile() {
     unsigned int id, pastStreamId;
     std::set<unsigned int> pastStreams;
     int counter = 0;
-    //IMPLEMENT VIEWERS FILE FIRST
 
     fin.open(viewersFile);              // START TO READ VIEWERS
     if(!fin.is_open()){
@@ -76,11 +75,6 @@ void StreamZ::fetchDataFromFile() {
                 if(line[0] == '*'){     //stream history member
                     line = line.substr(1); // slice the 1st char of the string
                     pastStreamId = stoi(line);
-                    /*
-                    getline(fin, line2);
-                    struct PastStream s;
-                    s.name = line, s.noViewers = stoi(line2);
-                     */
                     pastStreams.insert(pastStreamId);
                 }
                 else{                      // transition to new streamer
@@ -273,7 +267,7 @@ void StreamZ::storeDataInFile(){
 }
 
 
-void StreamZ::init(){ //prototipo, so para mostrar a ideia
+void StreamZ::init(){
     while (true) {
         cout << "WELCOME TO STREAMZ" << endl << endl;
         cout << "1- Create Viewer" << endl << "2- Create Streamer" << endl;
@@ -313,9 +307,9 @@ void StreamZ::init(){ //prototipo, so para mostrar a ideia
     }
 }
 
-void StreamZ::userMenu() {  // Depois vai ter de escolher o user que é
+void StreamZ::userMenu() {
     while (true) {
-        cout << "Which type of user are you?" << endl << endl   // "Select type of user:" *FICA MELHOR TALVEZ*
+        cout << "Which type of user are you?" << endl << endl
              << "1- Viewer" << endl << "2- Streamer" << endl << "3- Go back" << endl;
         int choice;
         cin >> choice;
@@ -960,14 +954,14 @@ void StreamZ::createStream(Streamer *streamer) {
                     publicStreams.push_back(newStream);
 
                     struct PastStream* pastStream = new PastStream(newStream);      //add a past stream to the global map
-                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of 0
+                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of -1
 
                     error = false;
                     break;
                 }
                 catch (AlreadyInAStream &e) {
                     cout << e.what() << endl;
-                    error = true;   // desnecessario?
+                    error = true;
                     break;
                 }
             }
@@ -983,7 +977,7 @@ void StreamZ::createStream(Streamer *streamer) {
                     privateStreams.push_back(newStream);
 
                     struct PastStream* pastStream = new PastStream(newStream);      //add a past stream to the global map
-                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of 0
+                    this->pastStreams.insert({newStream->getId(), pastStream});     //no_viewers has a default value of -1
 
                     error = false;
                     break;

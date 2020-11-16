@@ -2,7 +2,6 @@
 // Created by bruno on 24/10/2020.
 //
 
-#include <iostream>
 #include <string>
 #include <sstream>
 #include <ctime>
@@ -12,7 +11,7 @@ using namespace std;
 
 
 Date::Date() {
-    time_t now = time(NULL);
+    time_t now = time(nullptr);
     struct tm times = *localtime(&now);
     int year = times.tm_year + 1900;
     int month = times.tm_mon + 1;
@@ -21,9 +20,9 @@ Date::Date() {
 }
 
 Date::Date(unsigned int year, unsigned int month, unsigned int day) {
-    int year1 = year;
-    int month1 = month;
-    int day1 = day;
+    unsigned int year1 = year;
+    unsigned int month1 = month;
+    unsigned int day1 = day;
     setDate(year1, month1, day1);
 }
 
@@ -108,11 +107,11 @@ unsigned int Date::getAge() const {
     return today.getYear() - this->getYear() - 1;
 }
 
-bool Date::operator==(const Date &date) {
+bool Date::operator==(const Date &date) const {
     return getDate() == date.getDate();
 }
 
-bool Date::operator!=(const Date &date) {
+bool Date::operator!=(const Date &date) const {
     return getDate() != date.getDate();
 }
 
@@ -148,7 +147,7 @@ bool Date::operator<=(const Date &date) {
     return (*this) < date || (*this) == date;
 }
 
-DateIsNotValid::DateIsNotValid(string date){
+DateIsNotValid::DateIsNotValid(const string& date){
     this->date = date;
 }
 
