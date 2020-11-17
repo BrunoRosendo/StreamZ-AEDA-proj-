@@ -9,8 +9,10 @@ Miss Mushrooms
 6
 *9
 *10
+*13
 /1
 /3
+/7
 Joao Gil
 Monkin
 2001/04/07
@@ -21,6 +23,7 @@ Monkin
 *11
 /1
 /3
+/7
 Shroud
 Russian Shrimp
 2000/01/02
@@ -29,6 +32,17 @@ Russian Shrimp
 *5
 *6
 *8
+*12
+*16
 /1
 /3
-/5
+/7
+Sasha Bitch
+S1mple
+1987/12/12
+8
+*14
+*15
+/1
+/3
+/7
