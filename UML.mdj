@@ -859,7 +859,7 @@
 											"top": 1133,
 											"width": 409.31591796875,
 											"height": 13,
-											"text": "+setSubscriber(subscribers: set<int>)",
+											"text": "+setSubscribers(subscribers: set<int>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -876,7 +876,7 @@
 											"top": 1148,
 											"width": 409.31591796875,
 											"height": 13,
-											"text": "+addSubscribers(id: int)",
+											"text": "+addSubscriber(id: int)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -893,7 +893,7 @@
 											"top": 1163,
 											"width": 409.31591796875,
 											"height": 13,
-											"text": "+removeSubscribe(id: int)",
+											"text": "+removeSubscriber(id: int)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1796,7 +1796,7 @@
 											"top": 845,
 											"width": 506.8349609375,
 											"height": 13,
-											"text": "#nextID: static int",
+											"text": "+nextID: static int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -6750,7 +6750,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF1VZs41Vg/UwQ="
 							},
-							"name": "setSubscriber",
+							"name": "setSubscribers",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -6769,7 +6769,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF1VZs41Vg/UwQ="
 							},
-							"name": "addSubscribers",
+							"name": "addSubscriber",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -6788,7 +6788,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF1VZs41Vg/UwQ="
 							},
-							"name": "removeSubscribe",
+							"name": "removeSubscriber",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -7272,7 +7272,6 @@
 								"$ref": "AAAAAAF1Va2Hm2GFE1A="
 							},
 							"name": "nextID",
-							"visibility": "protected",
 							"type": "static int"
 						}
 					],
