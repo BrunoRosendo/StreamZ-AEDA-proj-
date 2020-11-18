@@ -6,7 +6,7 @@ var searchData=
   ['setdate_239',['setDate',['../class_date.html#a662ff2e6d95395109716fc0a40f8c4f9',1,'Date']]],
   ['setname_240',['setName',['../class_admin.html#aa960b6fa05147013c0aaf101ca541f2b',1,'Admin::setName()'],['../class_user.html#abe087f191699f9d61bdc94d041e4fada',1,'User::setName()']]],
   ['setnick_241',['setNick',['../class_user.html#af4385e7fd2a3d82289c7939fd761f2b7',1,'User']]],
-  ['setstreamernick_242',['setStreamerNick',['../class_stream.html#a649a24b0d20b4b88c0350b8c2cfd08d8',1,'Stream']]],
+  ['setstreamernick_242',['setStreamerNick',['../class_stream.html#a7989db0f6960241b948fbe0098e41276',1,'Stream']]],
   ['setstreamhistory_243',['setStreamHistory',['../class_user.html#a086281caa00001986f9310092c025bc2',1,'User']]],
   ['setsubscribers_244',['setSubscribers',['../class_streamer.html#aafd4ddab11e34447969085499b212ed8',1,'Streamer']]],
   ['showmessages_245',['showMessages',['../class_private_stream.html#afbad3c27b9a79997f7bebc8c3d577f8f',1,'PrivateStream']]],

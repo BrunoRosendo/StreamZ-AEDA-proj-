@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['getage_22',['getAge',['../class_date.html#ada80076ff42cfc30b3fd24b1f91d91f7',1,'Date::getAge()'],['../class_user.html#a71385d4c5a3a509af5024b3c8e1e1aa9',1,'User::getAge()']]],
+  ['getage_22',['getAge',['../class_date.html#ada80076ff42cfc30b3fd24b1f91d91f7',1,'Date::getAge()'],['../class_user.html#a7cb83cbd05e67d0632b792253c278c17',1,'User::getAge()']]],
   ['getagestring_23',['getAgeString',['../class_user.html#a1e696943ac4109f29fece3557b7823fb',1,'User']]],
   ['getavgviews_24',['getAvgViews',['../class_admin.html#a20abffef734dce96f7436d5e4a82767c',1,'Admin::getAvgViews() const'],['../class_admin.html#abac0bfe1478afb9622771393a16d9a46',1,'Admin::getAvgViews(Date &amp;from, const Date &amp;to) const']]],
   ['getdate_25',['getDate',['../class_date.html#ac33192f734973548e97e9b5d8da44a5b',1,'Date']]],
   ['getday_26',['getDay',['../class_date.html#a13855b25efb79eaf7dccf08555421a1d',1,'Date']]],
-  ['getid_27',['getID',['../class_user.html#a85902911ca470dc35d9fe98c4ea4af21',1,'User::getID()'],['../class_stream.html#a06bb3f905459f7e25b15ec84dd3c6948',1,'Stream::getId()']]],
+  ['getid_27',['getID',['../class_user.html#a85902911ca470dc35d9fe98c4ea4af21',1,'User::getID()'],['../class_stream.html#ae5272884f439007d08603ffc201c57d1',1,'Stream::getId()']]],
   ['getlanguage_28',['getLanguage',['../class_stream.html#a629a8b55e9a3c5e0929b3026f2632d53',1,'Stream']]],
   ['getminage_29',['getMinAge',['../class_stream.html#ab45d97c7dce808985df7a5d16b8e858a',1,'Stream']]],
   ['getmonth_30',['getMonth',['../class_date.html#a6152596dcf2e1e78e2095ea518de59e7',1,'Date']]],
