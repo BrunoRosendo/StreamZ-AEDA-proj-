@@ -616,7 +616,10 @@ void StreamZ::streamingOptions(int id) {
             cin >> choice;
             cin.ignore(100, '\n');
             if (choice == 'y' || choice == 'Y') createStream(s);
-            else return;
+            else{
+                cout << "That's not a valid option!" << endl;
+                return;
+            }
         }
         cout << "What do you wish to do?" << endl << endl;
         cout << "1- See number of viewers" << endl << "2- See feedback" << endl << "3- End stream"
@@ -1192,6 +1195,7 @@ bool StreamZ::adminSettings() {
             case 2:{
                 delete admin;
                 admin = nullptr;
+                cout << "Account deleted with success!" << endl;
                 return true;
             }
             case 3:
@@ -1248,8 +1252,11 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                     getline(cin, choice2);
                 }
                 filteredStreams = this->searchStreamsByTitle(choice2);
-                for(int i = 0; i < filteredStreams.size(); i++)
-                    cout << i+1 << "- " << *(filteredStreams[i])<< endl;
+                for(int i = 0; i < filteredStreams.size(); i++) {
+                    cout << i + 1 << "- ";
+                    filteredStreams.at(i)->showStream();
+                    cout << endl;
+                }
                 break;
             case 2:
                 cout << "What language are you looking for?" << endl;
@@ -1261,8 +1268,11 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                     getline(cin, choice2);
                 }
                 filteredStreams = this->searchStreams(choice2);
-                for(int i = 0; i < filteredStreams.size(); i++)
-                    cout << i+1 << "- " << *(filteredStreams[i]) << endl;
+                for(int i = 0; i < filteredStreams.size(); i++) {
+                    cout << i + 1 << "- ";
+                    filteredStreams.at(i)->showStream();
+                    cout << endl;
+                }
                 break;
             case 3:
                 cout << "What is the minimum age?" << endl;
@@ -1275,8 +1285,11 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                 }
                 cin.ignore(1000, '\n');
                 filteredStreams = this->searchStreams(ageChoice);
-                for(int i = 0; i < filteredStreams.size(); i++)
-                    cout << i+1 << "- " << *(filteredStreams[i]) << endl;
+                for(int i = 0; i < filteredStreams.size(); i++) {
+                    cout << i + 1 << "- ";
+                    filteredStreams.at(i)->showStream();
+                    cout << endl;
+                }
                 break;
             case 4:
                 return filteredStreams;

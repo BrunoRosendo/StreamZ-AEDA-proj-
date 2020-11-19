@@ -106,11 +106,13 @@ public:
 
     /**
      * @brief Fetches data from the files and restores a previously saved state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void fetchDataFromFile();
 
     /**
      * @brief Stores data in the files, saving the state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void storeDataInFile();
 
@@ -230,7 +232,7 @@ public:
     void viewerMenu(int id);
 
     /**
-     * The streamer can list all all the Streams, list the top viewed/liked Streams, search for Streams(searchStreamsMenu()),
+     * The streamer can list all the Streams, list the top viewed/liked Streams, search for Streams(searchStreamsMenu()),
      * list all Users, show number of subscribers, list his subscribers, go to streamingOptions(), go to
      * streamerSettings() or go back to userMenu()
      * @brief Menu with all the streamer's options
