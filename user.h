@@ -126,8 +126,8 @@ public:
     unsigned int getID() const;
 
     /**
-     * @brief Gets the pointer to the Stream of the User (either streaming or watching). Throws NotInAStream exception
-     * if the User isn't in one
+     * @brief Gets the pointer to the Stream of the User (either streaming or watching)
+     * @throw NotInAStream If the User isn't in a Stream
      * @return Stream* of the User's Stream
      */
     Stream* getStream() const;
@@ -163,7 +163,8 @@ public:
 
     /**
      * @brief Creates a Streamer with given name, nick and birthdate. The ID is set to nextID and increments it.
-     * Throws NotOldEnough exception if the User is younger than 15. Also see User()
+     * Also see User()
+     * @throw NotOldEnough If the User is younger than 15
      * @param name Name of the Streamer
      * @param nick Nickname of the Streamer
      * @param birthDate Birthdate of the Streamer
@@ -171,8 +172,8 @@ public:
     Streamer(const std::string& name, const std::string& nick, const Date& birthDate);
 
     /**
-     * @brief Creates a Streamer with given name, nick, birthdate and ID. Increments nextID.
-     * Throws NotOldEnough exception if the User is younger than 15. Also see User()
+     * @brief Creates a Streamer with given name, nick, birthdate and ID. Increments nextID. Also see User()
+     * @throw NotOldEnough If the User is younger than 15
      * @param name Name of the Streamer
      * @param nick Nickname of the Streamer
      * @param birthDate Birthdate of the Streamer
@@ -186,8 +187,8 @@ public:
     virtual ~Streamer();
 
     /**
-     * @brief Gets the number of Viewers currently on the Streamer's Stream. Throws NotInAStream exception
-     * if he isn't streaming
+     * @brief Gets the number of Viewers currently on the Streamer's Stream
+     * @throw NotInAStream If the Streamer isn't streaming
      * @return Integer containing the number of Viewers
      */
     int getNumViewers() const;
@@ -205,12 +206,14 @@ public:
     std::set<unsigned int>& getSubscribers();
 
     /**
-     * @brief Ends the Stream. Throws NotInAStream exception if the Streamer is not streaming
+     * @brief Ends the Stream
+     * @throw NotInAStream If the Streamer isn't streaming
      */
     void endStream();
 
     /**
-     * @brief Starts a new Stream. Throws AlreadyStreaming exception if the Streamer is already streaming
+     * @brief Starts a new Stream.
+     * @throw AlreadyStreaming If the Streamer is already streaming
      * @param stream Pointer to the Stream starting
      */
     void startStream(Stream* stream);
@@ -229,6 +232,7 @@ public:
 
     /**
      * @brief Removes a subscriber from the set
+     * @throw If the given Viewer is not subscribed
      * @param id ID of the subscriber intended to remove
      */
     void removeSubscriber(unsigned int id);
@@ -255,7 +259,8 @@ class Viewer : public User{
 public:
     /**
      * @brief Creates a Viewer with given name, nick and birthdate. The ID is set to nextID and increments it.
-     * Throws NotOldEnough exception if the user is younger than 12. Also see User()
+     * Also see User()
+     * @throw NotOldEnough If the User is younger than 12
      * @param name Name of the Viewer
      * @param nick Nickname of the Viewer
      * @param birthDate Birthdate of the Viewer
@@ -264,7 +269,8 @@ public:
 
     /**
      * @brief Creates a Viewer with given name, nick, birthdate and ID. Increments nextID.
-     * Throws NotOldEnough exception if the user is younger than 12. Also see User()
+     * Also see User()
+     * @throw NotOldEnough If the User is younger than 12
      * @param name Name of the Viewer
      * @param nick Nickname of the Viewer
      * @param birthDate Birthdate of the Viewer
@@ -278,21 +284,22 @@ public:
     virtual ~Viewer();
 
     /**
-     * @brief The viewer joins a stream. Throws AlreadyStreaming exception if the viewer is already watching a stream.
-     * Throws NotOldEnough exception if the viewer is not old enough to join the stream
+     * @brief The viewer joins a stream
+     * @throw NotOldEnough If the Viewer is not old enough to join the stream
+     * @throw AlreadyInAStream if the Viewer is already watching a Stream
      * @param stream Pointer to the Stream intended to join
      */
     void joinStream(Stream* stream);
 
     /**
-     * @brief The viewer leaves the Stream he is currently watching. Throws NotInAStream exception if the Viewer
-     * is not watching a Stream
+     * @brief The viewer leaves the Stream he is currently watching
+     * @throw NotInAStream if the Viewer is not watching a Stream
      */
     void leaveStream();
 
     /**
      * @brief The Viewer sends a message to the Streamer he's currently watching. Can only be used while in a PrivateStream
-     * Throw NotInAStream exception if the Viewer is not watching a PrivateStream
+     * @throw NotInAStream if the Viewer is not watching a PrivateStream
      * @param text Message the Viewer wants to send to the Streamer
      */
     void message(const std::string& text) const;
@@ -300,6 +307,7 @@ public:
     /**
      * @brief TheViewer sends feedback to the Stream he's currently watching, in the form of a like or a dislike
      * @param like Value of the feedback the Viewer sent. Either 1 or -1 (like or dislike)
+     * @throw NotInAStream if the Viewer is not watching a Stream
      */
     void feedback(int like);
 

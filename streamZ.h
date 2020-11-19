@@ -106,11 +106,13 @@ public:
 
     /**
      * @brief Fetches data from the files and restores a previously saved state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void fetchDataFromFile();
 
     /**
      * @brief Stores data in the files, saving the state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void storeDataInFile();
 
