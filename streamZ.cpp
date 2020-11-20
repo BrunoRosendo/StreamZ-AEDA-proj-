@@ -144,6 +144,7 @@ void StreamZ::fetchDataFromFile() {
                     name = line;            //saves the name of the next user
                     counter = 1;
                     pastStreams.clear();
+                    subscribers.clear();
                 }
                 break;
         }

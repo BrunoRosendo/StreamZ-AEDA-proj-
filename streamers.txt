@@ -21,7 +21,6 @@ Le King
 /1
 /3
 /10
-/40122816
 Claudia
 Miss Mushrooms
 1994/12/12
@@ -33,7 +32,6 @@ Miss Mushrooms
 /3
 /7
 /10
-/40122816
 Joao Gil
 Monkin
 2001/04/07
@@ -46,7 +44,6 @@ Monkin
 /3
 /7
 /10
-/40122816
 Shroud
 Russian Shrimp
 2000/01/02
@@ -62,4 +59,3 @@ Russian Shrimp
 /3
 /7
 /10
-/40122816
