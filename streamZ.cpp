@@ -91,11 +91,13 @@ void StreamZ::fetchDataFromFile() {
                 break;
         }
     }
-    Date birthDate(date);   // create object of class Date with the string date
-    Viewer* viewer = new Viewer(name, nick, birthDate, id);
-    viewer->setStreamHistory(pastStreams);
-    this->users.insert({id, viewer});
-    this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
+    if(counter != 0){          // if file has at least 1 Viewer
+        Date birthDate(date);   // create object of class Date with the string date
+        Viewer* viewer = new Viewer(name, nick, birthDate, id);
+        viewer->setStreamHistory(pastStreams);
+        this->users.insert({id, viewer});
+        this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
+    }
     fin.close();
 
     fin.open(streamersFile);            // START TO READ STREAMERS
@@ -149,12 +151,14 @@ void StreamZ::fetchDataFromFile() {
                 break;
         }
     }
-    Date birthDate2(date);   // create object of class Date with the string date
-    Streamer* streamer = new Streamer(name, nick, birthDate2, id);
-    streamer->setStreamHistory(pastStreams);
-    streamer->setSubscribers(subscribers);
-    this->users.insert({id, streamer});
-    this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+    if(counter != 0){           // if file has at least 1 Streamer
+        Date birthDate2(date);   // create object of class Date with the string date
+        Streamer* streamer = new Streamer(name, nick, birthDate2, id);
+        streamer->setStreamHistory(pastStreams);
+        streamer->setSubscribers(subscribers);
+        this->users.insert({id, streamer});
+        this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+    }
     fin.close();
     pastStreams.clear();
 
