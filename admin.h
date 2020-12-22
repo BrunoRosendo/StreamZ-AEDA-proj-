@@ -41,12 +41,14 @@ public:
      * @brief Gets the number of Streams created in a given interval of time: [from, to]
      * @param from Start Date
      * @param to End Date
+     * @throw badDateComp If start date is after end date
      * @return Integer containing the number of created Streams in the interval
      */
     int getNumCreatedStreams(Date& from, const Date& to) const;
 
     /**
      * @brief Gets the average views for all the active Streams
+     * @throw NoActiveStreams If there are no active Streams
      * @return Float containing the average views
      */
     float getAvgViews() const;
@@ -55,6 +57,7 @@ public:
      * @brief Gets the average views of the Streams created in a given interval: [from, to]
      * @param from Start Date
      * @param to End Date
+     * @throw badDateComp If start date is after end date
      * @return Float containing the average views
      */
     float getAvgViews(Date& from, const Date& to) const;
@@ -69,6 +72,7 @@ public:
      * @brief Gets the number of PublicStreams created in a given interval of time: [from, to]
      * @param from Start Date
      * @param to End Date
+     * @throw badDateComp If start date is after end date
      * @return Integer containing the number of created PublicStreams in the interval
      */
     int getNumPublicStreams(Date& from, const Date& to) const;
@@ -83,6 +87,7 @@ public:
      * @brief Gets the number of PrivateStreams created in a given interval of time: [from, to]
      * @param from Start Date
      * @param to End Date
+     * @throw badDateComp If start date is after end date
      * @return Integer containing the number of created PrivateStreams in the interval
      */
     int getNumPrivateStreams(Date& from, const Date& to) const;
@@ -102,21 +107,39 @@ public:
     /**
      * @brief Gets the preferred language in a given vector of Streams
      * @param streams Vector of Stream* with the Streams which will be analyzed
+     * @throw NoActiveStreams If there are no active Streams
      * @return String containing the preferred language
      */
     std::string getPreferredLanguage(std::vector<Stream*>& streams) const;
 
     /**
      * @brief Gets the preferred stream type of the active Streams
+     * @throw NoActiveStreams If there are no active Streams
      * @return String containing the preferred Stream type
      */
     std::string getPreferredStreamType() const;
 
     /**
      * @brief Gets the pointer to the most viewed Streamer at the moment
+     * @throw NoActiveStreams If there are no active Streams
      * @return Streamer* to the most viewed Streamer
      */
     Streamer* getMostViewedStreamer() const;
+
+    /**
+     * @brief Lists all the donations in the site, by decreasing order
+     */
+    void listDonations() const;
+
+    /**
+     * @brief Lists the donations in a given interval of ratings, by decreasing order
+     * @param aval1 Lower bound of the interval
+     * @param aval2 Upper bound of the interval
+     * @throw badDateComp if the lower bound is higher than the upper bound
+     */
+    void listDonations(int rate1, int rate2) const;
+
+    void listTopDonations() const;
 };
 
 /**

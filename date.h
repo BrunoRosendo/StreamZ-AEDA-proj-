@@ -37,8 +37,8 @@ public:
     Date(const string& yearMonthDay); // yearMonthDay must be in format "yyyy/mm/dd"
 
     /**
-     * @brief Sets the date to the given year, month and day. Throws a DateIsNotValid exceptions if the parameters
-     * aren't valid
+     * @brief Sets the date to the given year, month and day
+     * @throw DateIsNotValid If the date is not valid
      * @param year Year of the date
      * @param month Month of the date
      * @param day Day of the date

@@ -195,6 +195,8 @@ public:
      * @param streamerNick Nickname of the Streamer controlling the stream
      * @param subscribers Set of Viewers (IDs) subscribed to the Streamer
      * @param capacity Capacity of the stream
+     * @throw NoCapacity If the number of Viewers in the PrivateStream exceeds the capacity
+     * @throw NotSubscribed If the Viewer trying to join isn't subscribed to the Streamer
      */
     PrivateStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick,
                   std::set<unsigned int> &subscribers, int capacity);

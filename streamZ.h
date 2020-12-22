@@ -8,6 +8,8 @@
 #include "user.h"
 #include "date.h"
 #include "stream.h"
+#include "bst.h"
+#include "donation.h"
 
 
 class Admin;    // forward declaration, in order to separate the files
@@ -61,6 +63,11 @@ private:
     std::map<unsigned int, PastStream*> pastStreams;
 
     /**
+     * @brief Viewer's donations to their streamers, ordered by amount and then rating
+     */
+    BST<Donation> donations;
+
+    /**
      * @brief Pointer to the only Admin that can exist in the site; nullptr if the Admin doesn't exist
      */
     Admin* admin;
@@ -98,6 +105,12 @@ public:
     void createStream(Streamer* streamer);
 
     /**
+     * @brief Creates a Donation by asking the user the amount and the rating
+     * @param streamerNick Name of streamer receiving the donation
+     */
+    void createDonation(const string& streamerNick);
+
+    /**
      * @brief Ends and deletes a Stream by a given Streamer. Also creates a pastStream and stores it in the User's
      * history accordingly
      * @param streamer Streamer who will end the Stream
@@ -106,11 +119,13 @@ public:
 
     /**
      * @brief Fetches data from the files and restores a previously saved state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void fetchDataFromFile();
 
     /**
      * @brief Stores data in the files, saving the state of the site
+     * @throw runtime_error If the program fails to open a file
      */
     void storeDataInFile();
 
@@ -156,6 +171,12 @@ public:
      * @param users Set of Users (IDs) to print
      */
     void listUsers(const std::set<unsigned int>& users) const;
+
+    /**
+     * @brief Lists the donations given to a certain Streamer
+     * @param streamerName Nickname of Streamer
+     */
+    void listDonations(const string& streamerName) const;
 
     /**
      * @brief Prints the stream history of a given User
