@@ -114,12 +114,14 @@ std::set<unsigned int>& User::getStreamHistory() {
 Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
+    this->soldMerch = 0;
 }
 
 
-Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id, int soldMerch) : User(name, nick, birthDate, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
+    this->soldMerch = soldMerch;
 }
 
 Streamer::~Streamer() = default;
@@ -219,6 +221,10 @@ void Streamer::addPurchase(string name, int numProducts, int availability){
     this->purchases.push(p);
 }
 
+void Streamer::setPurchases(priority_queue<Purchase>& purchases){
+    this->purchases = purchases;
+}
+
 void Streamer::showMerchPurchases(){
     priority_queue<Purchase> aux = this->purchases;
     cout << setfill(' ') << setw(15) <<  "Name"  << " |" << setw(10) <<  "No. Items" << " |" <<  setw(10) << " Availability" << endl;
@@ -226,6 +232,22 @@ void Streamer::showMerchPurchases(){
         cout << aux.top();
         aux.pop();
     }
+}
+
+int Streamer::getSoldMerch(){
+    return this->soldMerch;
+}
+
+int Streamer::getMerchSalesLimit() {
+    return this->merchSalesLimit;
+}
+
+void Streamer::addSoldMerch(int numOfMerch) {
+    this->soldMerch += numOfMerch;
+}
+
+void Streamer::setNewSalesLimit(int newLimit) {
+    Streamer::merchSalesLimit = newLimit;
 }
 
 ostream& operator<<(ostream& out, const Streamer& streamer){
