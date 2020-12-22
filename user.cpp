@@ -4,8 +4,11 @@
 
 #include <iostream>
 #include <string>
-#include "user.h"
+#include <stack>
+#include <iomanip>
 
+#include "purchase.h"
+#include "user.h"
 using namespace std;
 
 // Exceptions
@@ -38,6 +41,8 @@ string AlreadyInAStream::what() const {
 
 
 unsigned int User::nextID = 0;
+
+int Streamer::merchSalesLimit = 50;
 
 User::User(const std::string& name, const std::string& nick, const Date& birthDate) {
     this->name = name;
@@ -175,6 +180,51 @@ void Streamer::showUser() const {
     }
     else{
         cout << "Currently not streaming" << endl;
+    }
+}
+
+priority_queue<Purchase>& Streamer::getPurchases(){
+    return this->purchases;
+}
+
+bool Streamer::hasPurchase(string name){
+    priority_queue<Purchase> aux = this->getPurchases();
+    while(!aux.empty()){
+        if( aux.top().getName() == name )
+            return true;
+        aux.pop();
+    }
+    return false;
+}
+
+void Streamer::removePurchase(string name) {
+    priority_queue<Purchase> aux;
+    while(!this->purchases.empty()){
+        if(this->purchases.top().getName() == name){
+            this->purchases.pop();
+            break;
+        }
+        else
+            aux.push(this->purchases.top());
+        this->purchases.pop();
+    }
+    while(!aux.empty()){
+        this->purchases.push(aux.top());
+        aux.pop();
+    }
+}
+
+void Streamer::addPurchase(string name, int numProducts, int availability){
+    Purchase p(name, numProducts, availability);
+    this->purchases.push(p);
+}
+
+void Streamer::showMerchPurchases(){
+    priority_queue<Purchase> aux = this->purchases;
+    cout << setfill(' ') << setw(15) <<  "Name"  << " |" << setw(10) <<  "No. Items" << " |" <<  setw(10) << " Availability" << endl;
+    while(!aux.empty()){
+        cout << aux.top();
+        aux.pop();
     }
 }
 

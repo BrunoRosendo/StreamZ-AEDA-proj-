@@ -490,11 +490,20 @@ void StreamZ::watchingOptions(int id) {
     Viewer* v = (Viewer*) users.at(id);
     string streamerNick = v->getStream()->getStreamerNick();
     Streamer* s = (Streamer *) users.at(streamersNickID.at(streamerNick));
+    bool hasPurchase = false;
     while (true) {
         cout << "You are currently watching " << v->getStream()->getTitle() << ". Here, you can:" << endl << endl
              << "1- Give feedback" << endl << "2- Show stream details" << endl;
         if (s->isSubscriber(id)) cout << "3- Unsubscribe to the streamer";
         else cout << "3- Subscribe to the streamer";
+        if ( s->hasPurchase(v->getNick()) ){
+            hasPurchase = true;
+            cout << endl << "7- Cancel purchase";
+        }
+        else{
+            hasPurchase = false;
+            cout << endl << "7- Buy merchandising";
+        }
         cout << endl << "4- Leave stream" << endl << "5- Account Settings" << endl<< "6- Go back" << endl;
         int choice;
         cin >> choice;
@@ -546,6 +555,26 @@ void StreamZ::watchingOptions(int id) {
                 break;
             case 6:
                 return;
+            case 7:
+                if(hasPurchase)
+                    s->removePurchase(v->getNick());
+                else{
+                    int numProducts, availability;
+                    cout << "How many products do you wish to acquire?" << endl;
+                    cin >> numProducts;
+                    cin.ignore(100, '\n');
+                    while(true){
+                        cout << "What is your purchase availability? (1-5)" << endl;
+                        cin >> availability;
+                        cin.ignore(100, '\n');
+                        if( (availability <= 5) && (availability >= 1) )
+                            break;
+                        else
+                            cout << "Availability has to be a number from 1 to 5" << endl;
+                    }
+                    s->addPurchase(v->getNick(), numProducts, availability);
+                }
+                break;
             default:
                 cout << "Enter a valid number" << endl << endl;
         }
@@ -627,7 +656,7 @@ void StreamZ::streamingOptions(int id) {
             }
         }
         cout << "What do you wish to do?" << endl << endl;
-        cout << "1- See number of viewers" << endl << "2- See feedback" << endl << "3- End stream"
+        cout << "1- See number of viewers" << endl << "2- See feedback" <<  endl << "3- End stream"
              << endl << "4- Go back" << endl;
         int c;
         cin >> c;
@@ -1103,10 +1132,11 @@ bool StreamZ::viewerSettings(int id) {
 }
 
 bool StreamZ::streamerSettings(int id) {
+    Streamer* s = (Streamer*) users.at(id);
     while (true) {
         cout << "What do you wish to do?" << endl;
         cout << "1- Change name" << endl << "2- Change nickname" << endl << "3- Delete account"
-        << endl << "4- Show stream history" << endl << "5- Go back" << endl;
+        << endl << "4- Show stream history" << endl << "6- Confirm merchandising purchases" << endl << "5- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()) {
@@ -1165,6 +1195,9 @@ bool StreamZ::streamerSettings(int id) {
                 break;
             case 5:
                 return false;
+            case 6:
+                s->showMerchPurchases();
+                break;
             default:
                 cout << "Insert a valid number" << endl << endl;
         }
