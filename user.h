@@ -8,8 +8,10 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <queue>
 #include "date.h"
 #include "stream.h"
+#include "purchase.h"
 
 using namespace std;
 
@@ -159,6 +161,8 @@ private:
      * @brief Set of Viewers subscribed to the Streamer
      */
     std::set<unsigned int> subscribers;
+    priority_queue<Purchase> purchases;
+    static int merchSalesLimit;
 public:
 
     /**
@@ -249,6 +253,35 @@ public:
      */
     virtual void showUser() const;
     friend ostream& operator<<(ostream& out, const Streamer& streamer);
+
+    /**
+     * @brief returns the private member purchases
+     * @return purchases
+     */
+    priority_queue<Purchase>& getPurchases();
+
+    /**
+     *
+     * @param name nickname of the person who made the purchase
+     * @return true if he already has a purchase, otherwise false
+     */
+    bool hasPurchase(string name);
+
+    /**
+     * @brief removes a purchase from the purchase priority_queue
+     * @param name nickname of the person who made the purchase
+     */
+    void removePurchase(string name);
+
+    /**
+     * @brief Adds a purchase to the purchase priority_queue
+     * @param name nickname of who made the purchase
+     * @param numProducts amount of products
+     * @param availability availability scale from 1-5
+     */
+    void addPurchase(string name, int numProducts, int availability);
+
+    void showMerchPurchases();
 };
 
 /**

@@ -92,11 +92,13 @@ void StreamZ::fetchDataFromFile() {
                 break;
         }
     }
-    Date birthDate(date);   // create object of class Date with the string date
-    Viewer* viewer = new Viewer(name, nick, birthDate, id);
-    viewer->setStreamHistory(pastStreams);
-    this->users.insert({id, viewer});
-    this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
+    if(counter != 0){          // if file has at least 1 Viewer
+        Date birthDate(date);   // create object of class Date with the string date
+        Viewer* viewer = new Viewer(name, nick, birthDate, id);
+        viewer->setStreamHistory(pastStreams);
+        this->users.insert({id, viewer});
+        this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
+    }
     fin.close();
 
     fin.open(streamersFile);            // START TO READ STREAMERS
@@ -145,16 +147,19 @@ void StreamZ::fetchDataFromFile() {
                     name = line;            //saves the name of the next user
                     counter = 1;
                     pastStreams.clear();
+                    subscribers.clear();
                 }
                 break;
         }
     }
-    Date birthDate2(date);   // create object of class Date with the string date
-    Streamer* streamer = new Streamer(name, nick, birthDate2, id);
-    streamer->setStreamHistory(pastStreams);
-    streamer->setSubscribers(subscribers);
-    this->users.insert({id, streamer});
-    this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+    if(counter != 0){           // if file has at least 1 Streamer
+        Date birthDate2(date);   // create object of class Date with the string date
+        Streamer* streamer = new Streamer(name, nick, birthDate2, id);
+        streamer->setStreamHistory(pastStreams);
+        streamer->setSubscribers(subscribers);
+        this->users.insert({id, streamer});
+        this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
+    }
     fin.close();
     pastStreams.clear();
 
@@ -512,13 +517,23 @@ void StreamZ::watchingOptions(int id) {
     Viewer* v = (Viewer*) users.at(id);
     string streamerNick = v->getStream()->getStreamerNick();
     Streamer* s = (Streamer *) users.at(streamersNickID.at(streamerNick));
+    bool hasPurchase = false;
     while (true) {
         cout << "You are currently watching " << v->getStream()->getTitle() << ". Here, you can:" << endl << endl
              << "1- Give feedback" << endl << "2- Show stream details" << endl;
         if (s->isSubscriber(id)) cout << "3- Unsubscribe to the streamer";
         else cout << "3- Subscribe to the streamer";
         cout << endl << "4- Donate";
-        cout << endl << "5- Leave stream" << endl << "6- Account Settings" << endl<< "7- Go back" << endl;
+        cout << endl << "5- Leave stream" << endl << "6- Account Settings";
+        if ( s->hasPurchase(v->getNick()) ){
+            hasPurchase = true;
+            cout << endl << "7- Cancel purchase";
+        }
+        else{
+            hasPurchase = false;
+            cout << endl << "7- Buy merchandising";
+        }
+        cout << endl<< "8- Go back" << endl;
         int choice;
         cin >> choice;
         if(cin.fail() || cin.eof()){
@@ -571,6 +586,26 @@ void StreamZ::watchingOptions(int id) {
                 viewerSettings(id);
                 break;
             case 7:
+                if(hasPurchase)
+                    s->removePurchase(v->getNick());
+                else{
+                    int numProducts, availability;
+                    cout << "How many products do you wish to acquire?" << endl;
+                    cin >> numProducts;
+                    cin.ignore(100, '\n');
+                    while(true){
+                        cout << "What is your purchase availability? (1-5)" << endl;
+                        cin >> availability;
+                        cin.ignore(100, '\n');
+                        if( (availability <= 5) && (availability >= 1) )
+                            break;
+                        else
+                            cout << "Availability has to be a number from 1 to 5" << endl;
+                    }
+                    s->addPurchase(v->getNick(), numProducts, availability);
+                }
+                break;
+            case 8:
                 return;
             default:
                 cout << "Enter a valid number" << endl << endl;
@@ -1218,10 +1253,11 @@ bool StreamZ::viewerSettings(int id) {
 }
 
 bool StreamZ::streamerSettings(int id) {
+    Streamer* s = (Streamer*) users.at(id);
     while (true) {
         cout << "What do you wish to do?" << endl;
         cout << "1- Change name" << endl << "2- Change nickname" << endl << "3- Delete account"
-        << endl << "4- Show stream history" << endl << "5- Go back" << endl;
+        << endl << "4- Show stream history" << endl << "6- Confirm merchandising purchases" << endl << "5- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()) {
@@ -1280,6 +1316,9 @@ bool StreamZ::streamerSettings(int id) {
                 break;
             case 5:
                 return false;
+            case 6:
+                s->showMerchPurchases();
+                break;
             default:
                 cout << "Insert a valid number" << endl << endl;
         }

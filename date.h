@@ -47,6 +47,7 @@ public:
 
     /**
      * @brief Gets the year of the date
+     * @throw DateIsNotValid If the date is not valid
      * @return Unsigned int containing the year
      */
     unsigned int getYear() const;
