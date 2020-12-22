@@ -1,16 +1,84 @@
-edshot machine
+Stream1
 0
+400
+2020/11/13
+Stream2
+1
+7
+2020/11/14
+Stream3
 2
-2020/11/20
-jnaskdfnma
-1
-1
-2020/12/21
-Jfnidsafa
-2
-1
-2020/12/21
-You cant
+110
+2020/11/10
+Im back
 3
+0
+2020/10/10
+Shrimp party
+4
 1
-2020/12/21
+2020/10/10
+Minecraft with Monkin
+5
+2
+2020/11/15
+Tetris Friends with my lady
+6
+1
+2020/11/15
+Jogando Among Us com os manos
+7
+2178
+2020/11/15
+Fifazito pra descontrair
+8
+3
+2020/11/15
+Showing what I'm capable of! COD:IW
+9
+5
+2020/11/15
+Lovely stream playing Hollow Knight
+10
+1
+2020/11/15
+Minecraft with the boys
+11
+3
+2020/11/15
+Valorant with Hiko
+12
+4
+2020/11/17
+Once again playing with fans
+13
+9
+2020/11/17
+Playing Faceit
+14
+3
+2020/11/17
+Getting to Immortal in Valorant
+15
+8
+2020/11/17
+fall guys falling into the void
+16
+6
+2020/11/17
+Phasmophobia
+17
+10
+2020/11/20
+Hollow knight is awesome!
+18
+3
+2020/11/20
+Rust with summit
+19
+1
+2020/11/20
+Minecraft
+20
+2
+2020/12/22

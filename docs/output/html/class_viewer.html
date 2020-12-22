@@ -89,23 +89,24 @@ Inheritance diagram for Viewer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c7061441d8ee0d303bab6e9ca8c785e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e">Viewer</a> (const std::string &amp;<a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a>, const std::string &amp;<a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a>, const <a class="el" href="class_date.html">Date</a> &amp;<a class="el" href="class_user.html#ab7c87186af8bdb92822402b2e93e9b64">birthDate</a>)</td></tr>
-<tr class="memdesc:a3c7061441d8ee0d303bab6e9ca8c785e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick and birthdate. The ID is set to nextID and increments it. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a>  <a href="class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e">More...</a><br /></td></tr>
+<tr class="memdesc:a3c7061441d8ee0d303bab6e9ca8c785e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick and birthdate. The ID is set to nextID and increments it. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the user is younger than 12. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a>  <a href="class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e">More...</a><br /></td></tr>
 <tr class="separator:a3c7061441d8ee0d303bab6e9ca8c785e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a212d9abd5d29b05894955a076a787aa4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a212d9abd5d29b05894955a076a787aa4">Viewer</a> (const std::string &amp;<a class="el" href="class_user.html#a085d8d69282b6298964eab8351584536">name</a>, const std::string &amp;<a class="el" href="class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe">nick</a>, const <a class="el" href="class_date.html">Date</a> &amp;<a class="el" href="class_user.html#ab7c87186af8bdb92822402b2e93e9b64">birthDate</a>, unsigned int id)</td></tr>
-<tr class="memdesc:a212d9abd5d29b05894955a076a787aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick, birthdate and ID. Increments nextID. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a>  <a href="class_viewer.html#a212d9abd5d29b05894955a076a787aa4">More...</a><br /></td></tr>
+<tr class="memdesc:a212d9abd5d29b05894955a076a787aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick, birthdate and ID. Increments nextID. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the user is younger than 12. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a>  <a href="class_viewer.html#a212d9abd5d29b05894955a076a787aa4">More...</a><br /></td></tr>
 <tr class="separator:a212d9abd5d29b05894955a076a787aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a324e5a6a1532fe5eac3f3b0e4792b2da"><td class="memItemLeft" align="right" valign="top"><a id="a324e5a6a1532fe5eac3f3b0e4792b2da"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a324e5a6a1532fe5eac3f3b0e4792b2da">~Viewer</a> ()</td></tr>
 <tr class="memdesc:a324e5a6a1532fe5eac3f3b0e4792b2da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor of the derived class <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a>. <br /></td></tr>
 <tr class="separator:a324e5a6a1532fe5eac3f3b0e4792b2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af994853d94174d2e5ead82874b43a254"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#af994853d94174d2e5ead82874b43a254">joinStream</a> (<a class="el" href="class_stream.html">Stream</a> *<a class="el" href="class_user.html#aa9019cb0d5738e57f3881b61b6b97dfc">stream</a>)</td></tr>
-<tr class="memdesc:af994853d94174d2e5ead82874b43a254"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewer joins a stream.  <a href="class_viewer.html#af994853d94174d2e5ead82874b43a254">More...</a><br /></td></tr>
+<tr class="memdesc:af994853d94174d2e5ead82874b43a254"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewer joins a stream. Throws AlreadyStreaming exception if the viewer is already watching a stream. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the viewer is not old enough to join the stream.  <a href="class_viewer.html#af994853d94174d2e5ead82874b43a254">More...</a><br /></td></tr>
 <tr class="separator:af994853d94174d2e5ead82874b43a254"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bcb6d912b95fe17dca5d6c0b811ffe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a1bcb6d912b95fe17dca5d6c0b811ffe7">leaveStream</a> ()</td></tr>
-<tr class="memdesc:a1bcb6d912b95fe17dca5d6c0b811ffe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewer leaves the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> he is currently watching.  <a href="class_viewer.html#a1bcb6d912b95fe17dca5d6c0b811ffe7">More...</a><br /></td></tr>
+<tr class="memitem:a1bcb6d912b95fe17dca5d6c0b811ffe7"><td class="memItemLeft" align="right" valign="top"><a id="a1bcb6d912b95fe17dca5d6c0b811ffe7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a1bcb6d912b95fe17dca5d6c0b811ffe7">leaveStream</a> ()</td></tr>
+<tr class="memdesc:a1bcb6d912b95fe17dca5d6c0b811ffe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewer leaves the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> he is currently watching. Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a>. <br /></td></tr>
 <tr class="separator:a1bcb6d912b95fe17dca5d6c0b811ffe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6d851f0253cabe05aa4742c917f02a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a4e6d851f0253cabe05aa4742c917f02a">message</a> (const std::string &amp;text) const</td></tr>
-<tr class="memdesc:a4e6d851f0253cabe05aa4742c917f02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> sends a message to the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> he's currently watching. Can only be used while in a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a>.  <a href="class_viewer.html#a4e6d851f0253cabe05aa4742c917f02a">More...</a><br /></td></tr>
+<tr class="memdesc:a4e6d851f0253cabe05aa4742c917f02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> sends a message to the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> he's currently watching. Can only be used while in a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a> Throw <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a>.  <a href="class_viewer.html#a4e6d851f0253cabe05aa4742c917f02a">More...</a><br /></td></tr>
 <tr class="separator:a4e6d851f0253cabe05aa4742c917f02a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11159615c13fde3f1d3769a5d446845b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_viewer.html#a11159615c13fde3f1d3769a5d446845b">feedback</a> (int like)</td></tr>
 <tr class="memdesc:a11159615c13fde3f1d3769a5d446845b"><td class="mdescLeft">&#160;</td><td class="mdescRight">TheViewer sends feedback to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> he's currently watching, in the form of a like or a dislike.  <a href="class_viewer.html#a11159615c13fde3f1d3769a5d446845b">More...</a><br /></td></tr>
@@ -150,7 +151,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a85902911ca470dc35d9fe98c4ea4af21 inherit pub_methods_class_user"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_user.html#a85902911ca470dc35d9fe98c4ea4af21">More...</a><br /></td></tr>
 <tr class="separator:a85902911ca470dc35d9fe98c4ea4af21 inherit pub_methods_class_user"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae00c6587c94aae64905bd67268cc34e3 inherit pub_methods_class_user"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">getStream</a> () const</td></tr>
-<tr class="memdesc:ae00c6587c94aae64905bd67268cc34e3 inherit pub_methods_class_user"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streaming or watching)  <a href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">More...</a><br /></td></tr>
+<tr class="memdesc:ae00c6587c94aae64905bd67268cc34e3 inherit pub_methods_class_user"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> of the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> (either streaming or watching). Throws <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> isn't in one.  <a href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">More...</a><br /></td></tr>
 <tr class="separator:ae00c6587c94aae64905bd67268cc34e3 inherit pub_methods_class_user"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f6fa1bffa8bfb7714e700e4d0cc9da6 inherit pub_methods_class_user"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6">inAStream</a> () const</td></tr>
 <tr class="memdesc:a1f6fa1bffa8bfb7714e700e4d0cc9da6 inherit pub_methods_class_user"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is currently in a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> (either streaming or watching)  <a href="class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6">More...</a><br /></td></tr>
@@ -233,13 +234,7 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
       </table>
 </div><div class="memdoc">
 
-<p>Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick and birthdate. The ID is set to nextID and increments it. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a> </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a></td><td>If the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is younger than 12 </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick and birthdate. The ID is set to nextID and increments it. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the user is younger than 12. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name of the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> </td></tr>
@@ -289,13 +284,7 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
       </table>
 </div><div class="memdoc">
 
-<p>Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick, birthdate and ID. Increments nextID. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a> </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a></td><td>If the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a> is younger than 12 </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Creates a <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> with given name, nick, birthdate and ID. Increments nextID. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the user is younger than 12. Also see <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068" title="Creates a User with given name, nick and birthdate; stream is initialized with nullptr.">User()</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name of the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> </td></tr>
@@ -332,12 +321,6 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a></td><td>if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -357,42 +340,10 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
       </table>
 </div><div class="memdoc">
 
-<p>The viewer joins a stream. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a></td><td>If the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not old enough to join the stream </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_already_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly in a Stream.">AlreadyInAStream</a></td><td>if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is already watching a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>The viewer joins a stream. Throws AlreadyStreaming exception if the viewer is already watching a stream. Throws <a class="el" href="class_not_old_enough.html" title="Exception class which should be thrown when a User is not old enough for a certain task.">NotOldEnough</a> exception if the viewer is not old enough to join the stream. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream</td><td>Pointer to the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> intended to join </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1bcb6d912b95fe17dca5d6c0b811ffe7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1bcb6d912b95fe17dca5d6c0b811ffe7">&#9670;&nbsp;</a></span>leaveStream()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Viewer::leaveStream </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The viewer leaves the <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> he is currently watching. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a></td><td>if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -415,13 +366,7 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
       </table>
 </div><div class="memdoc">
 
-<p>The <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> sends a message to the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> he's currently watching. Can only be used while in a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a>. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a></td><td>if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a> </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>The <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> sends a message to the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> he's currently watching. Can only be used while in a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a> Throw <a class="el" href="class_not_in_a_stream.html" title="Exception class which should be thrown when a User is unexpectedly not in a Stream.">NotInAStream</a> exception if the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> is not watching a <a class="el" href="class_private_stream.html" title="Stream restricted to certain Viewers (subscribers) with a maximum number of Viewers at a time....">PrivateStream</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>Message the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a> wants to send to the <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> </td></tr>
@@ -479,8 +424,8 @@ static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/<a class="el" href="user_8h_source.html">user.h</a></li>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/user.cpp</li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/<a class="el" href="user_8h_source.html">user.h</a></li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/user.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

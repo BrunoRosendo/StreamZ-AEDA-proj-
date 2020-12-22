@@ -178,3 +178,41 @@ Streamer * Admin::getMostViewedStreamer() const {
     }
     return best;
 }
+
+void Admin::listDonations() const {
+    BSTItrIn<Donation> it(site->donations);
+    if (it.isAtEnd()) cout << "There are no donations to show" << endl;
+
+    while (!it.isAtEnd()){
+        it.retrieve().showDonation();
+        it.advance();
+    }
+}
+
+void Admin::listDonations(int rate1, int rate2) const {
+
+    if (rate1 > rate2) throw badDateComp("The lower bound can't be higher than the upper bound!");
+
+    BSTItrIn<Donation> it(site->donations);
+    bool found = false;
+
+    while (!it.isAtEnd()){
+        if (it.retrieve().getRating() >= rate1 && it.retrieve().getRating() <= rate2) {
+            it.retrieve().showDonation();
+            found = true;
+        }
+        it.advance();
+    }
+    if (!found) cout << "No donations match the criteria" << endl;
+}
+
+void Admin::listTopDonations() const {  // top 10
+    BSTItrIn<Donation> it(site->donations);
+    if (it.isAtEnd()) cout << "There are no donations to show" << endl;
+
+    for (int i = 0; i < 10; ++i){
+        if (it.isAtEnd()) break;
+        it.retrieve().showDonation();
+        it.advance();
+    }
+}
