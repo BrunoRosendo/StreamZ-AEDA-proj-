@@ -42,6 +42,7 @@ void StreamZ::fetchDataFromFile() {
     string viewersFile = "viewers.txt";
     string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
+    string donoFile = "donations.txt";
     fstream fin;
     string line, line2, name, nick, date;
     unsigned int id, pastStreamId;
@@ -176,7 +177,7 @@ void StreamZ::fetchDataFromFile() {
     fin.close();
 
 
-    fin.open(adminFile);
+    fin.open(adminFile);    // START TO READ ADMIN
     if(!fin.is_open()){
         cout << "Couldn't open " << adminFile << " file!" << endl;
         throw runtime_error("Couldn't open " + adminFile + " file!");
@@ -189,6 +190,20 @@ void StreamZ::fetchDataFromFile() {
         this->admin = nullptr;
     fin.close();
 
+    fin.open(donoFile);     // START TO READ DONATIONS
+    if(!fin.is_open()){
+        cout << "Couldn't open " << donoFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + donoFile + " file!");
+    }
+    while (!fin.eof()){
+        string name, amountString, ratingString;
+        getline(fin, name);
+        if (name == "") break; // it's over
+        getline(fin, amountString);
+        getline(fin, ratingString);
+        donations.insert(Donation(name, stof(amountString), stoi(ratingString)));
+    }
+    fin.close();
 }
 
 /**
@@ -199,6 +214,7 @@ void StreamZ::storeDataInFile(){
     string viewersFile = "viewers.txt";
     string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
+    string donoFile = "donations.txt";
     fstream fout;
     unsigned int currUserId;
 
@@ -254,7 +270,7 @@ void StreamZ::storeDataInFile(){
     }
     fout.close();
 
-    fout.open(adminFile, ios::out | ios::trunc);
+    fout.open(adminFile, ios::out | ios::trunc);    // START WRITING ADMIN
     if(!fout.is_open()){
         cout << "Couldn't open " << adminFile << " file!" << endl;
         throw runtime_error("Couldn't open " + adminFile + " file!");
@@ -263,7 +279,18 @@ void StreamZ::storeDataInFile(){
         fout << this->admin->getName();
     fout.close();
 
-
+    fout.open(donoFile, ios:: out | ios::trunc);    // START WRITING DONATIONS
+    if(!fout.is_open()){
+        cout << "Couldn't open " << donoFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + donoFile + " file!");
+    }
+    BSTItrLevel<Donation> it(donations);
+    while (!it.isAtEnd()){
+        Donation d = it.retrieve();
+        fout << d.getStreamer() << endl << d.getAmount() << endl << d.getRating() << endl;
+        it.advance();
+    }
+    fout.close();
 }
 
 
