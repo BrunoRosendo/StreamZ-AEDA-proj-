@@ -1,3 +1,15 @@
+Diogo Diogo
+Diogao
+2003/05/21
+13
+Diogo Goncalves
+Diogovski
+2005/04/12
+8
+Leonor Pereira
+Flor
+2003/06/06
+12
 Bruno
 Forever
 1994/06/06
@@ -8,7 +20,7 @@ Forever
 Jony
 Monkinerino
 2001/04/07
-0
+1
 *0
 *1
 *2

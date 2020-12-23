@@ -161,7 +161,15 @@ private:
      * @brief Set of Viewers subscribed to the Streamer
      */
     std::set<unsigned int> subscribers;
+
+    /**
+     * @brief Merchandising purchases of the Viewers
+     */
     priority_queue<Purchase> purchases;
+
+    /**
+     * @brief Limit of the merchandising sales
+     */
     static int merchSalesLimit;
     int soldMerch;
 public:
@@ -254,6 +262,7 @@ public:
      * @brief Prints the Streamer's information to the standard output. Also see User::showUser()
      */
     virtual void showUser() const;
+
     friend ostream& operator<<(ostream& out, const Streamer& streamer);
 
     /**
@@ -377,6 +386,7 @@ public:
      * @brief Prints the Viewer's information to the standard output. Also see User::showUser()
      */
     virtual void showUser() const;
+
     friend ostream& operator<<(ostream& out, const Viewer& viewer);
 };
 

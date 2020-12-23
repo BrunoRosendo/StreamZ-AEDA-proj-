@@ -12,7 +12,7 @@ using namespace std;
 /**
  * StreamZ class constructor
  */
-StreamZ::StreamZ() {
+StreamZ::StreamZ() : donations(Donation("", 0, 0)) {
     try{
         fetchDataFromFile();
     }
@@ -42,6 +42,7 @@ void StreamZ::fetchDataFromFile() {
     string viewersFile = "viewers.txt";
     string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
+    string donoFile = "donations.txt";
     fstream fin;
     string line, line2, name, nick, date;
     unsigned int id, pastStreamId;
@@ -203,7 +204,7 @@ void StreamZ::fetchDataFromFile() {
     fin.close();
 
 
-    fin.open(adminFile);
+    fin.open(adminFile);    // START TO READ ADMIN
     if(!fin.is_open()){
         cout << "Couldn't open " << adminFile << " file!" << endl;
         throw runtime_error("Couldn't open " + adminFile + " file!");
@@ -216,6 +217,20 @@ void StreamZ::fetchDataFromFile() {
         this->admin = nullptr;
     fin.close();
 
+    fin.open(donoFile);     // START TO READ DONATIONS
+    if(!fin.is_open()){
+        cout << "Couldn't open " << donoFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + donoFile + " file!");
+    }
+    while (!fin.eof()){
+        string name, amountString, ratingString;
+        getline(fin, name);
+        if (name == "") break; // it's over
+        getline(fin, amountString);
+        getline(fin, ratingString);
+        donations.insert(Donation(name, stof(amountString), stoi(ratingString)));
+    }
+    fin.close();
 }
 
 /**
@@ -226,6 +241,7 @@ void StreamZ::storeDataInFile(){
     string viewersFile = "viewers.txt";
     string pastStreamsFile = "pastStreams.txt";
     string adminFile = "admin.txt";
+    string donoFile = "donations.txt";
     fstream fout;
     unsigned int currUserId;
 
@@ -293,7 +309,7 @@ void StreamZ::storeDataInFile(){
     }
     fout.close();
 
-    fout.open(adminFile, ios::out | ios::trunc);
+    fout.open(adminFile, ios::out | ios::trunc);    // START WRITING ADMIN
     if(!fout.is_open()){
         cout << "Couldn't open " << adminFile << " file!" << endl;
         throw runtime_error("Couldn't open " + adminFile + " file!");
@@ -302,7 +318,18 @@ void StreamZ::storeDataInFile(){
         fout << this->admin->getName();
     fout.close();
 
-
+    fout.open(donoFile, ios:: out | ios::trunc);    // START WRITING DONATIONS
+    if(!fout.is_open()){
+        cout << "Couldn't open " << donoFile << " file!" << endl;
+        throw runtime_error("Couldn't open " + donoFile + " file!");
+    }
+    BSTItrLevel<Donation> it(donations);
+    while (!it.isAtEnd()){
+        Donation d = it.retrieve();
+        fout << d.getStreamer() << endl << d.getAmount() << endl << d.getRating() << endl;
+        it.advance();
+    }
+    fout.close();
 }
 
 
@@ -530,6 +557,8 @@ void StreamZ::watchingOptions(int id) {
              << "1- Give feedback" << endl << "2- Show stream details" << endl;
         if (s->isSubscriber(id)) cout << "3- Unsubscribe to the streamer";
         else cout << "3- Subscribe to the streamer";
+        cout << endl << "4- Donate";
+        cout << endl << "5- Leave stream" << endl << "6- Account Settings";
         if ( s->hasPurchase(v->getNick()) ){
             hasPurchase = true;
             cout << endl << "7- Cancel purchase";
@@ -538,7 +567,7 @@ void StreamZ::watchingOptions(int id) {
             hasPurchase = false;
             cout << endl << "7- Buy merchandising";
         }
-        cout << endl << "4- Leave stream" << endl << "5- Account Settings" << endl<< "6- Go back" << endl;
+        cout << endl<< "8- Go back" << endl;
         int choice;
         cin >> choice;
         if(cin.fail() || cin.eof()){
@@ -581,14 +610,15 @@ void StreamZ::watchingOptions(int id) {
                     s->addSubscriber(id);
                 break;
             case 4:
+                createDonation(users[id]->getStream()->getStreamerNick());
+                break;
+            case 5:
                 v->getStream()->removeUser(v->getID());
                 v->leaveStream();
                 return;
-            case 5:
+            case 6:
                 viewerSettings(id);
                 break;
-            case 6:
-                return;
             case 7:
                 if(hasPurchase)
                     s->removePurchase(v->getNick());
@@ -609,6 +639,8 @@ void StreamZ::watchingOptions(int id) {
                     s->addPurchase(v->getNick(), numProducts, availability);
                 }
                 break;
+            case 8:
+                return;
             default:
                 cout << "Enter a valid number" << endl << endl;
         }
@@ -690,8 +722,8 @@ void StreamZ::streamingOptions(int id) {
             }
         }
         cout << "What do you wish to do?" << endl << endl;
-        cout << "1- See number of viewers" << endl << "2- See feedback" <<  endl << "3- End stream"
-             << endl << "4- Go back" << endl;
+        cout << "1- See number of viewers" << endl << "2- See feedback" << endl << "3- See donations" << endl
+             <<"4- End stream" << endl << "5- Go back" << endl;
         int c;
         cin >> c;
         if (cin.fail() || cin.eof()){
@@ -723,8 +755,11 @@ void StreamZ::streamingOptions(int id) {
                 break;
             }
             case 3:
-                deleteStream(s);
+                listDonations(users[id]->getNick());
+                break;
             case 4:
+                deleteStream(s);
+            case 5:
                 return;
             default:
                 cout << "Please select a valid number" << endl;
@@ -759,8 +794,11 @@ void StreamZ::adminMenu() {
              << "2- Number of Public active Streams (interval)" << endl
              << "3- Number of Private active Streams (interval)" << endl
              << "4- Average views for all streams (interval)" << endl
-             << "5- Account Settings" << endl
-             << "6- Go back" << endl;
+             << "5- List all donations" << endl
+             << "6- List donations by rating (interval)" << endl
+             << "7- List top 10 donations" << endl
+             << "8- Account Settings" << endl
+             << "9- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()){
@@ -772,12 +810,60 @@ void StreamZ::adminMenu() {
         cin.ignore(1000, '\n');
         switch (choice){
             case 5:
+                admin->listDonations();
+                continue;
+            case 6: {
+                int rate1, rate2;
+                cout << "Insert the lower bound of the rating interval: ";
+                cin >> rate1;
+                while (true){
+                    if (cin.fail() || cin.eof()){
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        cout << endl << "Insert a valid number: ";
+                        cin >> rate1;
+                        continue;
+                    }
+                    if (rate1 < 1 || rate1 > 5){
+                        cout << endl << "Insert a number between 1 and 5: ";
+                        cin >> rate1;
+                    }
+                    break;
+                }
+                cout << "Insert the upper bound of the rating interval: ";
+                cin >> rate2;
+                while (true){
+                    if (cin.fail() || cin.eof()){
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        cout << endl << "Insert a valid number: ";
+                        cin >> rate2;
+                        continue;
+                    }
+                    if (rate2 < 1 || rate2 > 5){
+                        cout << endl << "Insert a number between 1 and 5: ";
+                        cin >> rate2;
+                    }
+                    break;
+                }
+                try{
+                    admin->listDonations(rate1, rate2);
+                }
+                catch(badDateComp& e){
+                    cout << e.what() << endl;
+                }
+                continue;
+            }
+            case 7:
+                admin->listTopDonations();
+                continue;
+            case 8:
                 if (adminSettings()) return;
                 continue;
-            case 6:
+            case 9:
                 return;
         }
-        if (choice > 6){
+        if (choice > 9){
             cout << "Insert a valid number" << endl;
             continue;
         }
@@ -998,6 +1084,7 @@ void StreamZ::createStream(Streamer *streamer) {
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Insert a valid number" << endl;
+            cin >> minAge;
         }
         cout << "Will it be a public(1) or private(2) stream?" << endl;
         cin >> typeOfStream;
@@ -1040,7 +1127,7 @@ void StreamZ::createStream(Streamer *streamer) {
                 try{
                     int capacity;
                     cout << "What will be its capacity?" << endl;
-                    cin >> capacity;
+                    cin >> capacity;    // check errors?
                     cin.ignore(100, '\n');
                     PrivateStream *newStream = new PrivateStream(title, startDate, language, minAge, streamer->getNick(), streamer->getSubscribers(), capacity);
                     streamer->startStream(newStream);
@@ -1061,6 +1148,40 @@ void StreamZ::createStream(Streamer *streamer) {
             }
         }
     }
+}
+
+void StreamZ::createDonation(const string& streamerNick) {
+    float amount;
+    int rating;
+    cout << "Insert the amount which you want to donate (in Euros): ";
+    cin >> amount;
+
+    while (cin.fail() || cin.eof()){
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << endl << "Insert a valid amount: ";
+        cin >> amount;
+    }
+
+    cout << "Rate the streamer (1 to 5): ";
+    cin >> rating;
+
+    while (true){
+        if (cin.fail() || cin.eof()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << endl << "Insert a valid number: ";
+            cin >> rating;
+            continue;
+        }
+        if (rating < 1 || rating > 5){
+            cout << endl << "Insert a number from 1 to 5: ";
+            cin >> rating;
+        }
+        break;
+    }
+
+    donations.insert(Donation(streamerNick, amount, rating));
 }
 
 void StreamZ::deleteStream(Streamer *streamer) {    // this has to change the history of the streamer and viewers
@@ -1363,6 +1484,7 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                     getline(cin, choice2);
                 }
                 filteredStreams = this->searchStreamsByTitle(choice2);
+                if (filteredStreams.empty()) cout << "No streams found" << endl;
                 for(int i = 0; i < filteredStreams.size(); i++) {
                     cout << i + 1 << "- ";
                     filteredStreams.at(i)->showStream();
@@ -1379,6 +1501,7 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                     getline(cin, choice2);
                 }
                 filteredStreams = this->searchStreams(choice2);
+                if (filteredStreams.empty()) cout << "No streams found" << endl;
                 for(int i = 0; i < filteredStreams.size(); i++) {
                     cout << i + 1 << "- ";
                     filteredStreams.at(i)->showStream();
@@ -1396,6 +1519,7 @@ vector<Stream*> StreamZ::searchStreamsMenu() const {
                 }
                 cin.ignore(1000, '\n');
                 filteredStreams = this->searchStreams(ageChoice);
+                if (filteredStreams.empty()) cout << "No streams found" << endl;
                 for(int i = 0; i < filteredStreams.size(); i++) {
                     cout << i + 1 << "- ";
                     filteredStreams.at(i)->showStream();
@@ -1464,6 +1588,19 @@ void StreamZ::listUsers(const std::set<unsigned int>& users) const {
         this->users.at((*it))->showUser();
         cout << endl;
     }
+}
+
+void StreamZ::listDonations(const string &streamerName) const {
+    BSTItrIn<Donation> it(donations);
+    bool found = false;
+    while (!it.isAtEnd()){
+        if (it.retrieve().getStreamer() == streamerName) {
+            it.retrieve().showDonation();
+            found = true;
+        }
+        it.advance();
+    }
+    if (!found) cout << "You don't have any donations yet :(" << endl;
 }
 
 void StreamZ::showStreamHistory(int id) const {

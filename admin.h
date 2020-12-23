@@ -125,6 +125,21 @@ public:
      * @return Streamer* to the most viewed Streamer
      */
     Streamer* getMostViewedStreamer() const;
+
+    /**
+     * @brief Lists all the donations in the site, by decreasing order
+     */
+    void listDonations() const;
+
+    /**
+     * @brief Lists the donations in a given interval of ratings, by decreasing order
+     * @param aval1 Lower bound of the interval
+     * @param aval2 Upper bound of the interval
+     * @throw badDateComp if the lower bound is higher than the upper bound
+     */
+    void listDonations(int rate1, int rate2) const;
+
+    void listTopDonations() const;
 };
 
 /**
