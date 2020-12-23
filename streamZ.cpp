@@ -108,6 +108,15 @@ void StreamZ::fetchDataFromFile() {
     std::set<unsigned int> subscribers;
     counter = 0;
     pastStreams.clear();
+
+    int maxMerchSales, currSales;
+    priority_queue<Purchase> purchases;
+    int numOfProducts, availability;
+    string merchName;
+    getline(fin, line);
+    maxMerchSales = stoi(line);
+    Streamer::setNewSalesLimit(maxMerchSales);
+
     while(getline(fin, line )){
         switch(counter){
             case 0:
@@ -126,6 +135,10 @@ void StreamZ::fetchDataFromFile() {
                 id = stoi(line);
                 counter++;
                 break;
+            case 4:
+                currSales = stoi(line);
+                counter++;
+                break;
             default:
                 if(line[0] == '*'){     //stream history member
                     line = line.substr(1); // slice the 1st char of the string
@@ -136,11 +149,18 @@ void StreamZ::fetchDataFromFile() {
                     line = line.substr(1);
                     subscribers.insert(stoi(line));
                 }
+                else if(line[0] == '|'){
+                    line = line.substr(1);
+                    stringstream s(line);
+                    s >> merchName, s >> numOfProducts, s >> availability;
+                    purchases.push(Purchase(merchName, numOfProducts, availability));
+                }
                 else{                      // transition to new streamer
                     Date birthDate(date);   // create object of class Date with the string date
-                    Streamer* streamer = new Streamer(name, nick, birthDate, id);
+                    Streamer* streamer = new Streamer(name, nick, birthDate, id, currSales);
                     streamer->setStreamHistory(pastStreams);
                     streamer->setSubscribers(subscribers);
+                    streamer->setPurchases(purchases);
                     this->users.insert({id, streamer});
                     this->streamersNickID.insert({streamer->getNick(), streamer->getID()});
 
@@ -148,13 +168,15 @@ void StreamZ::fetchDataFromFile() {
                     counter = 1;
                     pastStreams.clear();
                     subscribers.clear();
+                    while(!purchases.empty())
+                        purchases.pop();
                 }
                 break;
         }
     }
     if(counter != 0){           // if file has at least 1 Streamer
         Date birthDate2(date);   // create object of class Date with the string date
-        Streamer* streamer = new Streamer(name, nick, birthDate2, id);
+        Streamer* streamer = new Streamer(name, nick, birthDate2, id, 0);
         streamer->setStreamHistory(pastStreams);
         streamer->setSubscribers(subscribers);
         this->users.insert({id, streamer});
@@ -258,19 +280,31 @@ void StreamZ::storeDataInFile(){
 
     fout.open(streamersFile, ios::out | ios::trunc);
     Streamer* streamer;
+
     if(!fout.is_open()){
         cout << "Couldn't open " << streamersFile << " file!" << endl;
         throw runtime_error("Couldn't open " + streamersFile + " file!");
     }
+    fout << streamer->getMerchSalesLimit() << endl;
+
     for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){
         currUserId = it->second;
         streamer = (Streamer *) this->users.at(currUserId);
-        fout << streamer->getName() << endl << streamer->getNick() << endl << streamer->getAgeString() << endl << streamer->getID() << endl;
+        fout << streamer->getName() << endl << streamer->getNick() << endl << streamer->getAgeString() << endl << streamer->getID() << endl << streamer->getSoldMerch() << endl;
         for(auto historyIt = streamer->getStreamHistory().begin(); historyIt != streamer->getStreamHistory().end(); historyIt++ ){  // writes past streams
             fout << '*' << *historyIt << endl;
         }
         for(auto subsIt = streamer->getSubscribers().begin(); subsIt != streamer->getSubscribers().end(); subsIt++ ){   //writes the subscribers
             fout << '/' << *subsIt << endl;
+        }
+        string merchName, numOfProducts, availability;
+        priority_queue<Purchase> auxPurchases = streamer->getPurchases();
+        while(!auxPurchases.empty()){
+            merchName = auxPurchases.top().getName();
+            numOfProducts = to_string( auxPurchases.top().getNumOfProducts() );
+            availability = to_string( auxPurchases.top().getAvailability() );
+            fout << '|' << merchName << " " << numOfProducts << " " << availability << endl;
+            auxPurchases.pop();
         }
     }
     fout.close();
@@ -1257,7 +1291,7 @@ bool StreamZ::streamerSettings(int id) {
     while (true) {
         cout << "What do you wish to do?" << endl;
         cout << "1- Change name" << endl << "2- Change nickname" << endl << "3- Delete account"
-        << endl << "4- Show stream history" << endl << "6- Confirm merchandising purchases" << endl << "5- Go back" << endl;
+        << endl << "4- Show stream history" << endl << "6- Confirm merchandising purchases" << endl << "7- Change sales limit" << endl << "5- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()) {
@@ -1317,7 +1351,46 @@ bool StreamZ::streamerSettings(int id) {
             case 5:
                 return false;
             case 6:
-                s->showMerchPurchases();
+                while(true){
+                    s->showMerchPurchases();
+                    if((s->getPurchases().top().getNumOfProducts() + s->getSoldMerch() > s->getMerchSalesLimit()) ){
+                        cout << "There are no purchases that you can confirm. If you wish to confirm, increase your merch sales limit" << endl;
+                        break;
+                    }
+                    else if((s->getPurchases().empty())){
+                        cout << "There are no purchases to confirm." << endl;
+                        break;
+                    }
+                    cout << "Do you wish to confirm the next purchase? (y/n)" << endl;
+                    string ans;
+                    cin >> ans;
+                    cin.ignore(100, '\n');
+                    cin.clear();
+                    if((ans == "y")|| (ans == "yes")){
+                        s->addSoldMerch(s->getPurchases().top().getNumOfProducts());
+                        s->getPurchases().pop();
+                        cout << "The purchase was confirmed" << endl;
+                    }
+                    else{
+                        cout << "Alright. Leaving merch screen..." << endl;
+                        break;
+                    }
+                }
+                break;
+            case 7:
+                int newLimit;
+                while(true){
+                    cout << "What should be the new merch sales limit?" << endl;
+                    cin >> newLimit;
+                    cin.ignore(100, '\n');
+                    cin.clear();
+                    if(newLimit > 0){
+                        s->setNewSalesLimit(newLimit);
+                        break;
+                    }
+                    else
+                        cout << "Insert a valid value" << endl;
+                }
                 break;
             default:
                 cout << "Insert a valid number" << endl << endl;

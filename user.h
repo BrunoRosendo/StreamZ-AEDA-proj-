@@ -171,6 +171,7 @@ private:
      * @brief Limit of the merchandising sales
      */
     static int merchSalesLimit;
+    int soldMerch;
 public:
 
     /**
@@ -190,8 +191,9 @@ public:
      * @param nick Nickname of the Streamer
      * @param birthDate Birthdate of the Streamer
      * @param id ID of the Streamer
+     * @param soldMerch Amount of merch sold by this streamer
      */
-    Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id, int soldMerch);
 
     /**
      * @brief Default destructor of the derived class Streamer
@@ -291,9 +293,33 @@ public:
     void addPurchase(string name, int numProducts, int availability);
 
     /**
-     * @brief Shows the merchandising purchases in the screen
+     * @brief set purchases priority queue = arg
+     * @param purchases
+     */
+    void setPurchases(priority_queue<Purchase>& purchases);
+
+    /**
+     * @brief Display the purchases yet to be confirmed
      */
     void showMerchPurchases();
+
+    /**
+     * @return return soldMerch data member
+     */
+    int getSoldMerch();
+
+    /**
+     * @return return merchSalesLimit data member
+     */
+    int getMerchSalesLimit();
+
+    /**
+     * @brief adds numOfMerch to the total merch sold by the streamer
+     * @param numOfMerch amount of merch sold
+     */
+    void addSoldMerch(int numOfMerch);
+
+    static void setNewSalesLimit(int newLimit);
 };
 
 /**
