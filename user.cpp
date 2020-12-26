@@ -50,6 +50,7 @@ User::User(const std::string& name, const std::string& nick, const Date& birthDa
     this->birthDate = birthDate;
     ID = nextID;
     stream = nullptr;
+    this->active = true;
 }
 
 
@@ -59,6 +60,7 @@ User::User(const std::string& name, const std::string& nick, const Date& birthDa
     this->birthDate = birthDate;
     this->ID = id;
     stream = nullptr;
+    this->active = true;
 }
 
 User::~User() = default;
@@ -108,6 +110,10 @@ bool User::inAStream() const {
 
 std::set<unsigned int>& User::getStreamHistory() {
     return streamHistory;
+}
+
+bool User::getActivity() {
+    return this->active;
 }
 
 

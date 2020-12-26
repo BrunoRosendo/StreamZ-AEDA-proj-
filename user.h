@@ -54,6 +54,11 @@ protected:
      * @brief ID of the next User created
      */
     static unsigned int nextID;
+
+    /**
+     * @brief Activity (active or eliminated) of the User's account
+     */
+    bool active;
 public:
 
     /**
@@ -150,6 +155,12 @@ public:
      * @brief Prints the User's information to the standard output. Only defined in the derived classes
      */
     virtual void showUser() const = 0;
+
+    /**
+     * @brief Checks if the User is active
+     * @return Returns true if User is active and false otherwise
+     */
+    bool getActivity();
 };
 
 /**
@@ -172,6 +183,7 @@ private:
      */
     static int merchSalesLimit;
     int soldMerch;
+
 public:
 
     /**
@@ -320,6 +332,8 @@ public:
     void addSoldMerch(int numOfMerch);
 
     static void setNewSalesLimit(int newLimit);
+
+
 };
 
 /**

@@ -447,6 +447,9 @@ void StreamZ::loginStreamer() {
         try {
             id = streamersNickID.at(nick);
             break;
+            if(!users.at(id)->getActivity()){ //Eliminated account
+                cout << "You have activated your account. Welcome back!";
+            }
         }
         catch (out_of_range &e) {
             cout << "That nickname does not exist. Please verify it and type it again: ";

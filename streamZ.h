@@ -10,7 +10,18 @@
 #include "stream.h"
 #include "bst.h"
 #include "donation.h"
+#include <unordered_map>
 
+/*struct streamerHash{
+    int operator() (const Streamer& s) const{
+        return s.getID();
+    }
+
+    bool operator()(const Streamer& s1, const Streamer& s2) const{
+        return s1.getID() == s2.getID();
+    }
+};
+typedef unordered_map<unsigned, Streamer*, streamerHash, streamerHash> tabHStreamer;*/
 
 class Admin;    // forward declaration, in order to separate the files
 
@@ -28,7 +39,7 @@ private:
     /**
      * @brief Users (pointers) are stored in this map and accessed by their unique IDs
      */
-    std::map<unsigned int, User*> users;  // access to users by the ID
+    std::unordered_map<unsigned int, User*> users;  // access to users by the ID
 
     /**
      * @brief All the active streams (pointers) are stored in this vector
@@ -71,6 +82,7 @@ private:
      * @brief Pointer to the only Admin that can exist in the site; nullptr if the Admin doesn't exist
      */
     Admin* admin;
+
 public:
 
     /**
