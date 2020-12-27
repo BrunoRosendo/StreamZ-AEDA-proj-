@@ -46,6 +46,7 @@ void StreamZ::fetchDataFromFile() {
     fstream fin;
     string line, line2, name, nick, date;
     unsigned int id, pastStreamId;
+    bool activity;
     std::set<unsigned int> pastStreams;
     int counter = 0;
 
@@ -69,6 +70,10 @@ void StreamZ::fetchDataFromFile() {
                 counter++;
                 break;
             case 3:
+                activity = stoi(line);
+                counter++;
+                break;
+            case 4:
                 id = stoi(line);
                 counter++;
                 break;
@@ -80,7 +85,7 @@ void StreamZ::fetchDataFromFile() {
                 }
                 else{                      // transition to new streamer
                     Date birthDate(date);   // create object of class Date with the string date
-                    Viewer* viewer = new Viewer(name, nick, birthDate, id);
+                    Viewer* viewer = new Viewer(name, nick, birthDate, activity, id);
                     viewer->setStreamHistory(pastStreams);
                     this->users.insert({id, viewer});
                     this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
@@ -94,7 +99,7 @@ void StreamZ::fetchDataFromFile() {
     }
     if(counter != 0){          // if file has at least 1 Viewer
         Date birthDate(date);   // create object of class Date with the string date
-        Viewer* viewer = new Viewer(name, nick, birthDate, id);
+        Viewer* viewer = new Viewer(name, nick, birthDate, activity, id);
         viewer->setStreamHistory(pastStreams);
         this->users.insert({id, viewer});
         this->viewersNickID.insert({viewer->getNick(), viewer->getID()});
@@ -132,10 +137,14 @@ void StreamZ::fetchDataFromFile() {
                 counter++;
                 break;
             case 3:
-                id = stoi(line);
+                activity = stoi(line);
                 counter++;
                 break;
             case 4:
+                id = stoi(line);
+                counter++;
+                break;
+            case 5:
                 currSales = stoi(line);
                 counter++;
                 break;
@@ -157,7 +166,7 @@ void StreamZ::fetchDataFromFile() {
                 }
                 else{                      // transition to new streamer
                     Date birthDate(date);   // create object of class Date with the string date
-                    Streamer* streamer = new Streamer(name, nick, birthDate, id, currSales);
+                    Streamer* streamer = new Streamer(name, nick, birthDate, activity, id, currSales);
                     streamer->setStreamHistory(pastStreams);
                     streamer->setSubscribers(subscribers);
                     streamer->setPurchases(purchases);
@@ -176,7 +185,7 @@ void StreamZ::fetchDataFromFile() {
     }
     if(counter != 0){           // if file has at least 1 Streamer
         Date birthDate2(date);   // create object of class Date with the string date
-        Streamer* streamer = new Streamer(name, nick, birthDate2, id, 0);
+        Streamer* streamer = new Streamer(name, nick, birthDate2, activity, id, 0);
         streamer->setStreamHistory(pastStreams);
         streamer->setSubscribers(subscribers);
         this->users.insert({id, streamer});
@@ -271,7 +280,7 @@ void StreamZ::storeDataInFile(){
     for(auto it = this->viewersNickID.begin(); it != this->viewersNickID.end(); it++){
         currUserId = it->second;
         viewer = (Viewer *) this->users.at(currUserId);
-        fout << viewer->getName() << endl << viewer->getNick() << endl << viewer->getAgeString() << endl << viewer->getID() << endl;
+        fout << viewer->getName() << endl << viewer->getNick() << endl << viewer->getAgeString() << endl << viewer->getActivity() << endl << viewer->getID() << endl;
         for(auto historyIt = viewer->getStreamHistory().begin(); historyIt != viewer->getStreamHistory().end(); historyIt++ ){
             fout << '*' << *historyIt << endl;
         }
@@ -290,7 +299,7 @@ void StreamZ::storeDataInFile(){
     for(auto it = this->streamersNickID.begin(); it != this->streamersNickID.end(); it++){
         currUserId = it->second;
         streamer = (Streamer *) this->users.at(currUserId);
-        fout << streamer->getName() << endl << streamer->getNick() << endl << streamer->getAgeString() << endl << streamer->getID() << endl << streamer->getSoldMerch() << endl;
+        fout << streamer->getName() << endl << streamer->getNick() << endl << streamer->getAgeString() << endl << streamer->getActivity() << endl << streamer->getID() << endl << streamer->getSoldMerch() << endl;
         for(auto historyIt = streamer->getStreamHistory().begin(); historyIt != streamer->getStreamHistory().end(); historyIt++ ){  // writes past streams
             fout << '*' << *historyIt << endl;
         }
@@ -449,6 +458,7 @@ void StreamZ::loginStreamer() {
             break;
             if(!users.at(id)->getActivity()){ //Eliminated account
                 cout << "You have activated your account. Welcome back!";
+                //add 50 likes to his first stream
             }
         }
         catch (out_of_range &e) {
@@ -1341,11 +1351,14 @@ bool StreamZ::streamerSettings(int id) {
             }
             case 3:{
                 Streamer* s = (Streamer*) users.at(id);
-                streamersNickID.erase(s->getNick());
+                /*streamersNickID.erase(s->getNick());
                 if (s->inAStream()) s->endStream();
                 delete s;
                 users.erase(id);
-                cout << "Account successfully deleted!" << endl;
+                cout << "Account successfully deleted!" << endl;*/
+                if (s->inAStream()) s->endStream();
+                s->setActivity(false);
+                cout << "Account successfully deleted! Login to reactivate." << endl;
                 return true;
             }
             case 4:

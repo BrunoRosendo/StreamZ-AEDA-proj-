@@ -44,23 +44,23 @@ unsigned int User::nextID = 0;
 
 int Streamer::merchSalesLimit = 50;
 
-User::User(const std::string& name, const std::string& nick, const Date& birthDate) {
+User::User(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity) {
     this->name = name;
     this->nick = nick;
     this->birthDate = birthDate;
     ID = nextID;
     stream = nullptr;
-    this->active = true;
+    this->active = activity;
 }
 
 
-User::User(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) {
+User::User(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id) {
     this->name = name;
     this->nick = nick;
     this->birthDate = birthDate;
     this->ID = id;
     stream = nullptr;
-    this->active = true;
+    this->active = activity;
 }
 
 User::~User() = default;
@@ -116,15 +116,19 @@ bool User::getActivity() {
     return this->active;
 }
 
+void User::setActivity(bool activity) {
+    this->active = activity;
+}
 
-Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate){
+
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity) : User(name, nick, birthDate, active){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
     this->soldMerch = 0;
 }
 
 
-Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id, int soldMerch) : User(name, nick, birthDate, id) {
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id, int soldMerch) : User(name, nick, birthDate, active, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
     this->soldMerch = soldMerch;
@@ -275,13 +279,13 @@ ostream& operator<<(ostream& out, const Streamer& streamer){
 
 
 
-Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate) : User(name, nick, birthDate) {
+Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity) : User(name, nick, birthDate, activity) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
     nextID++;   // only after the check
 }
 
 
-Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id) : User(name, nick, birthDate, id) {
+Viewer::Viewer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id) : User(name, nick, birthDate, activity, id) {
     if (birthDate.getAge() < 12) throw NotOldEnough("You must be at least 12 years old to create an account");
     nextID++;   // only after the check
 }

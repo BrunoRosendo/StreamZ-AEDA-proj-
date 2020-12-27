@@ -67,7 +67,7 @@ public:
      * @param nick Nickname of the User
      * @param birthDate Birthdate of the User
      */
-    User(const std::string& name, const std::string& nick, const Date& birthDate);
+    User(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity);
 
     /**
      * @brief Creates a User with given name, nick, birthdate and ID. Useful when reading from files;
@@ -77,7 +77,7 @@ public:
      * @param birthDate Birthdate of the User
      * @param id ID of the User
      */
-    User(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    User(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id);
 
     /**
      * @brief Default destructor of the base class User
@@ -161,6 +161,12 @@ public:
      * @return Returns true if User is active and false otherwise
      */
     bool getActivity();
+
+    /**
+     * @brief Changes parameter active
+     * @param activity False if User is deleting his account
+     */
+    void setActivity(bool activity);
 };
 
 /**
@@ -194,7 +200,7 @@ public:
      * @param nick Nickname of the Streamer
      * @param birthDate Birthdate of the Streamer
      */
-    Streamer(const std::string& name, const std::string& nick, const Date& birthDate);
+    Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity);
 
     /**
      * @brief Creates a Streamer with given name, nick, birthdate and ID. Increments nextID. Also see User()
@@ -205,7 +211,7 @@ public:
      * @param id ID of the Streamer
      * @param soldMerch Amount of merch sold by this streamer
      */
-    Streamer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id, int soldMerch);
+    Streamer(const std::string& name, const std::string& nick, const Date& birthDate,const bool activity, unsigned int id, int soldMerch);
 
     /**
      * @brief Default destructor of the derived class Streamer
@@ -350,7 +356,7 @@ public:
      * @param nick Nickname of the Viewer
      * @param birthDate Birthdate of the Viewer
      */
-    Viewer(const std::string& name, const std::string& nick, const Date& birthDate);
+    Viewer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity);
 
     /**
      * @brief Creates a Viewer with given name, nick, birthdate and ID. Increments nextID.
@@ -361,7 +367,7 @@ public:
      * @param birthDate Birthdate of the Viewer
      * @param id ID of the Viewer
      */
-    Viewer(const std::string& name, const std::string& nick, const Date& birthDate, unsigned int id);
+    Viewer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id);
 
     /**
      * @brief Default destructor of the derived class Viewer
