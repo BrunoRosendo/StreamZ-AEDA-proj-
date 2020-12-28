@@ -121,14 +121,14 @@ void User::setActivity(bool activity) {
 }
 
 
-Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity) : User(name, nick, birthDate, active){
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity) : User(name, nick, birthDate, activity){
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
     this->soldMerch = 0;
 }
 
 
-Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id, int soldMerch) : User(name, nick, birthDate, active, id) {
+Streamer::Streamer(const std::string& name, const std::string& nick, const Date& birthDate, const bool activity, unsigned int id, int soldMerch) : User(name, nick, birthDate, activity, id) {
     if (birthDate.getAge() < 15) throw NotOldEnough("You must be at least 15 years old to create a streamer account");
     nextID++;   // only after the check
     this->soldMerch = soldMerch;
@@ -184,6 +184,10 @@ void Streamer::showUser() const {
     cout << nick << " (" << name << ")" << endl
         << getAge() << " Years Old" << endl << getNumSubs() << " Subscriber";
     if (getNumSubs() != 1) cout << "s"; cout << endl;
+    if (!active){
+        cout << "This Streamer has his account deleted" << endl;
+        return;
+    }
     if (stream != nullptr) {
         cout << "Currently streaming " << stream->getTitle() << " with "
              << getNumViewers() << " viewer";
@@ -319,6 +323,9 @@ void Viewer::message(const std::string& text) const {
 void Viewer::showUser() const {
     cout << nick << " (" << name << ")" << endl
         << getAge() << " Years Old" << endl;
+    if (!active){
+        cout << "This Viewer has his account deleted" << endl;
+    }
     if (stream != nullptr)
         cout << "Currently watching " << stream->getTitle() << endl;
     else

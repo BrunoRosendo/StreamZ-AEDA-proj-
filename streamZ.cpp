@@ -25,7 +25,7 @@ StreamZ::~StreamZ() {
     delete admin;
     for (int i = 0; i < streams.size(); ++i)
         delete streams.at(i);
-    map<unsigned int, User*>::iterator it;
+    unordered_map<unsigned int, User*>::iterator it;
     for (it = users.begin(); it != users.end(); ++it)
         delete it->second;
     for(auto it2 = this->pastStreams.begin(); it2 != this->pastStreams.end(); it2++){
@@ -56,6 +56,7 @@ void StreamZ::fetchDataFromFile() {
         throw runtime_error("Couldn't open " + viewersFile + " file!");
     }
     while(getline(fin, line )){
+        if (line == "") break;
         switch(counter){
             case 0:
                 name = line;
@@ -123,6 +124,7 @@ void StreamZ::fetchDataFromFile() {
     Streamer::setNewSalesLimit(maxMerchSales);
 
     while(getline(fin, line )){
+        if (line == "") break;
         switch(counter){
             case 0:
                 name = line;
@@ -428,6 +430,20 @@ void StreamZ::loginViewer() {
         }
         try {
             id = viewersNickID.at(nick);
+            if(!users.at(id)->getActivity()) { //Eliminated account
+                cout << "Your account was eliminated. Do you wish to restore it? (Y/N)" << endl;
+                char answer;
+                cin >> answer;
+                while (cin.fail() || cin.eof()) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cin >> answer;
+                }
+                if (answer == 'y' || answer == 'Y') {
+                    users.at(id)->setActivity(true);
+                    cout << "Congratulations. You have reactivated you account" << endl;
+                } else return;
+            }
             break;
         }
         catch (out_of_range &e) {
@@ -455,11 +471,23 @@ void StreamZ::loginStreamer() {
         }
         try {
             id = streamersNickID.at(nick);
-            break;
             if(!users.at(id)->getActivity()){ //Eliminated account
-                cout << "You have activated your account. Welcome back!";
+                cout << "Your account was eliminated. Do you wish to restore it? (Y/N)" << endl;
+                char answer;
+                cin >> answer;
+                while (cin.fail() || cin.eof()){
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cin >> answer;
+                }
+                if (answer == 'y' || answer == 'Y'){
+                    users.at(id)->setActivity(true);
+                    cout << "Congratulations. You have reactivated you account and will earn 50 likes in your next stream!" << endl;
+                }
+                else return;
                 //add 50 likes to his first stream
             }
+            break;
         }
         catch (out_of_range &e) {
             cout << "That nickname does not exist. Please verify it and type it again: ";
@@ -474,8 +502,8 @@ void StreamZ::viewerMenu(int id) {
         if (v->inAStream()) return;
         cout << "What do you want to do?" << endl << endl
              << "1- Search streams" << endl << "2- Show top viewed streams" << endl << "3- Show top liked streams"
-             << endl << "4- List all streams" << endl << "5- List all users" << endl << "6- Account settings" <<
-             endl << "7- Go back" << endl;
+             << endl << "4- List all streams" << endl << "5- List all users" << endl << "6- List all active users"
+             << endl << "7- Account settings" <<endl << "8- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()){
@@ -505,14 +533,18 @@ void StreamZ::viewerMenu(int id) {
                 this->listUsers();
                 break;
             case 6:
-                if (viewerSettings(id)) return;
+                this->listActiveUsers();
                 break;
             case 7:
+                if (viewerSettings(id)) return;
+                break;
+            case 8:
                 return;
             default:
                 cout << "Please enter a number between 1 and 6" << endl;
         }
         if (v->inAStream()) watchingOptions(id);
+        if (!v->getActivity()) return;
     }
 }
 
@@ -630,7 +662,7 @@ void StreamZ::watchingOptions(int id) {
                 v->leaveStream();
                 return;
             case 6:
-                viewerSettings(id);
+                if (viewerSettings(id)) return;
                 break;
             case 7:
                 if(hasPurchase)
@@ -663,9 +695,10 @@ void StreamZ::watchingOptions(int id) {
 void StreamZ::streamerMenu(int id) {
     while(true) {
         cout << "What do you want to do?" << endl << endl << "1- Search streams" << endl
-             << "2- List all streams" << endl << "3- List all users" << endl << "4- Show top viewed streams" << endl
-             << "5- Show top liked streams " << endl << "6- Show number of subscribers" << endl << "7- List subscribers"
-             << endl << "8- Streaming options" << endl << "9- Account settings" << endl << "10- Go back" << endl;
+             << "2- List all streams" << endl << "3- List all users" << endl << "4- List all active users"
+             << endl << "5- Show top viewed streams" << endl
+             << "6- Show top liked streams " << endl << "7- Show number of subscribers" << endl << "8- List subscribers"
+             << endl << "9- Streaming options" << endl << "10- Account settings" << endl << "11- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()){
@@ -686,12 +719,15 @@ void StreamZ::streamerMenu(int id) {
                 listUsers();
                 break;
             case 4:
-                listStreams(topViews());
+                listActiveUsers();
                 break;
             case 5:
+                listStreams(topViews());
+                break;
+            case 6:
                 listStreams(topLikes());
                 break;
-            case 6: {
+            case 7: {
                 Streamer *s = (Streamer *) users[id];
                 int num = s->getNumSubs();
                 cout << "You currently have " << num << " subscriber";
@@ -699,20 +735,20 @@ void StreamZ::streamerMenu(int id) {
                 cout << endl;
                 break;
             }
-            case 7: {
+            case 8: {
                 Streamer *s = (Streamer *) users[id];
                 set<unsigned int> subs = s->getSubscribers();
                 if (subs.empty()) cout << "You don't have any subscribers yet :(" << endl;
                 else listUsers(subs);
                 break;
             }
-            case 8:
+            case 9:
                 streamingOptions(id);
                 break;
-            case 9:
+            case 10:
                 if (streamerSettings(id)) return;
                 break;
-            case 10:
+            case 11:
                 return;
             default:
                 cout << "Please enter a valid number" << endl;
@@ -984,7 +1020,7 @@ void StreamZ::createViewer() {
                 cout << "Insert a valid date: " << endl;
                 continue;
             }
-            Viewer* newViewer = new Viewer(name, nick, birthDate);
+            Viewer* newViewer = new Viewer(name, nick, birthDate, true);
             this->users[newViewer->getID()] = newViewer;
             viewersNickID[newViewer->getNick()] = newViewer->getID();
             cout << "A new Viewer was successfully created! " << endl;
@@ -1041,7 +1077,7 @@ void StreamZ::createStreamer() {
                 cout << "Insert a valid date" << endl;
                 continue;
             }
-            Streamer* newStreamer = new Streamer(name, nick, birthDate);
+            Streamer* newStreamer = new Streamer(name, nick, birthDate, true);
             this->users[newStreamer->getID()] = newStreamer;
             streamersNickID[newStreamer->getNick()] = newStreamer->getID();
             cout << "A new Streamer was successfully created! " << endl;
@@ -1274,10 +1310,8 @@ bool StreamZ::viewerSettings(int id) {
             }
             case 3: {
                 Viewer *v = (Viewer *) users.at(id);
-                viewersNickID.erase(v->getNick());
                 if (v->inAStream()) v->leaveStream();
-                delete v;
-                users.erase(id);
+                v->setActivity(false);
                 std::map<std::string, unsigned int>::iterator it;
                 for (it = streamersNickID.begin(); it != streamersNickID.end(); ++it){
                     Streamer* s = (Streamer*) users.at(it->second);
@@ -1285,7 +1319,7 @@ bool StreamZ::viewerSettings(int id) {
                     set<unsigned int>::iterator search = subs.find(id);
                     if (search != subs.end()) s->removeSubscriber(id);
                 }
-                cout << "Account successfully deleted!" << endl;
+                cout << "Account successfully deleted! You can reactivate it later but you will lose your subscriptions" << endl;
                 return true;
             }
             case 4:
@@ -1351,14 +1385,9 @@ bool StreamZ::streamerSettings(int id) {
             }
             case 3:{
                 Streamer* s = (Streamer*) users.at(id);
-                /*streamersNickID.erase(s->getNick());
-                if (s->inAStream()) s->endStream();
-                delete s;
-                users.erase(id);
-                cout << "Account successfully deleted!" << endl;*/
-                if (s->inAStream()) s->endStream();
+                if (s->inAStream()) deleteStream(s);
                 s->setActivity(false);
-                cout << "Account successfully deleted! Login to reactivate." << endl;
+                cout << "Account successfully deleted! Login to reactivate. You can reactivate it later" << endl;
                 return true;
             }
             case 4:
@@ -1591,8 +1620,17 @@ void StreamZ::listStreams(std::vector<Stream *> streams) const {
     }
 }
 
+void StreamZ::listActiveUsers() const {
+    unordered_map<unsigned int, User*>::const_iterator it;
+    for (it = users.begin(); it != users.end(); ++it){
+        if (!it->second->getActivity()) continue;
+        it->second->showUser();
+        cout << endl;
+    }
+}
+
 void StreamZ::listUsers() const {
-    map<unsigned int, User*>::const_iterator it;
+    unordered_map<unsigned int, User*>::const_iterator it;
     for (it = users.begin(); it != users.end(); ++it){
         it->second->showUser();
         cout << endl;

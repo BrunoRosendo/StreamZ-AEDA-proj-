@@ -12,17 +12,6 @@
 #include "donation.h"
 #include <unordered_map>
 
-/*struct streamerHash{
-    int operator() (const Streamer& s) const{
-        return s.getID();
-    }
-
-    bool operator()(const Streamer& s1, const Streamer& s2) const{
-        return s1.getID() == s2.getID();
-    }
-};
-typedef unordered_map<unsigned, Streamer*, streamerHash, streamerHash> tabHStreamer;*/
-
 class Admin;    // forward declaration, in order to separate the files
 
 /**
@@ -177,6 +166,11 @@ public:
      * @brief Prints all the Users' information to the standard output
      */
     void listUsers() const;
+
+    /**
+     * @brief Prints all the active Users' information to the standard output
+     */
+    void listActiveUsers() const;
 
     /**
      * @brief Prints the Users' information in the set to the standard output
