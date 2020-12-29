@@ -76,6 +76,10 @@ void Stream::feedback(int megaLikezao) {
     this->noLikes += megaLikezao;
 }
 
+void Stream::add50likes() {
+    this->noLikes += 50;
+}
+
 PrivateStream::PrivateStream(const string& title, const Date& startDate, const string& language, int minAge, const string& streamerNick,
                              std::set<unsigned int> &subscribers, int capacity) : Stream(title, startDate, language, minAge, streamerNick) {
     this->subscribers = subscribers;

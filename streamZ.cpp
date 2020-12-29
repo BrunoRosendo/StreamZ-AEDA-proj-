@@ -46,7 +46,7 @@ void StreamZ::fetchDataFromFile() {
     fstream fin;
     string line, line2, name, nick, date;
     unsigned int id, pastStreamId;
-    bool activity;
+    int activity;
     std::set<unsigned int> pastStreams;
     int counter = 0;
 
@@ -440,7 +440,7 @@ void StreamZ::loginViewer() {
                     cin >> answer;
                 }
                 if (answer == 'y' || answer == 'Y') {
-                    users.at(id)->setActivity(true);
+                    users.at(id)->setActivity(1);
                     cout << "Congratulations. You have reactivated you account" << endl;
                 } else return;
             }
@@ -481,11 +481,12 @@ void StreamZ::loginStreamer() {
                     cin >> answer;
                 }
                 if (answer == 'y' || answer == 'Y'){
-                    users.at(id)->setActivity(true);
+                    users.at(id)->setActivity(2);
                     cout << "Congratulations. You have reactivated you account and will earn 50 likes in your next stream!" << endl;
+                    //add 50 likes to his first stream
                 }
                 else return;
-                //add 50 likes to his first stream
+
             }
             break;
         }
@@ -1157,6 +1158,10 @@ void StreamZ::createStream(Streamer *streamer) {
                 try {
                     PublicStream *newStream = new PublicStream(title, startDate, language, minAge, streamer->getNick());
                     streamer->startStream(newStream);
+                    if (streamer->getActivity() == 2){
+                        newStream->add50likes();
+                        streamer->setActivity(1);
+                    }
                     streams.push_back(newStream);
                     publicStreams.push_back(newStream);
 
@@ -1180,6 +1185,10 @@ void StreamZ::createStream(Streamer *streamer) {
                     cin.ignore(100, '\n');
                     PrivateStream *newStream = new PrivateStream(title, startDate, language, minAge, streamer->getNick(), streamer->getSubscribers(), capacity);
                     streamer->startStream(newStream);
+                    if (streamer->getActivity() == 2){
+                        newStream->add50likes();
+                        streamer->setActivity(1);
+                    }
                     streams.push_back(newStream);
                     privateStreams.push_back(newStream);
 
@@ -1311,7 +1320,7 @@ bool StreamZ::viewerSettings(int id) {
             case 3: {
                 Viewer *v = (Viewer *) users.at(id);
                 if (v->inAStream()) v->leaveStream();
-                v->setActivity(false);
+                v->setActivity(0);
                 std::map<std::string, unsigned int>::iterator it;
                 for (it = streamersNickID.begin(); it != streamersNickID.end(); ++it){
                     Streamer* s = (Streamer*) users.at(it->second);
@@ -1386,7 +1395,7 @@ bool StreamZ::streamerSettings(int id) {
             case 3:{
                 Streamer* s = (Streamer*) users.at(id);
                 if (s->inAStream()) deleteStream(s);
-                s->setActivity(false);
+                s->setActivity(0);
                 cout << "Account successfully deleted! Login to reactivate. You can reactivate it later" << endl;
                 return true;
             }

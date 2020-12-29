@@ -164,6 +164,7 @@ public:
      * @param nick Nickname of the Streamer
      */
     void setStreamerNick(const string& nick);
+    void add50likes();
 };
 
 /**
