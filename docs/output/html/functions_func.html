@@ -69,6 +69,12 @@ $(function() {
 <li>addMessage()
 : <a class="el" href="class_private_stream.html#ae865f6636097f7b89cf10d83e72a3184">PrivateStream</a>
 </li>
+<li>addPurchase()
+: <a class="el" href="class_streamer.html#a830ed95bc1e75f1fc27d163ff4ece82e">Streamer</a>
+</li>
+<li>addSoldMerch()
+: <a class="el" href="class_streamer.html#a112a4b493c881dcbb2e7c4e153ec0587">Streamer</a>
+</li>
 <li>addSubscriber()
 : <a class="el" href="class_streamer.html#a29f4830b5995bdf046072e4a06602964">Streamer</a>
 </li>
@@ -103,6 +109,9 @@ $(function() {
 <li>createAdmin()
 : <a class="el" href="class_stream_z.html#a587736e3f9f730f2d8102eff02df205f">StreamZ</a>
 </li>
+<li>createDonation()
+: <a class="el" href="class_stream_z.html#a372f6fef6538c58aa575e0f1ff388cb4">StreamZ</a>
+</li>
 <li>createStream()
 : <a class="el" href="class_stream_z.html#af05f7f424bb43a587c8c9cb4242c3453">StreamZ</a>
 </li>
@@ -128,6 +137,9 @@ $(function() {
 <li>deleteStream()
 : <a class="el" href="class_stream_z.html#a6e0b6bd60ce8955956cf14104f8f195f">StreamZ</a>
 </li>
+<li>Donation()
+: <a class="el" href="class_donation.html#aa15111762e2a47f2765144ee25fce9bb">Donation</a>
+</li>
 </ul>
 
 
@@ -150,12 +162,21 @@ $(function() {
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getActivity()
+: <a class="el" href="class_user.html#add3d3ebee99755138118f49272c72836">User</a>
+</li>
 <li>getAge()
 : <a class="el" href="class_date.html#ada80076ff42cfc30b3fd24b1f91d91f7">Date</a>
 , <a class="el" href="class_user.html#a7cb83cbd05e67d0632b792253c278c17">User</a>
 </li>
 <li>getAgeString()
 : <a class="el" href="class_user.html#a1e696943ac4109f29fece3557b7823fb">User</a>
+</li>
+<li>getAmount()
+: <a class="el" href="class_donation.html#ad0f897689e7fd3a34b4ec187ebf9e1d7">Donation</a>
+</li>
+<li>getAvailability()
+: <a class="el" href="class_purchase.html#a64fbf964c1665d00008c889ecf5e20f0">Purchase</a>
 </li>
 <li>getAvgViews()
 : <a class="el" href="class_admin.html#a20abffef734dce96f7436d5e4a82767c">Admin</a>
@@ -175,6 +196,9 @@ $(function() {
 <li>getLanguage()
 : <a class="el" href="class_stream.html#a629a8b55e9a3c5e0929b3026f2632d53">Stream</a>
 </li>
+<li>getMerchSalesLimit()
+: <a class="el" href="class_streamer.html#a4c0c8d0f15a543ba88172623d81e04c2">Streamer</a>
+</li>
 <li>getMinAge()
 : <a class="el" href="class_stream.html#ab45d97c7dce808985df7a5d16b8e858a">Stream</a>
 </li>
@@ -186,6 +210,7 @@ $(function() {
 </li>
 <li>getName()
 : <a class="el" href="class_admin.html#a360ede837e8c14cabc4b8c1528a8f259">Admin</a>
+, <a class="el" href="class_purchase.html#a621b22dd99bca69dc9964c82317d9952">Purchase</a>
 , <a class="el" href="class_user.html#a446a64e63adafbc2e1428532275ad6a1">User</a>
 </li>
 <li>getNick()
@@ -196,6 +221,9 @@ $(function() {
 </li>
 <li>getNumCreatedStreams()
 : <a class="el" href="class_admin.html#ace9cd97b5cb19bd57e24861974b048c4">Admin</a>
+</li>
+<li>getNumOfProducts()
+: <a class="el" href="class_purchase.html#a65df9986f8052d8cf9259339cdb648ca">Purchase</a>
 </li>
 <li>getNumPrivateStreams()
 : <a class="el" href="class_admin.html#a4b2c88366165da8f60d1b2dcde84a666">Admin</a>
@@ -219,11 +247,23 @@ $(function() {
 <li>getPreferredStreamType()
 : <a class="el" href="class_admin.html#ac0dd540e2a511e38314e6a6a4b11667a">Admin</a>
 </li>
+<li>getPurchases()
+: <a class="el" href="class_streamer.html#a7786ec9f2b8f96a0621aeb660cac9f82">Streamer</a>
+</li>
+<li>getRating()
+: <a class="el" href="class_donation.html#a215d78eedb74694de89d609d2d152957">Donation</a>
+</li>
+<li>getSoldMerch()
+: <a class="el" href="class_streamer.html#ab6aba407b9b73ed241634554591997ea">Streamer</a>
+</li>
 <li>getStartDate()
 : <a class="el" href="class_stream.html#a39936f72e5cb68a7dd92c18e4f381049">Stream</a>
 </li>
 <li>getStream()
 : <a class="el" href="class_user.html#ae00c6587c94aae64905bd67268cc34e3">User</a>
+</li>
+<li>getStreamer()
+: <a class="el" href="class_donation.html#a6de2917b33e00c797b953a3d438bf40b">Donation</a>
 </li>
 <li>getStreamerNick()
 : <a class="el" href="class_stream.html#af30faec5d1adc5b4759a558c51bc5223">Stream</a>
@@ -242,6 +282,13 @@ $(function() {
 </li>
 <li>getYear()
 : <a class="el" href="class_date.html#a597b505c264a24d34369c43119fc4e6e">Date</a>
+</li>
+</ul>
+
+
+<h3><a id="index_h"></a>- h -</h3><ul>
+<li>hasPurchase()
+: <a class="el" href="class_streamer.html#a251084f35d81494cc42df74c15e1dd99">Streamer</a>
 </li>
 </ul>
 
@@ -277,11 +324,21 @@ $(function() {
 <li>leaveStream()
 : <a class="el" href="class_viewer.html#a1bcb6d912b95fe17dca5d6c0b811ffe7">Viewer</a>
 </li>
+<li>listActiveUsers()
+: <a class="el" href="class_stream_z.html#abe71f7f52e09225102bc8de54ef891c7">StreamZ</a>
+</li>
+<li>listDonations()
+: <a class="el" href="class_admin.html#a5982643efeb98438844f552a3ea4cfa4">Admin</a>
+, <a class="el" href="class_stream_z.html#aec836b7e90b04075b95e37ae2432f732">StreamZ</a>
+</li>
 <li>listStreams()
 : <a class="el" href="class_stream_z.html#aee5f913215ae10f2b9bf1830afcfadcf">StreamZ</a>
 </li>
+<li>listTopDonations()
+: <a class="el" href="class_admin.html#ac42913e08ae92ca7b5112b4764fb50d4">Admin</a>
+</li>
 <li>listUsers()
-: <a class="el" href="class_stream_z.html#a02137182da6e133c44daca0328bb78e3">StreamZ</a>
+: <a class="el" href="class_stream_z.html#ad7efe9f1fc6465917c53486ee1969fac">StreamZ</a>
 </li>
 <li>loginStreamer()
 : <a class="el" href="class_stream_z.html#afb4669d480b7d3914292038ba6b6df1d">StreamZ</a>
@@ -293,6 +350,9 @@ $(function() {
 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
+<li>makeEmpty()
+: <a class="el" href="class_b_s_t.html#a5582f1066a084181d6a79ec0a6e9f9f2">BST&lt; Comparable &gt;</a>
+</li>
 <li>message()
 : <a class="el" href="class_viewer.html#a4e6d851f0253cabe05aa4742c917f02a">Viewer</a>
 </li>
@@ -324,12 +384,15 @@ $(function() {
 </li>
 <li>operator&lt;()
 : <a class="el" href="class_date.html#ae46a679579ec061c2d37eb1aa80b29e4">Date</a>
+, <a class="el" href="class_donation.html#a181dbe7b501fbe9656ed2c137c7c2187">Donation</a>
+, <a class="el" href="class_purchase.html#a766a618b4a35047668ac8cc6276c3909">Purchase</a>
 </li>
 <li>operator&lt;=()
 : <a class="el" href="class_date.html#ab0656086910c8debe2a1fb5d2ae197ba">Date</a>
 </li>
 <li>operator==()
 : <a class="el" href="class_date.html#a673f3c9086fb0643c907565df3463acc">Date</a>
+, <a class="el" href="class_purchase.html#a5536cb610bd64c1c65761ccd7b3e5542">Purchase</a>
 </li>
 <li>operator&gt;()
 : <a class="el" href="class_date.html#a556af85013c9c8a573e023768f786c97">Date</a>
@@ -350,10 +413,16 @@ $(function() {
 <li>PublicStream()
 : <a class="el" href="class_public_stream.html#a6005515a9b950ccb3e5a3a03e4fd96c8">PublicStream</a>
 </li>
+<li>Purchase()
+: <a class="el" href="class_purchase.html#a8caee4160db1613234ac22a2565c57d0">Purchase</a>
+</li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
+<li>removePurchase()
+: <a class="el" href="class_streamer.html#a7babef51f3f8e2ec7fe61c3718738327">Streamer</a>
+</li>
 <li>removeSubscriber()
 : <a class="el" href="class_streamer.html#a00f5428ef29c7004f3c8028b9b3308d0">Streamer</a>
 </li>
@@ -364,6 +433,9 @@ $(function() {
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>searchStreamers()
+: <a class="el" href="class_admin.html#a3bced85d184de5cc3518ff1ce6397972">Admin</a>
+</li>
 <li>searchStreams()
 : <a class="el" href="class_stream_z.html#aa921f646efb6a2a6757610151772f074">StreamZ</a>
 </li>
@@ -373,6 +445,9 @@ $(function() {
 <li>searchStreamsMenu()
 : <a class="el" href="class_stream_z.html#a736f92166a13f918f252d31f46b8d621">StreamZ</a>
 </li>
+<li>setActivity()
+: <a class="el" href="class_user.html#a81e6bc979c10869c483d5e7fe12c07ca">User</a>
+</li>
 <li>setDate()
 : <a class="el" href="class_date.html#a662ff2e6d95395109716fc0a40f8c4f9">Date</a>
 </li>
@@ -380,8 +455,14 @@ $(function() {
 : <a class="el" href="class_admin.html#aa960b6fa05147013c0aaf101ca541f2b">Admin</a>
 , <a class="el" href="class_user.html#abe087f191699f9d61bdc94d041e4fada">User</a>
 </li>
+<li>setNewSalesLimit()
+: <a class="el" href="class_streamer.html#ae63afd005ada98a13658ba23efe2c150">Streamer</a>
+</li>
 <li>setNick()
 : <a class="el" href="class_user.html#af4385e7fd2a3d82289c7939fd761f2b7">User</a>
+</li>
+<li>setPurchases()
+: <a class="el" href="class_streamer.html#af39db18c710bdc8ef05f5a8e054af442">Streamer</a>
 </li>
 <li>setStreamerNick()
 : <a class="el" href="class_stream.html#a7989db0f6960241b948fbe0098e41276">Stream</a>
@@ -391,6 +472,12 @@ $(function() {
 </li>
 <li>setSubscribers()
 : <a class="el" href="class_streamer.html#aafd4ddab11e34447969085499b212ed8">Streamer</a>
+</li>
+<li>showDonation()
+: <a class="el" href="class_donation.html#aef1511f773d72690ba9ae331ead2b7af">Donation</a>
+</li>
+<li>showMerchPurchases()
+: <a class="el" href="class_streamer.html#a772793d65c153a9ab7d7a643129cbe02">Streamer</a>
 </li>
 <li>showMessages()
 : <a class="el" href="class_private_stream.html#afbad3c27b9a79997f7bebc8c3d577f8f">PrivateStream</a>
@@ -418,7 +505,7 @@ $(function() {
 : <a class="el" href="class_stream.html#ab646e78aa883c366632166092d782d8b">Stream</a>
 </li>
 <li>Streamer()
-: <a class="el" href="class_streamer.html#a82a570e9a6b4eb81637ba09f8c7a9eaa">Streamer</a>
+: <a class="el" href="class_streamer.html#ae5946a8071530eb0427a93e091e43bde">Streamer</a>
 </li>
 <li>streamerMenu()
 : <a class="el" href="class_stream_z.html#ac839b3637777342e91b42da83299dd46">StreamZ</a>
@@ -447,7 +534,7 @@ $(function() {
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>User()
-: <a class="el" href="class_user.html#ab301cd7223c67a704a58834ffa76c068">User</a>
+: <a class="el" href="class_user.html#a994cff9d5d0b7bfb4de48a549b0e0b55">User</a>
 </li>
 <li>userMenu()
 : <a class="el" href="class_stream_z.html#a55bf8ca21a5d0e88540788844274efce">StreamZ</a>
@@ -457,7 +544,7 @@ $(function() {
 
 <h3><a id="index_v"></a>- v -</h3><ul>
 <li>Viewer()
-: <a class="el" href="class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e">Viewer</a>
+: <a class="el" href="class_viewer.html#a319133d4c7b89a210519de66de93b4bc">Viewer</a>
 </li>
 <li>viewerMenu()
 : <a class="el" href="class_stream_z.html#ad167ae5261caf9e347c229919a5bc3bf">StreamZ</a>

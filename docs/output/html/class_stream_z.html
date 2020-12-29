@@ -102,6 +102,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af05f7f424bb43a587c8c9cb4242c3453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#af05f7f424bb43a587c8c9cb4242c3453">createStream</a> (<a class="el" href="class_streamer.html">Streamer</a> *streamer)</td></tr>
 <tr class="memdesc:af05f7f424bb43a587c8c9cb4242c3453"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> using user input and a given <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>.  <a href="class_stream_z.html#af05f7f424bb43a587c8c9cb4242c3453">More...</a><br /></td></tr>
 <tr class="separator:af05f7f424bb43a587c8c9cb4242c3453"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372f6fef6538c58aa575e0f1ff388cb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a372f6fef6538c58aa575e0f1ff388cb4">createDonation</a> (const string &amp;streamerNick)</td></tr>
+<tr class="memdesc:a372f6fef6538c58aa575e0f1ff388cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_donation.html" title="A donation is defined by the streamer who received it, its amount and the rating of the streamer (1 t...">Donation</a> by asking the user the amount and the rating.  <a href="class_stream_z.html#a372f6fef6538c58aa575e0f1ff388cb4">More...</a><br /></td></tr>
+<tr class="separator:a372f6fef6538c58aa575e0f1ff388cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e0b6bd60ce8955956cf14104f8f195f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a6e0b6bd60ce8955956cf14104f8f195f">deleteStream</a> (<a class="el" href="class_streamer.html">Streamer</a> *streamer)</td></tr>
 <tr class="memdesc:a6e0b6bd60ce8955956cf14104f8f195f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends and deletes a <a class="el" href="class_stream.html" title="Abstract class representing a stream.">Stream</a> by a given <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>. Also creates a pastStream and stores it in the <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>'s history accordingly.  <a href="class_stream_z.html#a6e0b6bd60ce8955956cf14104f8f195f">More...</a><br /></td></tr>
 <tr class="separator:a6e0b6bd60ce8955956cf14104f8f195f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,9 +133,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#ad7efe9f1fc6465917c53486ee1969fac">listUsers</a> () const</td></tr>
 <tr class="memdesc:ad7efe9f1fc6465917c53486ee1969fac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the Users' information to the standard output. <br /></td></tr>
 <tr class="separator:ad7efe9f1fc6465917c53486ee1969fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02137182da6e133c44daca0328bb78e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a02137182da6e133c44daca0328bb78e3">listUsers</a> (const std::set&lt; unsigned int &gt; &amp;<a class="el" href="class_stream_z.html#a828711b441dc3247731b84c63cf579be">users</a>) const</td></tr>
+<tr class="memitem:abe71f7f52e09225102bc8de54ef891c7"><td class="memItemLeft" align="right" valign="top"><a id="abe71f7f52e09225102bc8de54ef891c7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#abe71f7f52e09225102bc8de54ef891c7">listActiveUsers</a> () const</td></tr>
+<tr class="memdesc:abe71f7f52e09225102bc8de54ef891c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the active Users' information to the standard output. <br /></td></tr>
+<tr class="separator:abe71f7f52e09225102bc8de54ef891c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02137182da6e133c44daca0328bb78e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a02137182da6e133c44daca0328bb78e3">listUsers</a> (const std::set&lt; unsigned int &gt; &amp;<a class="el" href="class_stream_z.html#ab739bf5bc792acf698c9366142fd29dd">users</a>) const</td></tr>
 <tr class="memdesc:a02137182da6e133c44daca0328bb78e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the Users' information in the set to the standard output.  <a href="class_stream_z.html#a02137182da6e133c44daca0328bb78e3">More...</a><br /></td></tr>
 <tr class="separator:a02137182da6e133c44daca0328bb78e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec836b7e90b04075b95e37ae2432f732"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#aec836b7e90b04075b95e37ae2432f732">listDonations</a> (const string &amp;streamerName) const</td></tr>
+<tr class="memdesc:aec836b7e90b04075b95e37ae2432f732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the donations given to a certain <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>.  <a href="class_stream_z.html#aec836b7e90b04075b95e37ae2432f732">More...</a><br /></td></tr>
+<tr class="separator:aec836b7e90b04075b95e37ae2432f732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe9c830249ef16343bb50fab1b1e90a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#afe9c830249ef16343bb50fab1b1e90a5">showStreamHistory</a> (int id) const</td></tr>
 <tr class="memdesc:afe9c830249ef16343bb50fab1b1e90a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the stream history of a given <a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>.  <a href="class_stream_z.html#afe9c830249ef16343bb50fab1b1e90a5">More...</a><br /></td></tr>
 <tr class="separator:afe9c830249ef16343bb50fab1b1e90a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,20 +194,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a828711b441dc3247731b84c63cf579be"><td class="memItemLeft" align="right" valign="top"><a id="a828711b441dc3247731b84c63cf579be"></a>
-std::map&lt; unsigned int, <a class="el" href="class_user.html">User</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a828711b441dc3247731b84c63cf579be">users</a></td></tr>
-<tr class="memdesc:a828711b441dc3247731b84c63cf579be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Users (pointers) are stored in this map and accessed by their unique IDs. <br /></td></tr>
-<tr class="separator:a828711b441dc3247731b84c63cf579be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab739bf5bc792acf698c9366142fd29dd"><td class="memItemLeft" align="right" valign="top"><a id="ab739bf5bc792acf698c9366142fd29dd"></a>
+std::unordered_map&lt; unsigned int, <a class="el" href="class_user.html">User</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#ab739bf5bc792acf698c9366142fd29dd">users</a></td></tr>
+<tr class="memdesc:ab739bf5bc792acf698c9366142fd29dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Users (pointers) are stored in this map and accessed by their unique IDs. <br /></td></tr>
+<tr class="separator:ab739bf5bc792acf698c9366142fd29dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a812abeaddb178f9ba63966eca4615df7"><td class="memItemLeft" align="right" valign="top"><a id="a812abeaddb178f9ba63966eca4615df7"></a>
 std::vector&lt; <a class="el" href="class_stream.html">Stream</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a812abeaddb178f9ba63966eca4615df7">streams</a></td></tr>
 <tr class="memdesc:a812abeaddb178f9ba63966eca4615df7"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the active streams (pointers) are stored in this vector. <br /></td></tr>
 <tr class="separator:a812abeaddb178f9ba63966eca4615df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc47729df16858c9c6f8d5648d3ad6c"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a2dc47729df16858c9c6f8d5648d3ad6c">viewersNickID</a></td></tr>
-<tr class="memdesc:a2dc47729df16858c9c6f8d5648d3ad6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This map is used to login the Viewers, getting their ID with a nickname.  <a href="class_stream_z.html#a2dc47729df16858c9c6f8d5648d3ad6c">More...</a><br /></td></tr>
-<tr class="separator:a2dc47729df16858c9c6f8d5648d3ad6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0972b0e2f7603368c72ea13c3e7fe934"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a0972b0e2f7603368c72ea13c3e7fe934">streamersNickID</a></td></tr>
-<tr class="memdesc:a0972b0e2f7603368c72ea13c3e7fe934"><td class="mdescLeft">&#160;</td><td class="mdescRight">This map is used to login the Streamers, getting their ID with a nickname.  <a href="class_stream_z.html#a0972b0e2f7603368c72ea13c3e7fe934">More...</a><br /></td></tr>
-<tr class="separator:a0972b0e2f7603368c72ea13c3e7fe934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b163c962b4d6f14c294804417348514"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a0b163c962b4d6f14c294804417348514">viewersNickID</a></td></tr>
+<tr class="memdesc:a0b163c962b4d6f14c294804417348514"><td class="mdescLeft">&#160;</td><td class="mdescRight">This map is used to login the Viewers, getting their ID with a nickname.  <a href="class_stream_z.html#a0b163c962b4d6f14c294804417348514">More...</a><br /></td></tr>
+<tr class="separator:a0b163c962b4d6f14c294804417348514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad122b95f89e187b47e92bd33d19a67b8"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#ad122b95f89e187b47e92bd33d19a67b8">streamersNickID</a></td></tr>
+<tr class="memdesc:ad122b95f89e187b47e92bd33d19a67b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This map is used to login the Streamers, getting their ID with a nickname.  <a href="class_stream_z.html#ad122b95f89e187b47e92bd33d19a67b8">More...</a><br /></td></tr>
+<tr class="separator:ad122b95f89e187b47e92bd33d19a67b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fcfab663c44692cc8a1ebf75d60e4e7"><td class="memItemLeft" align="right" valign="top"><a id="a6fcfab663c44692cc8a1ebf75d60e4e7"></a>
 std::vector&lt; <a class="el" href="class_public_stream.html">PublicStream</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a6fcfab663c44692cc8a1ebf75d60e4e7">publicStreams</a></td></tr>
 <tr class="memdesc:a6fcfab663c44692cc8a1ebf75d60e4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The active public streams (pointers) are stored in this vector. <br /></td></tr>
@@ -210,6 +220,10 @@ std::vector&lt; <a class="el" href="class_private_stream.html">PrivateStream</a>
 std::map&lt; unsigned int, <a class="el" href="struct_past_stream.html">PastStream</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a7e5d53a989089b178d2628fa00b0f9d4">pastStreams</a></td></tr>
 <tr class="memdesc:a7e5d53a989089b178d2628fa00b0f9d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The pastStreams (pointers) are all stored in this map and can be accessed by their IDs. <br /></td></tr>
 <tr class="separator:a7e5d53a989089b178d2628fa00b0f9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4671011e788a0b6960497aeb4d7741e2"><td class="memItemLeft" align="right" valign="top"><a id="a4671011e788a0b6960497aeb4d7741e2"></a>
+<a class="el" href="class_b_s_t.html">BST</a>&lt; <a class="el" href="class_donation.html">Donation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#a4671011e788a0b6960497aeb4d7741e2">donations</a></td></tr>
+<tr class="memdesc:a4671011e788a0b6960497aeb4d7741e2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a>'s donations to their streamers, ordered by amount and then rating. <br /></td></tr>
+<tr class="separator:a4671011e788a0b6960497aeb4d7741e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa46e67ceab2055790db623fccbb65a5f"><td class="memItemLeft" align="right" valign="top"><a id="aa46e67ceab2055790db623fccbb65a5f"></a>
 <a class="el" href="class_admin.html">Admin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stream_z.html#aa46e67ceab2055790db623fccbb65a5f">admin</a></td></tr>
 <tr class="memdesc:aa46e67ceab2055790db623fccbb65a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the only <a class="el" href="class_admin.html" title="Class which has access to private methods of StreamZ, used to get statistics.">Admin</a> that can exist in the site; nullptr if the <a class="el" href="class_admin.html" title="Class which has access to private methods of StreamZ, used to get statistics.">Admin</a> doesn't exist. <br /></td></tr>
@@ -283,6 +297,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 
 <p>Account settings of the admin. </p>
 <p>The admin can change his name, delete his account or go back to <a class="el" href="class_stream_z.html#a2443436f180f152c29bacbeffc9ce3f7" title="Menu which shows basic information of the site and shows all the other options for the Admin to choos...">adminMenu()</a> </p><dl class="section return"><dt>Returns</dt><dd>Returns true if the admin deleted his account and false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a372f6fef6538c58aa575e0f1ff388cb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a372f6fef6538c58aa575e0f1ff388cb4">&#9670;&nbsp;</a></span>createDonation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StreamZ::createDonation </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>streamerNick</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="class_donation.html" title="A donation is defined by the streamer who received it, its amount and the rating of the streamer (1 t...">Donation</a> by asking the user the amount and the rating. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamerNick</td><td>Name of streamer receiving the donation </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -415,6 +455,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   <table class="params">
     <tr><td class="paramname">id</td><td><a class="el" href="class_user.html" title="Abstract class for a user of the website.">User</a>'s ID </td></tr>
     <tr><td class="paramname">streams</td><td>Vector of streams to be printed (they are also the <a class="el" href="class_viewer.html" title="Derived class of the class User, representing a viewer of the website.">Viewer</a>'s options) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec836b7e90b04075b95e37ae2432f732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec836b7e90b04075b95e37ae2432f732">&#9670;&nbsp;</a></span>listDonations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StreamZ::listDonations </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>streamerName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lists the donations given to a certain <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamerName</td><td>Nickname of <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -885,8 +951,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a0972b0e2f7603368c72ea13c3e7fe934"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0972b0e2f7603368c72ea13c3e7fe934">&#9670;&nbsp;</a></span>streamersNickID</h2>
+<a id="ad122b95f89e187b47e92bd33d19a67b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad122b95f89e187b47e92bd33d19a67b8">&#9670;&nbsp;</a></span>streamersNickID</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -895,7 +961,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, unsigned int&gt; StreamZ::streamersNickID</td>
+          <td class="memname">std::unordered_map&lt;std::string, unsigned int&gt; StreamZ::streamersNickID</td>
         </tr>
       </table>
   </td>
@@ -910,8 +976,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 
 </div>
 </div>
-<a id="a2dc47729df16858c9c6f8d5648d3ad6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dc47729df16858c9c6f8d5648d3ad6c">&#9670;&nbsp;</a></span>viewersNickID</h2>
+<a id="a0b163c962b4d6f14c294804417348514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b163c962b4d6f14c294804417348514">&#9670;&nbsp;</a></span>viewersNickID</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -920,7 +986,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, unsigned int&gt; StreamZ::viewersNickID</td>
+          <td class="memname">std::unordered_map&lt;std::string, unsigned int&gt; StreamZ::viewersNickID</td>
         </tr>
       </table>
   </td>
@@ -936,8 +1002,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/<a class="el" href="stream_z_8h_source.html">streamZ.h</a></li>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/streamZ.cpp</li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/<a class="el" href="stream_z_8h_source.html">streamZ.h</a></li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/streamZ.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

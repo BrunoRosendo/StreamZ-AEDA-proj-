@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['joinstream_213',['joinStream',['../class_stream_z.html#aa68c50f4d8701d0d84aabdc9353da73c',1,'StreamZ::joinStream()'],['../class_viewer.html#af994853d94174d2e5ead82874b43a254',1,'Viewer::joinStream()']]]
+  ['inastream_277',['inAStream',['../class_user.html#a1f6fa1bffa8bfb7714e700e4d0cc9da6',1,'User']]],
+  ['init_278',['init',['../class_stream_z.html#a67c72282931d47f8382597dd87807420',1,'StreamZ']]],
+  ['isleap_279',['isleap',['../class_date.html#adb3a545d7a7f68a64a1ed8055b799116',1,'Date']]],
+  ['issubscriber_280',['isSubscriber',['../class_streamer.html#a7f87b043124c6b5c130e543185035058',1,'Streamer']]],
+  ['isvalid_281',['isValid',['../class_date.html#a7a39fcfa60c9ff0f73d8c8094ffd1f78',1,'Date']]]
 ];

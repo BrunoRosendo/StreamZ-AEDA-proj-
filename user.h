@@ -188,6 +188,10 @@ private:
      * @brief Limit of the merchandising sales
      */
     static int merchSalesLimit;
+
+    /**
+     * @brief Quantity of merch already sold
+     */
     int soldMerch;
 
 public:
@@ -337,6 +341,10 @@ public:
      */
     void addSoldMerch(int numOfMerch);
 
+    /**
+     * @brief Sets the limit of the Merch sales
+     * @param newLimit New limit
+     */
     static void setNewSalesLimit(int newLimit);
 
 

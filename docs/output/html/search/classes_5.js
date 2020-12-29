@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['stream_155',['Stream',['../class_stream.html',1,'']]],
-  ['streamer_156',['Streamer',['../class_streamer.html',1,'']]],
-  ['streamz_157',['StreamZ',['../class_stream_z.html',1,'']]]
+  ['paststream_206',['PastStream',['../struct_past_stream.html',1,'']]],
+  ['privatestream_207',['PrivateStream',['../class_private_stream.html',1,'']]],
+  ['publicstream_208',['PublicStream',['../class_public_stream.html',1,'']]],
+  ['purchase_209',['Purchase',['../class_purchase.html',1,'']]]
 ];

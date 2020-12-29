@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['user_125',['User',['../class_user.html',1,'User'],['../class_user.html#ab301cd7223c67a704a58834ffa76c068',1,'User::User(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate)'],['../class_user.html#a3a2d627b0dfcc6b2df9e56b93d970b52',1,'User::User(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate, unsigned int id)']]],
-  ['usermenu_126',['userMenu',['../class_stream_z.html#a55bf8ca21a5d0e88540788844274efce',1,'StreamZ']]],
-  ['users_127',['users',['../class_stream_z.html#a828711b441dc3247731b84c63cf579be',1,'StreamZ']]]
+  ['title_166',['title',['../class_stream.html#a740de4c2b13297152661213397ae2b54',1,'Stream']]],
+  ['toplikes_167',['topLikes',['../class_stream_z.html#a58eb3216a166704bba7b49c20ea83ca9',1,'StreamZ']]],
+  ['topviews_168',['topViews',['../class_stream_z.html#a33c944be4137d0ce0acf1855666b9145',1,'StreamZ']]]
 ];

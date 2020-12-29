@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['paststream_152',['PastStream',['../struct_past_stream.html',1,'']]],
-  ['privatestream_153',['PrivateStream',['../class_private_stream.html',1,'']]],
-  ['publicstream_154',['PublicStream',['../class_public_stream.html',1,'']]]
+  ['noactivestreams_201',['NoActiveStreams',['../class_no_active_streams.html',1,'']]],
+  ['nocapacity_202',['NoCapacity',['../class_no_capacity.html',1,'']]],
+  ['notinastream_203',['NotInAStream',['../class_not_in_a_stream.html',1,'']]],
+  ['notoldenough_204',['NotOldEnough',['../class_not_old_enough.html',1,'']]],
+  ['notsubscribed_205',['NotSubscribed',['../class_not_subscribed.html',1,'']]]
 ];

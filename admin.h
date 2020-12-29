@@ -140,8 +140,14 @@ public:
      */
     void listDonations(int rate1, int rate2) const;
 
+    /**
+     * @brief Lists the top 10 donations, by decreasing order
+     */
     void listTopDonations() const;
 
+    /**
+     * @brief Opens a menu which lets the admin search streamers by their Nickname and see if they're active or not
+     */
     void searchStreamers() const;
 };
 

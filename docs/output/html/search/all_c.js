@@ -1,10 +1,15 @@
 var searchData=
 [
-  ['operator_21_3d_78',['operator!=',['../class_date.html#aa50f7ad426d9b78c9c7fafb4c1a40aa7',1,'Date']]],
-  ['operator_3c_79',['operator&lt;',['../class_date.html#ae46a679579ec061c2d37eb1aa80b29e4',1,'Date']]],
-  ['operator_3c_3c_80',['operator&lt;&lt;',['../class_streamer.html#aa3e2627ab51a48c216ecd104cf553854',1,'Streamer::operator&lt;&lt;()'],['../class_viewer.html#a7724ba9532c5947d5db88044c6e54f07',1,'Viewer::operator&lt;&lt;()']]],
-  ['operator_3c_3d_81',['operator&lt;=',['../class_date.html#ab0656086910c8debe2a1fb5d2ae197ba',1,'Date']]],
-  ['operator_3d_3d_82',['operator==',['../class_date.html#a673f3c9086fb0643c907565df3463acc',1,'Date']]],
-  ['operator_3e_83',['operator&gt;',['../class_date.html#a556af85013c9c8a573e023768f786c97',1,'Date']]],
-  ['operator_3e_3d_84',['operator&gt;=',['../class_date.html#a4a291faa73653c0a14981db2dee21678',1,'Date']]]
+  ['name_99',['name',['../class_admin.html#ae23f325d4ecbfc7b76cf859752778d12',1,'Admin::name()'],['../class_purchase.html#aecd6836f1d7d00711bc3640b341ca21d',1,'Purchase::name()'],['../struct_past_stream.html#a8a7222798b6342378f85559d1795ad23',1,'PastStream::name()'],['../class_user.html#a085d8d69282b6298964eab8351584536',1,'User::name()']]],
+  ['nextid_100',['nextID',['../class_stream.html#abdd6a43f2fb13544cb4c9c4ba8f1be7c',1,'Stream::nextID()'],['../class_user.html#a70ac5a59d4a8180114981d47f2ec1fb7',1,'User::nextID()']]],
+  ['nick_101',['nick',['../class_user.html#a6097de89cf5d8fd945c6782cfa7e89fe',1,'User']]],
+  ['noactivestreams_102',['NoActiveStreams',['../class_no_active_streams.html',1,'NoActiveStreams'],['../class_no_active_streams.html#a471071ca0efecf926154e763d0d5eb55',1,'NoActiveStreams::NoActiveStreams()']]],
+  ['nocapacity_103',['NoCapacity',['../class_no_capacity.html',1,'NoCapacity'],['../class_no_capacity.html#ac6291e33103a7e9ee48b7e4bd6c83a5b',1,'NoCapacity::NoCapacity()']]],
+  ['nolikes_104',['noLikes',['../class_stream.html#a63e54cdcf34f991e5f63bc09131b8a69',1,'Stream']]],
+  ['notinastream_105',['NotInAStream',['../class_not_in_a_stream.html',1,'NotInAStream'],['../class_not_in_a_stream.html#a060fd05a3f8bc149b5ef2c45a6e27439',1,'NotInAStream::NotInAStream()']]],
+  ['notoldenough_106',['NotOldEnough',['../class_not_old_enough.html',1,'NotOldEnough'],['../class_not_old_enough.html#ae03ec042f22c493c35af9bd5a693cf33',1,'NotOldEnough::NotOldEnough()']]],
+  ['notsubscribed_107',['NotSubscribed',['../class_not_subscribed.html',1,'NotSubscribed'],['../class_not_subscribed.html#a32b4e16a7c64f3fa559df79bbd609a59',1,'NotSubscribed::NotSubscribed()']]],
+  ['noviewers_108',['noViewers',['../struct_past_stream.html#aa708fd38a3a7565b89118c0fea372559',1,'PastStream']]],
+  ['numofproducts_109',['numOfProducts',['../class_purchase.html#aff0fe781747e5c759ecbc6e613f13ea7',1,'Purchase']]],
+  ['numviewers_110',['numViewers',['../class_stream.html#a1cd58bd4498c0ad4f262927fd8efcf65',1,'Stream']]]
 ];

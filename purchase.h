@@ -9,6 +9,9 @@
 
 using namespace std;
 
+/**
+ * @brief A Purchase is defined by the Viewer's name, the number of products in the purchase and the availability of the Viewer
+ */
 class Purchase {
 
     /**

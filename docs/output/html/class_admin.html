@@ -121,6 +121,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a41d756c275ec6912f067b20f8e9b04f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_streamer.html">Streamer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_admin.html#a41d756c275ec6912f067b20f8e9b04f9">getMostViewedStreamer</a> () const</td></tr>
 <tr class="memdesc:a41d756c275ec6912f067b20f8e9b04f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pointer to the most viewed <a class="el" href="class_streamer.html" title="Derived class of the class User, representing a streamer of the website.">Streamer</a> at the moment.  <a href="class_admin.html#a41d756c275ec6912f067b20f8e9b04f9">More...</a><br /></td></tr>
 <tr class="separator:a41d756c275ec6912f067b20f8e9b04f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5982643efeb98438844f552a3ea4cfa4"><td class="memItemLeft" align="right" valign="top"><a id="a5982643efeb98438844f552a3ea4cfa4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_admin.html#a5982643efeb98438844f552a3ea4cfa4">listDonations</a> () const</td></tr>
+<tr class="memdesc:a5982643efeb98438844f552a3ea4cfa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all the donations in the site, by decreasing order. <br /></td></tr>
+<tr class="separator:a5982643efeb98438844f552a3ea4cfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2343ad47e12324f827942b21d87b2d2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_admin.html#a2343ad47e12324f827942b21d87b2d2d">listDonations</a> (int rate1, int rate2) const</td></tr>
+<tr class="memdesc:a2343ad47e12324f827942b21d87b2d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the donations in a given interval of ratings, by decreasing order.  <a href="class_admin.html#a2343ad47e12324f827942b21d87b2d2d">More...</a><br /></td></tr>
+<tr class="separator:a2343ad47e12324f827942b21d87b2d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac42913e08ae92ca7b5112b4764fb50d4"><td class="memItemLeft" align="right" valign="top"><a id="ac42913e08ae92ca7b5112b4764fb50d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_admin.html#ac42913e08ae92ca7b5112b4764fb50d4">listTopDonations</a> () const</td></tr>
+<tr class="memdesc:ac42913e08ae92ca7b5112b4764fb50d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the top 10 donations, by decreasing order. <br /></td></tr>
+<tr class="separator:ac42913e08ae92ca7b5112b4764fb50d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bced85d184de5cc3518ff1ce6397972"><td class="memItemLeft" align="right" valign="top"><a id="a3bced85d184de5cc3518ff1ce6397972"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_admin.html#a3bced85d184de5cc3518ff1ce6397972">searchStreamers</a> () const</td></tr>
+<tr class="memdesc:a3bced85d184de5cc3518ff1ce6397972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a menu which lets the admin search streamers by their Nickname and see if they're active or not. <br /></td></tr>
+<tr class="separator:a3bced85d184de5cc3518ff1ce6397972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -541,6 +556,49 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 </div>
 </div>
+<a id="a2343ad47e12324f827942b21d87b2d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2343ad47e12324f827942b21d87b2d2d">&#9670;&nbsp;</a></span>listDonations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Admin::listDonations </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rate1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rate2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lists the donations in a given interval of ratings, by decreasing order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aval1</td><td>Lower bound of the interval </td></tr>
+    <tr><td class="paramname">aval2</td><td>Upper bound of the interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbad_date_comp.html" title="Exception class which should be thrown when an interval of Dates is faulty.">badDateComp</a></td><td>if the lower bound is higher than the upper bound </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aa960b6fa05147013c0aaf101ca541f2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa960b6fa05147013c0aaf101ca541f2b">&#9670;&nbsp;</a></span>setName()</h2>
 
@@ -568,8 +626,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/<a class="el" href="admin_8h_source.html">admin.h</a></li>
-<li>C:/Users/bruno/Desktop/StreamZ-AEDA-proj-/admin.cpp</li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/<a class="el" href="admin_8h_source.html">admin.h</a></li>
+<li>C:/Users/bruno/Documents/FEUP/AEDA/StreamZ-AEDA-proj-/admin.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

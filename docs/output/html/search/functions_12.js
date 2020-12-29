@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['viewer_261',['Viewer',['../class_viewer.html#a3c7061441d8ee0d303bab6e9ca8c785e',1,'Viewer::Viewer(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate)'],['../class_viewer.html#a212d9abd5d29b05894955a076a787aa4',1,'Viewer::Viewer(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate, unsigned int id)']]],
-  ['viewermenu_262',['viewerMenu',['../class_stream_z.html#ad167ae5261caf9e347c229919a5bc3bf',1,'StreamZ']]],
-  ['viewersettings_263',['viewerSettings',['../class_stream_z.html#ad9328d50337d539fd5db83be38fd8ff3',1,'StreamZ']]]
+  ['user_340',['User',['../class_user.html#a994cff9d5d0b7bfb4de48a549b0e0b55',1,'User::User(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate, const int activity)'],['../class_user.html#afcb7b52d9ff67ca2fa87334f16110d1f',1,'User::User(const std::string &amp;name, const std::string &amp;nick, const Date &amp;birthDate, const int activity, unsigned int id)']]],
+  ['usermenu_341',['userMenu',['../class_stream_z.html#a55bf8ca21a5d0e88540788844274efce',1,'StreamZ']]]
 ];

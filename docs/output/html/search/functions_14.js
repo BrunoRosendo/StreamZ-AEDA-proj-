@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['_7eprivatestream_266',['~PrivateStream',['../class_private_stream.html#a241e627af9006a448245add2fa082dd9',1,'PrivateStream']]],
-  ['_7epublicstream_267',['~PublicStream',['../class_public_stream.html#a7e44ed2f8288e90c04298a1d998acad0',1,'PublicStream']]],
-  ['_7estream_268',['~Stream',['../class_stream.html#a6dc4517a9e6a87abb662fcd14c2ea969',1,'Stream']]],
-  ['_7estreamer_269',['~Streamer',['../class_streamer.html#a713b5c47448af40f966d5e641f402af3',1,'Streamer']]],
-  ['_7estreamz_270',['~StreamZ',['../class_stream_z.html#a89e6505efcc9e4bb40b9123f4bed2091',1,'StreamZ']]],
-  ['_7euser_271',['~User',['../class_user.html#ac00b72ad64eb4149f7b21b9f5468c2b2',1,'User']]],
-  ['_7eviewer_272',['~Viewer',['../class_viewer.html#a324e5a6a1532fe5eac3f3b0e4792b2da',1,'Viewer']]]
+  ['watchingoptions_345',['watchingOptions',['../class_stream_z.html#a38a5423eb2af5575b117523b13cab287',1,'StreamZ']]],
+  ['what_346',['what',['../classbad_date_comp.html#a24a39b5ae74fb0b34f74f0d075b7f5a1',1,'badDateComp::what()'],['../class_no_active_streams.html#a952694d28ce46ed95aa37964a7a15675',1,'NoActiveStreams::what()'],['../class_date_is_not_valid.html#a1a62b9c96899bf0395b21fa7b67f3c7b',1,'DateIsNotValid::what()'],['../class_no_capacity.html#ad840144efd3a788ab2f86956013c3e7b',1,'NoCapacity::what()'],['../class_not_subscribed.html#afaab8d332e697a37f072e780f32cbf0f',1,'NotSubscribed::what()'],['../class_not_old_enough.html#aba2bb706993d07ed51a3b85b07754ecc',1,'NotOldEnough::what()'],['../class_not_in_a_stream.html#ad48dae59c0f939b775316d13ca0729a7',1,'NotInAStream::what()'],['../class_already_in_a_stream.html#a8415e0ff11986c09d3f18e1492145c61',1,'AlreadyInAStream::what()']]]
 ];

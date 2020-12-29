@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['reason_91',['reason',['../classbad_date_comp.html#a2385b2b19ce9048ab21658634516e834',1,'badDateComp::reason()'],['../class_no_active_streams.html#a1a941e99548a2d11d78b9204fd282c95',1,'NoActiveStreams::reason()'],['../class_no_capacity.html#a4f93ad3c885afe8074a62dc6a72333d7',1,'NoCapacity::reason()'],['../class_not_subscribed.html#a232fef931b5254397509ec82dfc57657',1,'NotSubscribed::reason()'],['../class_not_old_enough.html#a2c1a061d412dea15ec0f86d69cf27609',1,'NotOldEnough::reason()'],['../class_not_in_a_stream.html#a8509fbccdfa50a5b5f2bd87b02049348',1,'NotInAStream::reason()'],['../class_already_in_a_stream.html#a1c75e681dc4c9318b88812943fc9d988',1,'AlreadyInAStream::reason()']]],
-  ['removesubscriber_92',['removeSubscriber',['../class_streamer.html#a00f5428ef29c7004f3c8028b9b3308d0',1,'Streamer']]],
-  ['removeuser_93',['removeUser',['../class_stream.html#a9622d7730681e7a6ff780003d0916136',1,'Stream']]]
+  ['paststream_118',['PastStream',['../struct_past_stream.html',1,'PastStream'],['../struct_past_stream.html#a70e46eb879f19b3de9518c56a5f6c2ef',1,'PastStream::PastStream()'],['../struct_past_stream.html#a38ff43e2b6517d7c24cd6f3e3b284717',1,'PastStream::PastStream(Stream *stream)']]],
+  ['paststreams_119',['pastStreams',['../class_stream_z.html#a7e5d53a989089b178d2628fa00b0f9d4',1,'StreamZ']]],
+  ['privatestream_120',['PrivateStream',['../class_private_stream.html',1,'PrivateStream'],['../class_private_stream.html#af09066ddae36d3d345a21e853b5250f7',1,'PrivateStream::PrivateStream()']]],
+  ['privatestreams_121',['privateStreams',['../class_stream_z.html#a45540de80584062d0b98a1500c07ec07',1,'StreamZ']]],
+  ['publicstream_122',['PublicStream',['../class_public_stream.html',1,'PublicStream'],['../class_public_stream.html#a6005515a9b950ccb3e5a3a03e4fd96c8',1,'PublicStream::PublicStream()']]],
+  ['publicstreams_123',['publicStreams',['../class_stream_z.html#a6fcfab663c44692cc8a1ebf75d60e4e7',1,'StreamZ']]],
+  ['purchase_124',['Purchase',['../class_purchase.html',1,'Purchase'],['../class_purchase.html#a8caee4160db1613234ac22a2565c57d0',1,'Purchase::Purchase()']]],
+  ['purchases_125',['purchases',['../class_streamer.html#a5f341621d506fc2ee46be342e4a32ad3',1,'Streamer']]]
 ];
