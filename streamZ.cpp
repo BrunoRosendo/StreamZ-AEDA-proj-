@@ -848,7 +848,8 @@ void StreamZ::adminMenu() {
              << "6- List donations by rating (interval)" << endl
              << "7- List top 10 donations" << endl
              << "8- Account Settings" << endl
-             << "9- Go back" << endl;
+             << "9- Search Streamers" << endl
+             << "10- Go back" << endl;
         int choice;
         cin >> choice;
         if (cin.fail() || cin.eof()){
@@ -911,6 +912,9 @@ void StreamZ::adminMenu() {
                 if (adminSettings()) return;
                 continue;
             case 9:
+                admin->searchStreamers();
+                continue;
+            case 10:
                 return;
         }
         if (choice > 9){
@@ -1321,7 +1325,7 @@ bool StreamZ::viewerSettings(int id) {
                 Viewer *v = (Viewer *) users.at(id);
                 if (v->inAStream()) v->leaveStream();
                 v->setActivity(0);
-                std::map<std::string, unsigned int>::iterator it;
+                std::unordered_map<std::string, unsigned int>::iterator it;
                 for (it = streamersNickID.begin(); it != streamersNickID.end(); ++it){
                     Streamer* s = (Streamer*) users.at(it->second);
                     set<unsigned int> subs = s->getSubscribers();

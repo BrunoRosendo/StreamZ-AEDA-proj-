@@ -6,6 +6,7 @@
 #define PROJETO1_ADMIN_H
 
 #include <string>
+#include <algorithm>
 #include "user.h"
 #include "streamZ.h"
 
@@ -140,6 +141,8 @@ public:
     void listDonations(int rate1, int rate2) const;
 
     void listTopDonations() const;
+
+    void searchStreamers() const;
 };
 
 /**

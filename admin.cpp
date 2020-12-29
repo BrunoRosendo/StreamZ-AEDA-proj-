@@ -164,7 +164,7 @@ Streamer * Admin::getMostViewedStreamer() const {
     if (site->streams.empty()) throw NoActiveStreams("There are currently no active streams");
     Streamer* best;
     int maxViews = 0;
-    for (std::map<std::string, unsigned int>::const_iterator it = site->streamersNickID.begin(); it != site->streamersNickID.end(); ++it){
+    for (std::unordered_map<std::string, unsigned int>::const_iterator it = site->streamersNickID.begin(); it != site->streamersNickID.end(); ++it){
         unsigned int id = it->second;
         Streamer* streamer = (Streamer*) site->users.at(id);
         int views;
@@ -214,5 +214,46 @@ void Admin::listTopDonations() const {  // top 10
         if (it.isAtEnd()) break;
         it.retrieve().showDonation();
         it.advance();
+    }
+}
+
+void Admin::searchStreamers() const{
+    while (true){
+        string name;
+        cout << "Insert the name of the streamer you want to search ('exit' to leave)" << endl;
+        getline(cin, name);
+        while (true){
+            if (cin.fail() || cin.eof()){
+                cin.clear();
+                cout << "Insert a valid name" << endl;
+                getline(cin, name);
+                continue;
+            }
+            if (name == ""){
+                cout << "Insert a valid name" << endl;
+                getline(cin, name);
+                continue;
+            }
+            break;
+        }
+
+        if (name == "exit") return;
+
+        transform(name.begin(), name.end(), name.begin(), ::toupper);
+        unordered_map<string, unsigned int>::iterator it = site->streamersNickID.begin();
+        bool found = false;
+        for(; it != site->streamersNickID.end(); ++it){
+            Streamer* s = (Streamer*) site->users.at(it->second);
+            string streamName = s->getNick();
+            transform(streamName.begin(), streamName.end(), streamName.begin(), ::toupper);
+            if(streamName == name){   // check string::npos on hover
+                cout << "This streamer exists ";
+                if (s->getActivity()) cout << "and is active" << endl;
+                else cout << "but isn't active" << endl;
+                found = true;
+                break;
+            }
+        }
+        if (!found) cout << "That streamer does not exist" << endl;
     }
 }

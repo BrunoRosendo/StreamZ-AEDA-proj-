@@ -39,13 +39,13 @@ private:
      * Note that a Viewer and a Streamer can have the same nickname but two Streamers/Viewers can't
      * @brief This map is used to login the Viewers, getting their ID with a nickname.
      */
-    std::map<std::string, unsigned int> viewersNickID;  // use this to login
+    std::unordered_map<std::string, unsigned int> viewersNickID;  // use this to login
 
     /**
      * Note that a Viewer and a Streamer can have the same nickname but two Streamers/Viewers can't
      * @brief This map is used to login the Streamers, getting their ID with a nickname.
      */
-    std::map<std::string, unsigned int> streamersNickID;
+    std::unordered_map<std::string, unsigned int> streamersNickID;
 
     /**
      * @brief The active public streams (pointers) are stored in this vector
