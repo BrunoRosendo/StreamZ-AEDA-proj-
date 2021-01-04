@@ -2,6 +2,7 @@
 Joao Gil    //name
 Monkin      //nick
 07/04/2001  //date
+1           // activity (0-2)
 0           //id do user
 37          // Current merch sales
 *1          //id da pastStream  (*)
@@ -9,5 +10,5 @@ Monkin      //nick
 *7          //id da pastStream  (*)
 /0  //subscriber por id   (ID = /)
 /2       //subscriber por id
-|Monkin 7 5         // Purchase (name nºprod. availability)
+|Monkin 7 5         // Purchase (name nºprods. availability)
 Outro User  //2º user começa aqui porque nao tem os identificadores
