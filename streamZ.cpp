@@ -1411,12 +1411,12 @@ bool StreamZ::streamerSettings(int id) {
             case 6:
                 while(true){
                     s->showMerchPurchases();
-                    if((s->getPurchases().top().getNumOfProducts() + s->getSoldMerch() > s->getMerchSalesLimit()) ){
-                        cout << "There are no purchases that you can confirm. If you wish to confirm, increase your merch sales limit" << endl;
+                    if((s->getPurchases().empty())){
+                        cout << "There are no purchases to confirm." << endl;
                         break;
                     }
-                    else if((s->getPurchases().empty())){
-                        cout << "There are no purchases to confirm." << endl;
+                    else if((s->getPurchases().top().getNumOfProducts() + s->getSoldMerch() > s->getMerchSalesLimit()) ){
+                        cout << "There are no purchases that you can confirm. If you wish to confirm, increase your merch sales limit" << endl;
                         break;
                     }
                     cout << "Do you wish to confirm the next purchase? (y/n)" << endl;

@@ -1,4 +1,24 @@
 270
+gaben
+Cheater
+2001/04/03
+1
+7
+0
+*18
+Disguised toast
+Toast
+1995/01/01
+1
+4
+0
+*18
+Crying kid
+xQC
+1999/01/01
+0
+6
+0
 Imane
 Pokimane
 1990/12/12
@@ -11,3 +31,12 @@ Pokimane
 *16
 *17
 *18
+Shroud
+Shrode
+1999/04/07
+1
+2
+0
+*18
+/0
+|Monkin 7 5
