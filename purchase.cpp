@@ -28,7 +28,7 @@ int Purchase::getAvailability() const{
 
 bool Purchase::operator<(const Purchase& p2) const {
     if( this->numOfProducts < p2.getNumOfProducts() )
-        return false;
+        return false;               
     else if(this->numOfProducts > p2.getNumOfProducts())
         return true;
     else{

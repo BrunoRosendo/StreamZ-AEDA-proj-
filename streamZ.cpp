@@ -670,13 +670,25 @@ void StreamZ::watchingOptions(int id) {
                     s->removePurchase(v->getNick());
                 else{
                     int numProducts, availability;
-                    cout << "How many products do you wish to acquire?" << endl;
-                    cin >> numProducts;
-                    cin.ignore(100, '\n');
+                    bool inputError;
+                    while(true){
+                        inputError = false;
+                        cout << "How many products do you wish to acquire?" << endl;
+                        cin >> numProducts;
+                        if(cin.fail()){
+                            cin.clear();
+                            inputError = true;
+                        }
+                        cin.ignore(1000, '\n');
+                        if(!inputError)
+                            break;
+                    }
                     while(true){
                         cout << "What is your purchase availability? (1-5)" << endl;
                         cin >> availability;
-                        cin.ignore(100, '\n');
+                        cin.ignore(1000, '\n');
+                        if(cin.fail())
+                            cin.clear();
                         if( (availability <= 5) && (availability >= 1) )
                             break;
                         else
